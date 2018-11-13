@@ -11,3 +11,4 @@
 5. 还需要登录注册功能，以便能存储到对应用户的Excel表信息。
 6. 当前只能上传一次分析一次，然后结果会叠加，下一步打算根据用户需要决定要不要叠加结果。
 7. 测试连接：
+<a href="http://kanlon.ink:8081/joblabxDemo4/">http://kanlon.ink:8081/joblabxDemo4/</a>
