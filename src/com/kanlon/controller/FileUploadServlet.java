@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 import java.util.logging.Level;
 
@@ -95,7 +94,6 @@ public class FileUploadServlet extends HttpServlet {
 
 		try {
 			// 解析请求的内容提取文件数据
-			@SuppressWarnings("unchecked")
 			List<FileItem> formItems = upload.parseRequest(request);
 
 			if (formItems != null && formItems.size() > 0) {
@@ -130,20 +128,22 @@ public class FileUploadServlet extends HttpServlet {
 							out.flush();
 							return;
 						}
-						FileDataService service = new FileDataServiceImpl();
-						service.storeData(list);
-
-						// 获取各学校和各年份人数
-
-						Map<String, String> mapYear = service.getNumGroupByYear();
-						Map<String, String> mapSchool = service.getNumGroupByYear();
-						// 封装json
-						FileResponseVO responseVo = new FileResponseVO();
-						responseVo.setMapSchool(mapSchool);
-						responseVo.setMapYear(mapYear);
-						result.setData(responseVo);
-						out.write(JsonResponseUtil.getVOJsonStr(response, result));
-						out.flush();
+						// FileDataService service = new FileDataServiceImpl();
+						// service.storeData(list);
+						// // 获取各学校和各年份人数
+						// Map<String, String> mapYear =
+						// service.getNumGroupByYear();
+						// Map<String, String> mapSchool =
+						// service.getNumGroupBySchool();
+						// // 封装json
+						// FileResponseVO responseVo = new FileResponseVO();
+						// responseVo.setMapSchool(mapSchool);
+						// responseVo.setMapYear(mapYear);
+						// result.setData(responseVo);
+						// out.write(JsonResponseUtil.getVOJsonStr(response,
+						// result));
+						// out.flush();
+						response.sendRedirect("year_and_school.html");
 						return;
 					}
 				}
@@ -160,5 +160,31 @@ public class FileUploadServlet extends HttpServlet {
 		result.setStateCode(ResponseCode.REQUEST_ERROR, "上传失败！");
 		out.write(JsonResponseUtil.getVOJsonStr(response, result));
 		return;
+	}
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
+		JsonResult<FileResponseVO> result = new JsonResult<>();
+		FileDataService service = new FileDataServiceImpl();
+		OutputStream out = null;
+		try {
+			out = response.getOutputStream();
+			// // 获取各学校和各年份人数
+			// Map<String, String> mapYear = service.getNumGroupByYear();
+			// Map<String, String> mapSchool = service.getNumGroupBySchool();
+			// // 封装json
+			// FileResponseVO responseVo = new FileResponseVO();
+			// responseVo.setMapSchool(mapSchool);
+			// responseVo.setMapYear(mapYear);
+			// result.setData(responseVo);
+			// out.write(JsonResponseUtil.getVOJsonStr(response, result));
+			// out.flush();
+			response.sendRedirect("year_and_school.html");
+		} catch (Exception e) {
+			result.setStateCode(ResponseCode.RESPONSE_ERROR, e.getMessage());
+			out.write(JsonResponseUtil.getVOJsonStr(response, result));
+			out.flush();
+			LoggerUtil.logger.log(Level.SEVERE, CustomerExceptionTool.getException(e));
+		}
 	}
 }

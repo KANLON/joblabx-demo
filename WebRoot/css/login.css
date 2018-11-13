@@ -1,0 +1,221 @@
+body{
+    margin: 0 auto;
+    padding: 0;
+    outline: none;
+    font-family: Verdana;
+    font-size: 15px;
+}
+
+a{
+    text-decoration:none;
+}
+a:hover{
+    color: #FF5151;
+    text-decoration:underline;
+    font-weight:bold;
+}
+.head{
+    height:85px;
+    width:1349px;
+     margin: 0 auto;
+    text-align: center;
+}
+.table{
+    background-color: #E0E0E0;
+}
+.head_logo{
+    float:left;
+    width: 298px;
+    height: 85px;
+    line-height: 85px;
+    overflow: hidden;
+    margin: 0 auto;
+    text-align: center;
+}
+.head_search{
+    float:left;
+    margin-left:100px;
+}
+.head_search_input{
+    margin-top:12px;
+    height:30px;
+    width:300px;
+}
+.head_search_inputsou{/*搜索按钮*/
+    margin-left: -20px;
+    border: #000000 solid 1px;
+    padding:0px;
+    height:36px;
+    width:80px;
+    color: #FF7F50;
+}
+.head_login{
+    float:left;
+    color:#FF5809；
+    margin-top:20px;
+    margin-left:100px;
+}
+.head_login_deng{/*登录*/
+    font-size:20px;
+    color:#FF5809；
+    text-decoration:none;
+}
+.head_login_zhu{/*注册*/
+    font-size:20px;
+    margin-left:50px;
+    color: #FF5809；
+    text-decoration:none;
+}
+.head_dianhua{/*电话图标*/
+    float:left;
+    margin-left:50px;
+}
+/*导航部分*/
+.guidance{
+    width:1349px;
+    height:30px;
+    background: #7B68EE;
+    padding-top: 10px;
+    margin: 0 auto;
+    text-align: center;
+}
+.guidance ul{
+    list-style: none;
+    list-style-position: inside;/*列表项目标记放置在文本以内，且环绕文本根据标记对齐*/
+}
+.guidance ul li{
+    float:left;
+    padding:0 40px;
+    font-size:16px;
+    position: relative;
+    text-decoration:none;
+}
+.guidance ul li a{
+    color:#fff;
+    text-decoration:none;
+}
+.guidance ul li a:hover{
+    color: #FF5151;
+    text-decoration:underline;
+    font-weight:bold;
+}
+#contain {
+    float: left;
+    width: 980px;
+    height: 500px;
+    border: 1px dotted black;
+}
+#contain1 {
+    width: 980px;
+    height: 500px;
+    border: 1px dotted black;/*轮播图片的边框*/
+    margin: 0 auto;
+}
+.imageShow {
+    width: 980px;
+    height: 500px;
+    /*border: 0px dashed Olive;*/
+}
+#posi {
+    margin: -30px 0 0 600px;
+    width: 100px;
+    height: 25px;
+}
+
+
+/*登录*/
+
+.main{
+    float: left;
+    width: 1349px;
+    height: 386px;
+    position: relative;
+    background: url(Images/beijing.jpg)  center no-repeat;
+}
+div {
+    display: block;
+}
+.main_admin{
+    position: relative;
+    right: -800px;
+    top: 50%;
+    width: 300px;
+    height: 250px;
+    margin-top: -155px;
+    padding: 50px 50px 20px;
+    border-radius: 5px;
+    
+}
+.main_admin_form{
+    width:280px;
+    height:200px;
+    /*background-color: blue;*/
+}
+.main_admin_img1{
+    float:left;
+    width: 60px;
+    height: 40px;
+}
+.main_admin_input1{
+    float:left;
+    width:200px;
+    height: 35px;
+    border-color: #00b7ee;
+}
+.main_admin_jiange{
+    float: left;
+    width: 280px;
+    height:40px;
+}
+.main_admin_forgetp{
+    float:left;
+    width:280px;
+    height: 40px;
+}
+.main_admin_forgeta{
+    float: right;
+    padding-right: 20px;
+
+}
+
+.a_link{
+    color: #757575;
+    display: inline-block;
+    height: 24px;
+    line-height: 24px;
+    margin-right: 25px;
+    font-size: 15px;
+}
+.footer{
+    width:1349px;
+    height:80px;
+    background: #7B68EE;
+    margin: 0 auto;
+    text-align: center;
+}
+.footer_aboutWe{
+    background: #7B68EE;
+    width:1349px;
+    height:80px;
+}
+.footer_aboutWe div{
+    float:left;
+    width:80px;
+    height:20px;
+    padding-left: 80px;
+    padding-right: 100px;
+    background: #7B68EE;
+    margin: 30px;/*div上边距*/
+}
+.footer_aboutWe a{
+    color: #FFF;
+    text-decoration: none;
+}
+.footer_aboutWe a:hover{
+    color: #FF5151;
+    text-decoration:underline;
+    font-weight:bold;
+}
+
+    
+    

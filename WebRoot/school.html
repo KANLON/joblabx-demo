@@ -1,0 +1,84 @@
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>各学校人数信息统计分析</title>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+</head>
+<body>
+	<div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
+	<script language="JavaScript">
+		$.ajax({
+			url : 'year_or_school_list',
+			type : 'GET',
+			dataType : 'json',
+		})
+			.done(function(json) {
+				console.log(json);
+				//字符串数组 
+				var dataStrArr=json.data.schoolNumList;
+				//保存转换后的整型字符串
+				var dataIntArr=[];
+				dataStrArr.forEach(function(data,index,arr){  
+       				 dataIntArr.push(+data);  
+    			});
+				drawing(json.data.schoolList,dataIntArr);
+			});
+		$(document).ready();
+		
+		//绘图
+		function drawing(arrSchool, arrSchoolNum) {
+			console.log('绘图');
+			var title = {
+				text : '各学校人数信息统计分析'
+			};
+			var subtitle = {
+				text : 'joblabx'
+			};
+			var xAxis = {
+				categories : arrSchool
+			};
+			var yAxis = {
+				title : {
+					text : '人数/人 '
+				},
+				plotLines : [ {
+					value : 0,
+					width : 1,
+					color : '#808080'
+				} ]
+			};
+	
+			var tooltip = {
+				valueSuffix : '人'
+			}
+	
+			var legend = {
+				layout : 'vertical',
+				align : 'right',
+				verticalAlign : 'middle',
+				borderWidth : 0
+			};
+	
+			var series = [
+				{
+					name : '人数',
+					data : arrSchoolNum
+				}
+			];
+	
+	
+			var webView = {};
+	
+			webView.title = title;
+			webView.subtitle = subtitle;
+			webView.xAxis = xAxis;
+			webView.yAxis = yAxis;
+			webView.tooltip = tooltip;
+			webView.legend = legend;
+			webView.series = series;
+			$('#container').highcharts(webView);
+		}
+	</script>
+</body>
+</html>

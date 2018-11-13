@@ -1,0 +1,50 @@
+.zy-Slide{
+    font-size: 12px;
+    position:relative;
+    width:754px;
+    height:292px;
+    margin:115px auto 0;
+}
+.zy-Slide ul{
+    position:relative;
+    width:754px;
+    height:292px;
+    margin:0;
+    padding:0;
+}
+.zy-Slide li{
+    position:absolute;/*Z-index 仅能在定位元素上奏效 position:absolute*/
+    list-style:none;
+    background:#000;
+    width:0;
+    height:0;
+    top:146px;/*定位元素的上外边距边界与其包含块上边界之间的偏移*/
+    left:377px;
+    z-index:0;/*z-index 属性设置元素的堆叠顺序*/
+    cursor:pointer;/*设置光标的属性为小手*/
+    border-radius:3px;/*加圆角值*/
+    margin:0;
+    padding:0;
+}
+.zy-Slide li img{
+    width:100%;
+    height:100%;
+    vertical-align:middle;/*属性设置元素的垂直对齐方式，把此元素放置在父元素的中部。*/
+}
+.zy-Slide section:nth-child(1), .zy-Slide section:nth-child(2){ /*选中section 的两个孩子，伪类选择器*/
+    position: absolute; 
+    top: 50%; 
+    width: 39px; 
+    height: 40px; 
+    margin-top: -20px; 
+    cursor: pointer; /*设置光标的属性为小手*/
+    line-height: 40px; /*属性设置行间的距离（行高）主要设置框中字体*/
+    padding-left: 12px; /*设置框框中文字的距离*/
+    padding-right: 12px;
+     }
+.zy-Slide section:nth-child(1){
+    left:-60px;/*框与图片的相对位置*/
+}
+.zy-Slide section:nth-child(2){
+    right:-60px;  
+}

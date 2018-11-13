@@ -1,0 +1,85 @@
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>各学年人数信息统计分析</title>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+</head>
+<body>
+	<div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
+	<script language="JavaScript">
+		$.ajax({
+			url : 'year_or_school_list',
+			type : 'GET',
+			dataType : 'json',
+		})
+			.done(function(json) {
+				console.log(json);
+				//字符串数组 
+				var dataStrArr=json.data.yearNumList;
+				//保存转换后的整型字符串
+				var dataIntArr=[];
+				dataStrArr.forEach(function(data,index,arr){  
+       				 dataIntArr.push(+data);  
+    			});  
+				drawing(json.data.yearList, dataIntArr);
+			});
+	
+		function drawing(arrYear, arrYearNum) {
+			var chart = {
+				type : 'column'
+			};
+			var title = {
+				text : '各学年人数信息统计分析'
+			};
+			var subtitle = {
+				text : 'joblabx'
+			};
+			var xAxis = {
+				categories : arrYear,
+				crosshair : true
+			};
+			var yAxis = {
+				min : 0,
+				title : {
+					text : '人数'
+				}
+			};
+			var tooltip = {
+				headerFormat : '<span style="font-size:20px">{point.key}</span><table>',
+				pointFormat : '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+					'<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+				footerFormat : '</table>',
+				shared : true,
+				useHTML : true
+			};
+			var plotOptions = {
+				column : {
+					pointPadding : 0.2,
+					borderWidth : 1
+				}
+			};
+			var credits = {
+				enabled : false
+			};
+	
+			var series = [ {
+				name : '人数',
+				data : arrYearNum
+			} ];
+	
+			var webView = {};
+			webView.chart = chart;
+			webView.title = title;
+			webView.subtitle = subtitle;
+			webView.tooltip = tooltip;
+			webView.xAxis = xAxis;
+			webView.yAxis = yAxis;
+			webView.series = series;
+			webView.plotOptions = plotOptions;
+			webView.credits = credits;
+			$('#container').highcharts(webView);
+		}
+	</script>
+</body>
+</html>

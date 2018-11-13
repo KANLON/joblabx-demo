@@ -1,0 +1,264 @@
+﻿body {
+	background: #f5f5f5;
+	color: #78394e;
+	font-family: Verdana;
+	font-size: 12px;
+	margin: 0;
+	min-width: 960px;
+	width: 100%;
+}
+
+a {
+	outline: none;
+}
+img {
+	border: 0;
+}
+p a {·
+	color: #df4b9f;
+}
+#header {
+	background: #f5f5f5;
+}
+
+#header div {
+	margin: 0 auto;
+	width: 960px;
+}
+
+#header div div {
+	height: 110px;
+	overflow: hidden;
+	position: relative;
+}
+
+#header div div div#logo {
+	float: left;
+	width: 960px;
+	height: 110px;
+	width: auto;
+}
+#header div ul {
+	overflow: hidden;
+	list-style: none;
+	padding: 0;
+}
+
+#header div ul li {
+	float: left;
+	height: 80px;
+	line-height: 50px;
+	width: 190px;
+}
+
+#header div ul li a {
+	color: 	#5F9EA0	;
+	font-size: 20px;
+	font-family: Verdana;
+	text-align: center;
+	text-decoration: none;
+	/*text-shadow: 10px 10px 0 #D3D3D3;*/
+	}
+#header div ul li a:hover, #header ul li.current a {
+	color: #b13c68;
+	text-shadow: 1px 1px 0 #D3D3D3;
+}
+
+#header div div#section, #header div div.section {
+	background: #ac6767;
+	height: 360px;	
+	/*padding: 3px;*/
+	width: 960px;
+}
+#header div div.section {
+	height: 190px;
+}
+#header div div#section ul {
+	float: left;
+	list-style: none;
+	
+}
+#header div div#section ul li {
+	background: none;
+	float: none;
+    height: 75px;
+    line-height: 34px;
+	padding: 1px 0 1px;
+    width: 230px;
+}
+#header div div#section ul li a {
+	color: #f5ffff;
+	display: block;
+	height: 38px;
+	line-height: 34px;
+	font-size: 12px;
+    font-weight: bold;
+	padding: 1px 0 1px;
+	text-align: center;
+}
+
+#header div div#section img {
+	float: right;
+}
+
+#footer {
+	background: #f5f5f5;
+	width: 100%;
+}
+
+#footer div#featured {
+	margin: 0 auto;
+    padding-top: 30px;
+    width: 960px;
+}
+
+#footer div#featured ul {
+	list-style: none;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+}
+
+#footer div#featured ul li {
+	float: left;
+	margin-left: 18px;
+	width: 226px;
+}
+
+#footer div#featured ul li.first {
+	margin-left: 0;
+}
+
+#footer div#featured ul li h2 {
+	font-size: 12px;
+    font-weight: bold;
+    margin: 0;
+    padding-top: 5px;
+}
+
+#footer div#featured ul li h2 a {
+	color: #b5d13e;
+	text-decoration: none;
+}
+
+#footer div#featured ul li p {
+	color: #007947;
+    line-height: 28px;
+	margin: 10px 0 0 0;
+    text-align: justify;
+}
+
+
+
+
+#footer div#navigation div {
+	background:  #f5f5f5;
+	height: 80px;
+	margin-top: 20px;
+	width: 100%;
+	margin: 0 auto;
+	width: 960px;
+}
+
+#footer div#navigation div ul {
+	list-style: none;
+	margin: 0 auto;
+	overflow: hidden;
+	padding: 100px 0 0 170px;
+	width: 800px;
+}
+
+#footer div#navigation div ul li {
+	float: left;
+    font-size: 11px;
+    height: 12px;
+    line-height: 10px;
+}
+
+#footer div#navigation div ul li.first {
+	border: 0;
+}
+
+#footer div#navigation div ul li a {
+	color: #995870;
+	display: block;
+	padding: 0 5px;
+    text-align: center;
+    text-decoration: none;
+}
+
+#content {
+	background: #f5f5f5;
+	height: auto;
+	width: 100%;
+}
+
+ #content div {
+	margin: 0 auto;
+	padding: 10px 30px 30px;
+	position: relative;
+	width: 900px;
+}
+
+#content div p {
+	line-height: 28px;
+}
+
+#content div h1 {
+	color: #84284d;
+	font-family: Trebuchet MS;
+	font-size: 25px;
+	font-style: italic;/*浏览器会显示一个斜体的字体样式*/
+	font-weight: normal;/*属性设置文本的粗细*/
+	margin: 0;
+	padding-bottom: 10px;
+}
+
+#content div ul {
+	list-style: none;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+}
+
+#content div ul li {
+	float: left;
+	height: 220px;
+	width: 450px;
+}
+
+#content div ul li div {
+	padding: 0;
+    position: relative;
+    width: auto;
+}
+
+#content div ul li div div {
+	left: 12px;
+	padding: 0;
+	position: absolute;
+	top: 11px;
+	width: 202px;
+}
+
+#content div ul li div div h2 {
+	font-family: Trebuchet MS;
+	font-size: 18px;
+	font-style: italic;
+	font-weight: normal;
+	margin: 0;
+}
+
+#content div ul li div div h2 a {
+	color: #84284d;
+	text-decoration: none;
+}
+
+#content div ul li div div p {
+	color: #5F5D5E;
+	margin: 0 0 10px;
+	line-height: 28px;
+	width: 185px;
+	text-align: left;
+}
+
