@@ -5,11 +5,11 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.logging.Level;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +18,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import com.kanlon.bean.vo.FileResponseVO;
 import com.kanlon.common.Constant;
 import com.kanlon.common.CustomerExceptionTool;
 import com.kanlon.common.JExcelOption;
@@ -26,6 +27,8 @@ import com.kanlon.common.JsonResult;
 import com.kanlon.common.LoggerUtil;
 import com.kanlon.common.ResponseCode;
 import com.kanlon.common.TimeUtil;
+import com.kanlon.service.FileDataService;
+import com.kanlon.service.FileDataServiceImpl;
 
 /**
  * 文件上传的servlet类
@@ -33,7 +36,6 @@ import com.kanlon.common.TimeUtil;
  * @author zhangcanlong
  * @date 2018年11月12日
  */
-@WebServlet("/UploadServlet")
 public class FileUploadServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -52,7 +54,7 @@ public class FileUploadServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		JsonResult<String> result = new JsonResult<>();
+		JsonResult<FileResponseVO> result = new JsonResult<>();
 		OutputStream out = response.getOutputStream();
 		// 检测是否为多媒体上传
 		if (!ServletFileUpload.isMultipartContent(request)) {
@@ -117,8 +119,9 @@ public class FileUploadServlet extends HttpServlet {
 						// 保存文件到硬盘
 						item.write(storeFile);
 						// 读取excel表格
+						List<ArrayList<String>> list = new ArrayList<>();
 						try {
-							List<ArrayList<String>> list = JExcelOption.readExcel(filePath);
+							list = JExcelOption.readExcel(filePath);
 							LoggerUtil.logger.log(Level.INFO, list.toString());
 						} catch (Exception e) {
 							result.setStateCode(ResponseCode.RESPONSE_ERROR, "读取excel表错误！！！" + e.getMessage());
@@ -127,7 +130,18 @@ public class FileUploadServlet extends HttpServlet {
 							out.flush();
 							return;
 						}
-						result.setData("上传成功！");
+						FileDataService service = new FileDataServiceImpl();
+						service.storeData(list);
+
+						// 获取各学校和各年份人数
+
+						Map<String, String> mapYear = service.getNumGroupByYear();
+						Map<String, String> mapSchool = service.getNumGroupByYear();
+						// 封装json
+						FileResponseVO responseVo = new FileResponseVO();
+						responseVo.setMapSchool(mapSchool);
+						responseVo.setMapYear(mapYear);
+						result.setData(responseVo);
 						out.write(JsonResponseUtil.getVOJsonStr(response, result));
 						out.flush();
 						return;

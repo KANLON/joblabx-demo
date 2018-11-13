@@ -39,7 +39,7 @@ public class DataDao {
 		try {
 			conn = JDBCUtil.getConnect();
 			JDBCUtil.beginTransaction(conn);
-			String sql = "insert into person(pname,sex) values(?,?)";
+			String sql = "insert into joblabx_data(sex,school,YEAR,j_value) values(?,?,?,?)";
 			stmt = conn.prepareStatement(sql);
 			// 遍历行
 			for (int i = 0; i < list.size(); i++) {
@@ -85,6 +85,17 @@ public class DataDao {
 	}
 
 	/**
+	 * 返回所有记录数据
+	 *
+	 * @param offset
+	 * @param limit
+	 * @return
+	 */
+	public List<ArrayList<String>> selectAllData(int offset, int limit) {
+		return selectDataBySchoolAndYear(null, null, offset, limit);
+	}
+
+	/**
 	 * 根据id查询查询出结果
 	 *
 	 * @param id
@@ -96,7 +107,7 @@ public class DataDao {
 		List<String> list = new ArrayList<>();
 		try {
 			conn = JDBCUtil.getConnect();
-			String sql = "select * from person where pid =?";
+			String sql = "select * from joblabx_data where id =?";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, id);
 			rs = stmt.executeQuery();
@@ -120,7 +131,7 @@ public class DataDao {
 	 *
 	 * @param ids
 	 */
-	public List<ArrayList<String>> selectDataByIds(String[] ids) {
+	public List<ArrayList<String>> selectDataByIds(String[] ids, int offset, int limit) {
 		PreparedStatement stmt = null;
 		Statement statTest = null;
 		Connection conn = null;
@@ -138,7 +149,8 @@ public class DataDao {
 					idsBuffer.append(ids[i] + ",");
 				}
 			}
-			sql = "select * from person where pid in (" + idsBuffer.toString() + ")";
+			sql = "select * from joblabx_data where id in (" + idsBuffer.toString() + ") " + " limit " + offset + ","
+					+ limit;
 			rs = statTest.executeQuery(sql);
 			while (rs.next()) {
 				ArrayList<String> collist = new ArrayList<>();
@@ -166,11 +178,11 @@ public class DataDao {
 	 * @param year
 	 * @return
 	 */
-	public List<ArrayList<String>> selectDataBySchoolAndYear(String school, String year) {
+	public List<ArrayList<String>> selectDataBySchoolAndYear(String school, String year, int offset, int limit) {
 		PreparedStatement stmt = null;
 		Connection conn = null;
 		ResultSet rs = null;
-		String sql = " select * from person where 1=1 ";
+		String sql = " select * from joblabx_data where 1=1 ";
 		StringBuffer conditionBuffer = new StringBuffer();
 		List<ArrayList<String>> list = new ArrayList<>();
 		try {
@@ -181,7 +193,8 @@ public class DataDao {
 			if (!StringUtils.isEmptyOrWhitespaceOnly(year)) {
 				conditionBuffer.append(" and year='" + year + "' ");
 			}
-			stmt = conn.prepareStatement(sql + conditionBuffer.toString());
+			sql = sql + conditionBuffer.toString() + " limit " + offset + "," + limit;
+			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				ArrayList<String> collist = new ArrayList<>();
@@ -228,7 +241,7 @@ public class DataDao {
 			if (condition.contains(",")) {
 				condition = condition.substring(0, condition.length() - 1);
 			}
-			String sql = "update  person set" + condition + " where pid='" + id + "' ";
+			String sql = "update  joblabx_data set" + condition + " where id='" + id + "' ";
 			LoggerUtil.logger.log(Level.INFO, sql);
 			stmt = conn.prepareStatement(sql);
 			int row = stmt.executeUpdate();
@@ -260,7 +273,7 @@ public class DataDao {
 		try {
 			conn = JDBCUtil.getConnect();
 			JDBCUtil.beginTransaction(conn);
-			String sql = "delete from person where pid=? ";
+			String sql = "delete from joblabx_data where id=? ";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, id);
 			row = stmt.executeUpdate();
@@ -281,15 +294,22 @@ public class DataDao {
 	}
 
 	/**
-	 * 根据sql 语句查询出数据
+	 * 根据sql 语句查询出数据(嵌套list集合)
 	 *
 	 * @param sql
+	 *            语句
+	 * @param columnNum
+	 *            查询出列的数量
 	 * @return
 	 */
-	public List<ArrayList<String>> selectDataBySql(String sql) {
+	public List<ArrayList<String>> selectDataBySql(String sql, int columnNum, int offset, int limit) {
 		PreparedStatement stmt = null;
 		Connection conn = null;
 		ResultSet rs = null;
+		sql = sql + " limit " + offset + "," + limit;
+		if (columnNum <= 0) {
+			return null;
+		}
 		List<ArrayList<String>> list = new ArrayList<>();
 		try {
 			conn = JDBCUtil.getConnect();
@@ -297,9 +317,10 @@ public class DataDao {
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				ArrayList<String> colList = new ArrayList<>();
-				colList.add(rs.getString(1));
-				colList.add(rs.getString(2));
-				colList.add(rs.getString(3));
+				// 根据列数量，存入到list集合中
+				for (int i = 1; i <= columnNum; i++) {
+					colList.add(rs.getString(i));
+				}
 				list.add(colList);
 			}
 			LoggerUtil.logger.log(Level.INFO, list.toString());
@@ -310,6 +331,35 @@ public class DataDao {
 			JDBCUtil.close(conn, stmt, rs);
 		}
 		return list;
+	}
+
+	/**
+	 * 根据sql 语句查询出数量
+	 *
+	 * @param sql
+	 * @return
+	 */
+	public int selectNumBySql(String sql) {
+		PreparedStatement stmt = null;
+		Connection conn = null;
+		ResultSet rs = null;
+		int num = 0;
+		try {
+			conn = JDBCUtil.getConnect();
+			stmt = conn.prepareStatement(sql);
+			LoggerUtil.logger.log(Level.INFO, sql);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				num = rs.getInt(1);
+			}
+			LoggerUtil.logger.log(Level.INFO, "查询出的数量为:" + String.valueOf(num));
+		} catch (Exception e) {
+			LoggerUtil.logger.log(Level.SEVERE, CustomerExceptionTool.getException(e));
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			JDBCUtil.close(conn, stmt, rs);
+		}
+		return num;
 	}
 
 	/**
