@@ -1,0 +1,27 @@
+信息      2018-11-13 11:58:38  :  select * from person where 1=1  and school='广东大学'  and year='2015' 
+信息      2018-11-13 11:58:38  : [[5, 1234567890, 1], [8, 张三三三四张三三三四, 1], [9, 张三三三四张三三三四, 1]]
+信息      2018-11-13 11:58:38  :  select * from person where 1=1  and year='2014' 
+信息      2018-11-13 11:58:38  : [[1, 张三三三四, 1], [2, 李四, 0], [3, zhangsansa, 1], [4, 1234567890, 1]]
+信息      2018-11-13 11:58:38  : update  person set school='大大学', sex='4' where id='1' 
+严重      2018-11-13 11:58:38  : Tue Nov 13 11:58:38 CST 2018com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'id' in 'where clause'
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:404)
+	at com.mysql.jdbc.Util.getInstance(Util.java:387)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:942)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3966)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3902)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2526)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2673)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2549)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1861)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2073)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2009)
+	at com.mysql.jdbc.PreparedStatement.executeLargeUpdate(PreparedStatement.java:5098)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1994)
+	at com.kanlon.dao.DataDao.updataDataById(DataDao.java:261)
+	at com.kanlon.dao.DataDao.test(DataDao.java:49)
+	at com.kanlon.dao.DataDao.main(DataDao.java:30)
+

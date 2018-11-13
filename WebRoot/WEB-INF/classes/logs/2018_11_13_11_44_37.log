@@ -1,0 +1,12 @@
+ÑÏÖØ      2018-11-13 11:44:37  : Tue Nov 13 11:44:37 CST 2018java.sql.SQLException: Column Index out of range, 0 < 1.
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:963)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:896)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:885)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:860)
+	at com.mysql.jdbc.ResultSetImpl.checkColumnBounds(ResultSetImpl.java:762)
+	at com.mysql.jdbc.ResultSetImpl.getStringInternal(ResultSetImpl.java:5241)
+	at com.mysql.jdbc.ResultSetImpl.getString(ResultSetImpl.java:5163)
+	at com.kanlon.dao.DataDao.selectDataBySchoolAndYear(DataDao.java:207)
+	at com.kanlon.dao.DataDao.test(DataDao.java:41)
+	at com.kanlon.dao.DataDao.main(DataDao.java:29)
+
