@@ -5,19 +5,19 @@ import java.io.StringWriter;
 import java.util.Date;
 
 /**
- * ×Ô¶¨ÒåµÄÒì³£µÄÒ»Ğ©²Ù×÷£¬Ö÷ÒªÊÇ»ñÈ¡Òì³£µÄÏêÏ¸ĞÅÏ¢
+ * è‡ªå®šä¹‰çš„å¼‚å¸¸çš„ä¸€äº›æ“ä½œï¼Œä¸»è¦æ˜¯è·å–å¼‚å¸¸çš„è¯¦ç»†ä¿¡æ¯
  *
  * @author zhangcanlong
- * @date 2018Äê11ÔÂ7ÈÕ
+ * @date 2018å¹´11æœˆ7æ—¥
  */
 public class CustomerExceptionTool {
 
 	/**
-	 * µÃµ½ÏêÏ¸µÄÒì³£ĞÅÏ¢
+	 * å¾—åˆ°è¯¦ç»†çš„å¼‚å¸¸ä¿¡æ¯
 	 *
 	 * @param e
-	 *            Òì³£
-	 * @return ·µ»ØÒì³£µÄÏêÏ¸ĞÅÏ¢µÄ×Ö·û´®
+	 *            å¼‚å¸¸
+	 * @return è¿”å›å¼‚å¸¸çš„è¯¦ç»†ä¿¡æ¯çš„å­—ç¬¦ä¸²
 	 */
 	public static String getException(Throwable e) {
 		StringWriter sw = new StringWriter();

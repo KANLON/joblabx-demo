@@ -3,22 +3,22 @@ package com.kanlon.common;
 import com.kanlon.SharesData;
 
 /**
- * ´æ·Å³£Á¿£¬ÀıÈçÂ·¾¶Ö®ÁĞµÄ
+ * å­˜æ”¾å¸¸é‡ï¼Œä¾‹å¦‚è·¯å¾„ä¹‹åˆ—çš„
  *
  * @author zhangcanlong
- * @date 2018Äê11ÔÂ9ÈÕ
+ * @date 2018å¹´11æœˆ9æ—¥
  */
 public class Constant {
 
 	/**
-	 * ÏîÄ¿ÀàÎÄ¼şÄ¿Â¼£¬Ïàµ±ÓÚ/WEB-INF/classes/Ö®ÏÂµÄÄ¿Â¼(windowÏÂ£¬Ç°Ãæ»á¶àÒ»¸öĞ±Ïß£¬ÒªÈ¥³ıÇ°ÃæÒ»¸öĞ±Ïß£¬linuxÏÂÔò²»»á£¬²»ÖªµÀÊ²Ã´Ô­Òò)
+	 * é¡¹ç›®ç±»æ–‡ä»¶ç›®å½•ï¼Œç›¸å½“äº/WEB-INF/classes/ä¹‹ä¸‹çš„ç›®å½•(windowä¸‹ï¼Œå‰é¢ä¼šå¤šä¸€ä¸ªæ–œçº¿ï¼Œè¦å»é™¤å‰é¢ä¸€ä¸ªæ–œçº¿ï¼Œlinuxä¸‹åˆ™ä¸ä¼šï¼Œä¸çŸ¥é“ä»€ä¹ˆåŸå› )
 	 */
 	public static final String CLASS_PATH = SharesData.class.getClassLoader().getResource("").getPath().contains(":")
 			? SharesData.class.getClassLoader().getResource("").getPath().substring(1)
 			: SharesData.class.getClassLoader().getResource("").getPath();
 
 	/**
-	 * ÏîÄ¿¸ùÄ¿Â¼
+	 * é¡¹ç›®æ ¹ç›®å½•
 	 */
 	public static final String WEB_APP_ROOT = CLASS_PATH.replace("/WEB-INF/classes/", "/");
 

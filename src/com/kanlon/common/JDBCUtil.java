@@ -10,10 +10,10 @@ import java.util.logging.Level;
 import com.mysql.jdbc.Statement;
 
 /**
- * jdbcµÄÁ´½ÓµÄ¹¤¾ßÀà
+ * jdbcçš„é“¾æ¥çš„å·¥å…·ç±»
  *
  * @author zhangcanlong
- * @date 2018Äê11ÔÂ13ÈÕ
+ * @date 2018å¹´11æœˆ13æ—¥
  */
 public class JDBCUtil {
 
@@ -22,21 +22,21 @@ public class JDBCUtil {
 	private static final String password = "root";
 
 	/**
-	 * µÃµ½À´Êı¾İ¿âÁ´½Ó
+	 * å¾—åˆ°æ¥æ•°æ®åº“é“¾æ¥
 	 *
 	 * @return
 	 * @throws Exception
 	 */
 	public static Connection getConnect() throws Exception {
-		// Í¨¹ıµÃµ½×Ö½ÚÂë¶ÔÏóµÄ·½Ê½¼ÓÔØ¾²Ì¬´úÂë¿é£¬´Ó¶ø×¢²áÇı¶¯³ÌĞò
+		// é€šè¿‡å¾—åˆ°å­—èŠ‚ç å¯¹è±¡çš„æ–¹å¼åŠ è½½é™æ€ä»£ç å—ï¼Œä»è€Œæ³¨å†Œé©±åŠ¨ç¨‹åº
 		Class.forName("com.mysql.jdbc.Driver");
-		// 2.Á¬½Óµ½¾ßÌåµÄÊı¾İ¿â
+		// 2.è¿æ¥åˆ°å…·ä½“çš„æ•°æ®åº“
 		Connection conn = DriverManager.getConnection(url, username, password);
 		return conn;
 	}
 
 	/**
-	 * ¹Ø±Õ×ÊÔ´
+	 * å…³é—­èµ„æº
 	 *
 	 * @param conn
 	 * @param stmt
@@ -62,7 +62,7 @@ public class JDBCUtil {
 	}
 
 	/**
-	 * ¹Ø±Õ×ÊÔ´
+	 * å…³é—­èµ„æº
 	 *
 	 * @param conn
 	 * @param stmt
@@ -95,7 +95,7 @@ public class JDBCUtil {
 	}
 
 	/**
-	 * ¿ªÊ¼ÊÂÎñ
+	 * å¼€å§‹äº‹åŠ¡
 	 *
 	 * @param cnn
 	 */
@@ -113,7 +113,7 @@ public class JDBCUtil {
 	}
 
 	/**
-	 * Ìá½»ÊÂÎñ
+	 * æäº¤äº‹åŠ¡
 	 *
 	 * @param cnn
 	 */
@@ -131,7 +131,7 @@ public class JDBCUtil {
 	}
 
 	/**
-	 * »Ø¹öÊÂÎñ
+	 * å›æ»šäº‹åŠ¡
 	 *
 	 * @param cnn
 	 */

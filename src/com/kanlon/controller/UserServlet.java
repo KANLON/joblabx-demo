@@ -15,10 +15,10 @@ import com.kanlon.common.LoggerUtil;
 
 /**
  *
- * ÓÃ»§ÀàµÄ»ñÈ¡ÓÃ»§ĞÅÏ¢µÄÇëÇó²Ù×÷
+ * ç”¨æˆ·ç±»çš„è·å–ç”¨æˆ·ä¿¡æ¯çš„è¯·æ±‚æ“ä½œ
  *
  * @author zhangcanlong
- * @date 2018Äê11ÔÂ12ÈÕ
+ * @date 2018å¹´11æœˆ12æ—¥
  */
 public class UserServlet extends HttpServlet {
 
@@ -33,13 +33,13 @@ public class UserServlet extends HttpServlet {
 		response.setContentType("application/json;charset=utf-8");
 		response.setCharacterEncoding("UTF-8");
 		User user = new User();
-		user.setUsername("ÕÅÈıÈı");
+		user.setUsername("å¼ ä¸‰ä¸‰");
 		user.setPassword("123456");
 		String userJson = JSON.toJSONString(user);
 		OutputStream out = response.getOutputStream();
 		out.write(userJson.getBytes("UTF-8"));
 		out.flush();
-		LoggerUtil.logger.log(Level.INFO, "ÏîÄ¿Æô¶¯£¬ÈÕÖ¾¿ªÊ¼¼ÇÂ¼£¡");
+		LoggerUtil.logger.log(Level.INFO, "é¡¹ç›®å¯åŠ¨ï¼Œæ—¥å¿—å¼€å§‹è®°å½•ï¼");
 	}
 
 	@Override

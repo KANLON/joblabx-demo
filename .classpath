@@ -26,6 +26,24 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jxl-2.6.12-sources.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jxl-2.6.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mysql-connector-java-5.1.39-bin.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/excel/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/excel/commons-collections4-4.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/excel/curvesapi-1.04.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/excel/Excel4J-2.1.4-Final2.jar" sourcepath="D:/masterspring/mavenHistory/com/github/crab2died/Excel4J_src/src/main/java/com.zip"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/excel/poi-3.17.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/excel/poi-ooxml-3.17.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/excel/poi-ooxml-schemas-3.17.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/excel/stax-api-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/excel/xmlbeans-2.6.0.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-collections4-4.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/curvesapi-1.04.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/Excel4J-2.1.4-Final2.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/poi-3.17.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/poi-ooxml-3.17.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/poi-ooxml-schemas-3.17.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/stax-api-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xmlbeans-2.6.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

@@ -9,71 +9,71 @@ import com.kanlon.common.exception.BusinessException;
 public interface FileDataService {
 
 	/**
-	 * ´æ´¢Êı¾İ
+	 * å­˜å‚¨æ•°æ®
 	 *
 	 * @param list
-	 *            Ç¶Ì×list±í£¬Ä¬ÈÏµÚÒ»ĞĞÎª±êÌâĞĞ
-	 * @return ·µ»ØÊÇ·ñ´æ´¢³É¹¦
+	 *            åµŒå¥—listè¡¨ï¼Œé»˜è®¤ç¬¬ä¸€è¡Œä¸ºæ ‡é¢˜è¡Œ
+	 * @return è¿”å›æ˜¯å¦å­˜å‚¨æˆåŠŸ
 	 */
 	Boolean storeData(List<ArrayList<String>> list) throws BusinessException;
 
 	/**
-	 * »ñÈ¡ËùÓĞ¼ÇÂ¼
+	 * è·å–æ‰€æœ‰è®°å½•
 	 *
 	 * @param pageIndex
-	 *            Ò³Âë
+	 *            é¡µç 
 	 * @param pageSize
-	 *            Ã¿Ò³´óĞ¡
-	 * @return ·µ»ØÇ¶Ì×list¼¯ºÏ
+	 *            æ¯é¡µå¤§å°
+	 * @return è¿”å›åµŒå¥—listé›†åˆ
 	 * @throws BusinessException
 	 */
 	List<ArrayList<String>> getAllData(int pageIndex, int pageSize) throws BusinessException;
 
 	/**
-	 * »ñÈ¡ËùÓĞ¼ÇÂ¼
+	 * è·å–æ‰€æœ‰è®°å½•
 	 *
-	 * @return ·µ»ØÇ¶Ì×list¼¯ºÏ
+	 * @return è¿”å›åµŒå¥—listé›†åˆ
 	 * @throws BusinessException
 	 */
 	Integer getAllDataNum() throws BusinessException;
 
 	/**
-	 * »ñÈ¡Ö¸¶¨Ä³¸öÑ§Ğ£»òÕßÄê·İµÄÑ§Éú¼ÇÂ¼
+	 * è·å–æŒ‡å®šæŸä¸ªå­¦æ ¡æˆ–è€…å¹´ä»½çš„å­¦ç”Ÿè®°å½•
 	 *
 	 * @param schoolOryear
-	 *            Ñ§Ğ£Ãû»òÕßÄê·İ
+	 *            å­¦æ ¡åæˆ–è€…å¹´ä»½
 	 * @param pageIndex
-	 *            Ò³Âë
+	 *            é¡µç 
 	 * @param pageSize
-	 *            Ã¿Ò³´óĞ¡
-	 * @return ·µ»ØÇ¶Ì×list¼¯ºÏ
+	 *            æ¯é¡µå¤§å°
+	 * @return è¿”å›åµŒå¥—listé›†åˆ
 	 * @throws BusinessException
 	 */
 	List<ArrayList<String>> getOneSchoolOrYearData(String schoolOrYear, int pageIndex, int pageSize)
 			throws BusinessException;
 
 	/**
-	 * »ñÈ¡Ö¸¶¨Ä³¸öÑ§Ğ£»òÕßÄê·İµÄÑ§Éú¼ÇÂ¼µÄ×ÜÊıÁ¿
+	 * è·å–æŒ‡å®šæŸä¸ªå­¦æ ¡æˆ–è€…å¹´ä»½çš„å­¦ç”Ÿè®°å½•çš„æ€»æ•°é‡
 	 *
 	 * @param schoolOryear
-	 *            Ñ§Ğ£Ãû»òÕßÄê·İ
-	 * @return ·µ»ØÇ¶Ì×list¼¯ºÏ
+	 *            å­¦æ ¡åæˆ–è€…å¹´ä»½
+	 * @return è¿”å›åµŒå¥—listé›†åˆ
 	 * @throws BusinessException
 	 */
 	Integer getOneSchoolOrYearDataNum(String schoolOrYear) throws BusinessException;
 
 	/**
-	 * »ñÈ¡¸÷¸öÑ§Ğ£µÄÈËÊıµÄÊıÁ¿
+	 * è·å–å„ä¸ªå­¦æ ¡çš„äººæ•°çš„æ•°é‡
 	 *
-	 * @return map¼¯ºÏkeyÎªÑ§Ğ££¬valueÎªÊıÁ¿
+	 * @return mapé›†åˆkeyä¸ºå­¦æ ¡ï¼Œvalueä¸ºæ•°é‡
 	 * @throws BusinessException
 	 */
 	Map<String, String> getNumGroupBySchool() throws BusinessException;
 
 	/**
-	 * »ñÈ¡¸÷¸öÄê·İµÄÈËÊıµÄÊıÁ¿
+	 * è·å–å„ä¸ªå¹´ä»½çš„äººæ•°çš„æ•°é‡
 	 *
-	 * @return map¼¯ºÏ keyÎªÄê·İ£¬valueÎªÊıÁ¿
+	 * @return mapé›†åˆ keyä¸ºå¹´ä»½ï¼Œvalueä¸ºæ•°é‡
 	 * @throws BusinessException
 	 */
 	Map<String, String> getNumGroupByYear() throws BusinessException;

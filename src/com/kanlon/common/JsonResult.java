@@ -3,31 +3,31 @@ package com.kanlon.common;
 import java.io.Serializable;
 
 /**
- * ÓÃÀ´²úÉú·µ»ØÊı¾İµÄ±ê×¼¹¤¾ßÀà
+ * ç”¨æ¥äº§ç”Ÿè¿”å›æ•°æ®çš„æ ‡å‡†å·¥å…·ç±»
  *
  * @author zhangcanlong
- * @date 2018Äê11ÔÂ12ÈÕ
+ * @date 2018å¹´11æœˆ12æ—¥
  */
 public class JsonResult<Result> implements Serializable {
 	private static final long serialVersionUID = 7714253606546956900L;
 
 	/**
-	 * ÏìÓ¦×´Ì¬
+	 * å“åº”çŠ¶æ€
 	 */
 	private int code;
 
 	/**
-	 * ÏìÓ¦ĞÅÏ¢
+	 * å“åº”ä¿¡æ¯
 	 */
 	private String msg;
 
 	/**
-	 * ÏìÓ¦Êı¾İ
+	 * å“åº”æ•°æ®
 	 */
 	private Result data;
 
 	/**
-	 * ¹¹Ôìº¯Êı
+	 * æ„é€ å‡½æ•°
 	 */
 	public JsonResult() {
 		this.code = 0;
@@ -36,12 +36,12 @@ public class JsonResult<Result> implements Serializable {
 	}
 
 	/**
-	 * ÉèÖÃ·µ»ØÊı¾İµÄ×´Ì¬ÂëºÍĞÅÏ¢
+	 * è®¾ç½®è¿”å›æ•°æ®çš„çŠ¶æ€ç å’Œä¿¡æ¯
 	 *
 	 * @param code
-	 *            ±íÊ¾·µ»ØÊı¾İµÄ×´Ì¬Âë
+	 *            è¡¨ç¤ºè¿”å›æ•°æ®çš„çŠ¶æ€ç 
 	 * @param msg
-	 *            ÃèÊö·µ»ØÊı¾İµÄ´íÎóĞÅÏ¢£¬ÕıÈ·Ê±ºò£¬ÔòÎª¿Õ
+	 *            æè¿°è¿”å›æ•°æ®çš„é”™è¯¯ä¿¡æ¯ï¼Œæ­£ç¡®æ—¶å€™ï¼Œåˆ™ä¸ºç©º
 	 */
 	public void setStateCode(int code, String msg) {
 		this.code = code;

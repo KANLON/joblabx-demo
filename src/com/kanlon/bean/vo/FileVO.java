@@ -1,10 +1,10 @@
 package com.kanlon.bean.vo;
 
 /**
- * ½ÓÊÜÎÄ¼şµÄÖµ¶ÔÏó
+ * æ¥å—æ–‡ä»¶çš„å€¼å¯¹è±¡
  *
  * @author zhangcanlong
- * @date 2018Äê11ÔÂ12ÈÕ
+ * @date 2018å¹´11æœˆ12æ—¥
  */
 public class FileVO {
 

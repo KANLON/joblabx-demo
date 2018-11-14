@@ -4,19 +4,19 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Ê±¼äµÄ¹¤¾ßÀà
+ * æ—¶é—´çš„å·¥å…·ç±»
  *
  * @author zhangcanlong
- * @date 2018Äê11ÔÂ12ÈÕ
+ * @date 2018å¹´11æœˆ12æ—¥
  */
 public class TimeUtil {
 
 	/**
-	 * ¸ù¾İµ±Ç°Ê±¼äµÃµ½ÀıÈç20181112190311µÄÊ±¼ä¸ñÊ½
+	 * æ ¹æ®å½“å‰æ—¶é—´å¾—åˆ°ä¾‹å¦‚20181112190311çš„æ—¶é—´æ ¼å¼
 	 *
 	 * @param millis
-	 *            Ê±¼äµÄºÁÃëÖµ
-	 * @return ·µ»ØyyyyMMddHHmmssÖ®ÀàµÄÊ±¼ä×Ö·û´®¸ñÊ½
+	 *            æ—¶é—´çš„æ¯«ç§’å€¼
+	 * @return è¿”å›yyyyMMddHHmmssä¹‹ç±»çš„æ—¶é—´å­—ç¬¦ä¸²æ ¼å¼
 	 */
 	public static String getLocalDateTime(long millis) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -25,11 +25,11 @@ public class TimeUtil {
 	}
 
 	/**
-	 * ¸ù¾İµ±Ç°Ê±¼äµÃµ½ÀıÈç2018-11-12 19:03:11µÄÊ±¼ä¸ñÊ½
+	 * æ ¹æ®å½“å‰æ—¶é—´å¾—åˆ°ä¾‹å¦‚2018-11-12 19:03:11çš„æ—¶é—´æ ¼å¼
 	 *
 	 * @param millis
-	 *            Ê±¼äºÁÃëÖµ
-	 * @return ·µ»Øyyyy-MM-dd HH:mm:ssÖ®ÀàµÄÊ±¼ä¸ñÊ½×Ö·û´®
+	 *            æ—¶é—´æ¯«ç§’å€¼
+	 * @return è¿”å›yyyy-MM-dd HH:mm:ssä¹‹ç±»çš„æ—¶é—´æ ¼å¼å­—ç¬¦ä¸²
 	 */
 	public static String getSimpleDateTime(long millis) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

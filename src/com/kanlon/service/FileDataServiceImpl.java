@@ -10,28 +10,27 @@ import com.kanlon.dao.DataDao;
 import com.mysql.jdbc.StringUtils;
 
 /**
- * ÎÄ¼şÊı¾İ²Ù×÷µÄserviceÀà
+ * æ–‡ä»¶æ•°æ®æ“ä½œçš„serviceç±»
  *
  * @author zhangcanlong
- * @date 2018Äê11ÔÂ12ÈÕ
+ * @date 2018å¹´11æœˆ12æ—¥
  */
 public class FileDataServiceImpl implements FileDataService {
 	DataDao dao = new DataDao();
 
 	/**
-	 * ´æ´¢Êı¾İ£¬ Ä¬ÈÏµÚÒ»¸öÔªËØÊÇ±êÌâÀ¸
+	 * å­˜å‚¨æ•°æ®ï¼Œ é»˜è®¤ç¬¬ä¸€ä¸ªå…ƒç´ æ˜¯æ ‡é¢˜æ 
 	 *
 	 * @param list
-	 *            Ç¶Ì×list±í£¬Ä¬ÈÏµÚÒ»ĞĞÎª±êÌâĞĞ
-	 * @return ·µ»ØÊÇ·ñ´æ´¢³É¹¦
+	 *            åµŒå¥—listè¡¨ï¼Œé»˜è®¤ç¬¬ä¸€è¡Œä¸ºæ ‡é¢˜è¡Œ
+	 * @return è¿”å›æ˜¯å¦å­˜å‚¨æˆåŠŸ
 	 */
 	@Override
 	public Boolean storeData(List<ArrayList<String>> list) throws BusinessException {
-		// Ä¬ÈÏµÚÒ»¸öÔªËØÊÇ±êÌâÀ¸
 		if (list == null || list.size() <= 1) {
 			return true;
 		}
-		list.remove(0);
+		// list.remove(0);
 		return dao.insertData(list);
 	}
 
@@ -57,11 +56,11 @@ public class FileDataServiceImpl implements FileDataService {
 			return getAllData(pageIndex, pageSize);
 		}
 		List<ArrayList<String>> list = new ArrayList<>();
-		// Èç¹ûÊÇÄê·İ
+		// å¦‚æœæ˜¯å¹´ä»½
 		if (schoolOrYear.matches("\\d")) {
 			list = dao.selectDataBySchoolAndYear(null, schoolOrYear, offset, limit);
 		} else {
-			// Ñ§Ğ£
+			// å­¦æ ¡
 			list = dao.selectDataBySchoolAndYear(schoolOrYear, null, offset, limit);
 		}
 		return list;
@@ -74,11 +73,11 @@ public class FileDataServiceImpl implements FileDataService {
 		}
 		String sql = "select count(*) num from joblabx_data where 1=1 ";
 		String condition = new String();
-		// Èç¹ûÊÇÄê·İ
+		// å¦‚æœæ˜¯å¹´ä»½
 		if (schoolOrYear.matches("\\d")) {
 			condition = " and  year='" + schoolOrYear + "'";
 		} else {
-			// Ñ§Ğ£
+			// å­¦æ ¡
 			condition = " and school='" + schoolOrYear + "'";
 		}
 		sql = sql + condition;
@@ -88,12 +87,12 @@ public class FileDataServiceImpl implements FileDataService {
 	@Override
 	public Map<String, String> getNumGroupBySchool() throws BusinessException {
 		String sql = "SELECT school,COUNT(*) num FROM joblabx_data GROUP BY school";
-		// È«¹ú¸ßĞ£ÊıÉÙÓÚ3000¼ä
+		// å…¨å›½é«˜æ ¡æ•°å°‘äº3000é—´
 		List<ArrayList<String>> list = dao.selectDataBySql(sql, 2, 0, 10000);
 		if (list == null || list.size() <= 0) {
 			return null;
 		}
-		// ´ÓĞĞ¼¯ºÏÖĞÈ¡³ö¸ßĞ£ÃûºÍ¸Ã¸ßĞ£µÄÈËÊıÔªËØ·ÅÈëµ½mapÖĞ
+		// ä»è¡Œé›†åˆä¸­å–å‡ºé«˜æ ¡åå’Œè¯¥é«˜æ ¡çš„äººæ•°å…ƒç´ æ”¾å…¥åˆ°mapä¸­
 		Map<String, String> map = new HashMap<>();
 		for (ArrayList<String> colList : list) {
 			map.put(colList.get(0), colList.get(1));
@@ -104,12 +103,12 @@ public class FileDataServiceImpl implements FileDataService {
 	@Override
 	public Map<String, String> getNumGroupByYear() throws BusinessException {
 		String sql = "SELECT year,COUNT(*) num FROM joblabx_data GROUP BY year";
-		// È«¹ú¸ßĞ£ÊıÉÙÓÚ3000¼ä
+		// å…¨å›½é«˜æ ¡æ•°å°‘äº3000é—´
 		List<ArrayList<String>> list = dao.selectDataBySql(sql, 2, 0, 10000);
 		if (list == null || list.size() <= 0) {
 			return null;
 		}
-		// ´ÓĞĞ¼¯ºÏÖĞÈ¡³öÄê·İºÍ¸ÃÄê·İÏÂµÄÈËÊıÔªËØ·ÅÈëµ½mapÖĞ
+		// ä»è¡Œé›†åˆä¸­å–å‡ºå¹´ä»½å’Œè¯¥å¹´ä»½ä¸‹çš„äººæ•°å…ƒç´ æ”¾å…¥åˆ°mapä¸­
 		Map<String, String> map = new HashMap<>();
 		for (ArrayList<String> colList : list) {
 			map.put(colList.get(0), colList.get(1));

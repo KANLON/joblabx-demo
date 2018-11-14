@@ -8,15 +8,15 @@ import javax.servlet.http.HttpServletResponse;
 import com.alibaba.fastjson.JSON;
 
 /**
- * ·µ»ØjsonÊı¾İµÄ¹¤¾ßÀà
+ * è¿”å›jsonæ•°æ®çš„å·¥å…·ç±»
  *
  * @author zhangcanlong
- * @date 2018Äê11ÔÂ12ÈÕ
+ * @date 2018å¹´11æœˆ12æ—¥
  */
 public class JsonResponseUtil {
 
 	/**
-	 * ½«ÏìÓ¦ÉèÖÃÎªjsonÊı¾İ¸ñÊ½£¬²¢½«¶ÔÏó×ª»¯Îªjson×Ö·û´®
+	 * å°†å“åº”è®¾ç½®ä¸ºjsonæ•°æ®æ ¼å¼ï¼Œå¹¶å°†å¯¹è±¡è½¬åŒ–ä¸ºjsonå­—ç¬¦ä¸²
 	 *
 	 * @param response
 	 * @param obj

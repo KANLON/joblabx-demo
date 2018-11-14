@@ -20,7 +20,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import com.kanlon.bean.vo.FileResponseVO;
 import com.kanlon.common.Constant;
 import com.kanlon.common.CustomerExceptionTool;
-import com.kanlon.common.JExcelOption;
+import com.kanlon.common.ExcelPOIUtil;
 import com.kanlon.common.JsonResponseUtil;
 import com.kanlon.common.JsonResult;
 import com.kanlon.common.LoggerUtil;
@@ -30,80 +30,80 @@ import com.kanlon.service.FileDataService;
 import com.kanlon.service.FileDataServiceImpl;
 
 /**
- * ÎÄ¼şÉÏ´«µÄservletÀà
+ * æ–‡ä»¶ä¸Šä¼ çš„servletç±»
  *
  * @author zhangcanlong
- * @date 2018Äê11ÔÂ12ÈÕ
+ * @date 2018å¹´11æœˆ12æ—¥
  */
 public class FileUploadServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	// ÉÏ´«ÎÄ¼ş´æ´¢Ä¿Â¼
+	// ä¸Šä¼ æ–‡ä»¶å­˜å‚¨ç›®å½•
 	private static final String UPLOAD_DIRECTORY = Constant.WEB_APP_ROOT + "WEB-INF/" + "file/";
 
-	// ÉÏ´«ÅäÖÃ
+	// ä¸Šä¼ é…ç½®
 	private static final int MEMORY_THRESHOLD = 1024 * 1024 * 3; // 3MB
 	private static final int MAX_FILE_SIZE = 1024 * 1024 * 40; // 40MB
 	private static final int MAX_REQUEST_SIZE = 1024 * 1024 * 50; // 50MB
 
 	/**
-	 * ÉÏ´«Êı¾İ¼°±£´æÎÄ¼ş
+	 * ä¸Šä¼ æ•°æ®åŠä¿å­˜æ–‡ä»¶
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		JsonResult<FileResponseVO> result = new JsonResult<>();
 		OutputStream out = response.getOutputStream();
-		// ¼ì²âÊÇ·ñÎª¶àÃ½ÌåÉÏ´«
+		// æ£€æµ‹æ˜¯å¦ä¸ºå¤šåª’ä½“ä¸Šä¼ 
 		if (!ServletFileUpload.isMultipartContent(request)) {
-			result.setStateCode(ResponseCode.REQUEST_ERROR, "Error: ±íµ¥±ØĞë°üº¬ enctype=multipart/form-data");
-			// Èç¹û²»ÊÇÔòÍ£Ö¹
+			result.setStateCode(ResponseCode.REQUEST_ERROR, "Error: è¡¨å•å¿…é¡»åŒ…å« enctype=multipart/form-data");
+			// å¦‚æœä¸æ˜¯åˆ™åœæ­¢
 			out.write(JsonResponseUtil.getVOJsonStr(response, result));
 			out.flush();
 			return;
 		}
 
-		// ÅäÖÃÉÏ´«²ÎÊı
+		// é…ç½®ä¸Šä¼ å‚æ•°
 		DiskFileItemFactory factory = new DiskFileItemFactory();
-		// ÉèÖÃÄÚ´æÁÙ½çÖµ - ³¬¹ıºó½«²úÉúÁÙÊ±ÎÄ¼ş²¢´æ´¢ÓÚÁÙÊ±Ä¿Â¼ÖĞ
+		// è®¾ç½®å†…å­˜ä¸´ç•Œå€¼ - è¶…è¿‡åå°†äº§ç”Ÿä¸´æ—¶æ–‡ä»¶å¹¶å­˜å‚¨äºä¸´æ—¶ç›®å½•ä¸­
 		factory.setSizeThreshold(MEMORY_THRESHOLD);
-		// ÉèÖÃÁÙÊ±´æ´¢Ä¿Â¼
+		// è®¾ç½®ä¸´æ—¶å­˜å‚¨ç›®å½•
 		factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
 
 		ServletFileUpload upload = new ServletFileUpload(factory);
 
-		// ÉèÖÃ×î´óÎÄ¼şÉÏ´«Öµ
+		// è®¾ç½®æœ€å¤§æ–‡ä»¶ä¸Šä¼ å€¼
 		upload.setFileSizeMax(MAX_FILE_SIZE);
 
-		// ÉèÖÃ×î´óÇëÇóÖµ (°üº¬ÎÄ¼şºÍ±íµ¥Êı¾İ)
+		// è®¾ç½®æœ€å¤§è¯·æ±‚å€¼ (åŒ…å«æ–‡ä»¶å’Œè¡¨å•æ•°æ®)
 		upload.setSizeMax(MAX_REQUEST_SIZE);
 
-		// ÖĞÎÄ´¦Àí
+		// ä¸­æ–‡å¤„ç†
 		upload.setHeaderEncoding("UTF-8");
 
-		// ¹¹ÔìÁÙÊ±Â·¾¶À´´æ´¢ÉÏ´«µÄÎÄ¼ş
-		// Õâ¸öÂ·¾¶Ïà¶Ôµ±Ç°Ó¦ÓÃµÄÄ¿Â¼
+		// æ„é€ ä¸´æ—¶è·¯å¾„æ¥å­˜å‚¨ä¸Šä¼ çš„æ–‡ä»¶
+		// è¿™ä¸ªè·¯å¾„ç›¸å¯¹å½“å‰åº”ç”¨çš„ç›®å½•
 		String uploadPath = UPLOAD_DIRECTORY;
 
-		// Èç¹ûÄ¿Â¼²»´æÔÚÔò´´½¨
+		// å¦‚æœç›®å½•ä¸å­˜åœ¨åˆ™åˆ›å»º
 		File uploadDir = new File(uploadPath);
 		if (!uploadDir.exists()) {
 			uploadDir.mkdir();
 		}
 
 		try {
-			// ½âÎöÇëÇóµÄÄÚÈİÌáÈ¡ÎÄ¼şÊı¾İ
+			// è§£æè¯·æ±‚çš„å†…å®¹æå–æ–‡ä»¶æ•°æ®
 			List<FileItem> formItems = upload.parseRequest(request);
 
 			if (formItems != null && formItems.size() > 0) {
-				// µü´ú±íµ¥Êı¾İ
+				// è¿­ä»£è¡¨å•æ•°æ®
 				for (FileItem item : formItems) {
-					// ´¦Àí²»ÔÚ±íµ¥ÖĞµÄ×Ö¶Î
+					// å¤„ç†ä¸åœ¨è¡¨å•ä¸­çš„å­—æ®µ
 					if (!item.isFormField()) {
 						String fileName = new File(item.getName()).getName();
 						if (!fileName.endsWith("xlsx") && !fileName.endsWith("xls")) {
-							result.setStateCode(ResponseCode.REQUEST_ERROR, "ÉÏ´«µÄÎÄ¼ş²»ÊÇexcel±í¸ñ£¬ÇëÖØĞÂÉÏ´«£¡");
+							result.setStateCode(ResponseCode.REQUEST_ERROR, "ä¸Šä¼ çš„æ–‡ä»¶ä¸æ˜¯excelè¡¨æ ¼ï¼Œè¯·é‡æ–°ä¸Šä¼ ï¼");
 							out.write(JsonResponseUtil.getVOJsonStr(response, result));
 							out.flush();
 							return;
@@ -112,17 +112,20 @@ public class FileUploadServlet extends HttpServlet {
 								+ UUID.randomUUID().toString().substring(0, 4)
 								+ fileName.substring(fileName.lastIndexOf("."));
 						File storeFile = new File(filePath);
-						// Êä³öÎÄ¼şµÄÉÏ´«Â·¾¶
-						LoggerUtil.logger.log(Level.INFO, "ÉÏ´«µÄÎÄ¼şÄ¿Â¼Îª£º" + filePath);
-						// ±£´æÎÄ¼şµ½Ó²ÅÌ
+						// è¾“å‡ºæ–‡ä»¶çš„ä¸Šä¼ è·¯å¾„
+						LoggerUtil.logger.log(Level.INFO, "ä¸Šä¼ çš„æ–‡ä»¶ç›®å½•ä¸ºï¼š" + filePath);
+						// ä¿å­˜æ–‡ä»¶åˆ°ç¡¬ç›˜
 						item.write(storeFile);
-						// ¶ÁÈ¡excel±í¸ñ
+						// è¯»å–excelè¡¨æ ¼
 						List<ArrayList<String>> list = new ArrayList<>();
 						try {
-							list = JExcelOption.readExcel(filePath);
+							// æ—§ç‰ˆçš„excelè¯»å–ï¼Œåªèƒ½è¯»å–2003ç‰ˆä¹‹å‰çš„excelï¼Œå¹¶ä¸”åŒ…å«æ ‡é¢˜
+							// list = JExcelOption.readExcel(filePath);
+							// æ–°ç‰ˆçš„excelè¯»å–ï¼Œèƒ½è¯»å–äº†2007ç‰ˆå’Œ2003ç‰ˆçš„exceläº†ï¼Œä¸åŒ…å«æ ‡é¢˜
+							list = ExcelPOIUtil.excel2List(filePath);
 							LoggerUtil.logger.log(Level.INFO, list.toString());
 						} catch (Exception e) {
-							result.setStateCode(ResponseCode.RESPONSE_ERROR, "¶ÁÈ¡excel±í´íÎó£¡£¡£¡" + e.getMessage());
+							result.setStateCode(ResponseCode.RESPONSE_ERROR, "è¯»å–excelè¡¨é”™è¯¯ï¼ï¼ï¼" + e.getMessage());
 							LoggerUtil.logger.log(Level.SEVERE, CustomerExceptionTool.getException(e));
 							out.write(JsonResponseUtil.getVOJsonStr(response, result));
 							out.flush();
@@ -130,12 +133,12 @@ public class FileUploadServlet extends HttpServlet {
 						}
 						// FileDataService service = new FileDataServiceImpl();
 						// service.storeData(list);
-						// // »ñÈ¡¸÷Ñ§Ğ£ºÍ¸÷Äê·İÈËÊı
+						// // è·å–å„å­¦æ ¡å’Œå„å¹´ä»½äººæ•°
 						// Map<String, String> mapYear =
 						// service.getNumGroupByYear();
 						// Map<String, String> mapSchool =
 						// service.getNumGroupBySchool();
-						// // ·â×°json
+						// // å°è£…json
 						// FileResponseVO responseVo = new FileResponseVO();
 						// responseVo.setMapSchool(mapSchool);
 						// responseVo.setMapYear(mapYear);
@@ -154,10 +157,10 @@ public class FileUploadServlet extends HttpServlet {
 			out.flush();
 			LoggerUtil.logger.log(Level.SEVERE, CustomerExceptionTool.getException(ex));
 		}
-		// Ìø×ªµ½ message.jsp
+		// è·³è½¬åˆ° message.jsp
 		// request.getServletContext().getRequestDispatcher("/").forward(request,
 		// response);
-		result.setStateCode(ResponseCode.REQUEST_ERROR, "ÉÏ´«Ê§°Ü£¡");
+		result.setStateCode(ResponseCode.REQUEST_ERROR, "ä¸Šä¼ å¤±è´¥ï¼");
 		out.write(JsonResponseUtil.getVOJsonStr(response, result));
 		return;
 	}
@@ -169,10 +172,10 @@ public class FileUploadServlet extends HttpServlet {
 		OutputStream out = null;
 		try {
 			out = response.getOutputStream();
-			// // »ñÈ¡¸÷Ñ§Ğ£ºÍ¸÷Äê·İÈËÊı
+			// // è·å–å„å­¦æ ¡å’Œå„å¹´ä»½äººæ•°
 			// Map<String, String> mapYear = service.getNumGroupByYear();
 			// Map<String, String> mapSchool = service.getNumGroupBySchool();
-			// // ·â×°json
+			// // å°è£…json
 			// FileResponseVO responseVo = new FileResponseVO();
 			// responseVo.setMapSchool(mapSchool);
 			// responseVo.setMapYear(mapYear);

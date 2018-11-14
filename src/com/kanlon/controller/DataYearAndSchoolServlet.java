@@ -20,10 +20,10 @@ import com.kanlon.service.FileDataService;
 import com.kanlon.service.FileDataServiceImpl;
 
 /**
- * ¸÷¸öÑ§Ğ£ºÍ¸÷¸öÄê·İÊı¾İµÄ»ñÈ¡
+ * å„ä¸ªå­¦æ ¡å’Œå„ä¸ªå¹´ä»½æ•°æ®çš„è·å–
  *
  * @author zhangcanlong
- * @date 2018Äê11ÔÂ13ÈÕ
+ * @date 2018å¹´11æœˆ13æ—¥
  */
 public class DataYearAndSchoolServlet extends HttpServlet {
 	private static final long serialVersionUID = -7083540285559347423L;
@@ -36,10 +36,10 @@ public class DataYearAndSchoolServlet extends HttpServlet {
 
 		try {
 			out = response.getOutputStream();
-			// »ñÈ¡¸÷Ñ§Ğ£ºÍ¸÷Äê·İÈËÊı
+			// è·å–å„å­¦æ ¡å’Œå„å¹´ä»½äººæ•°
 			Map<String, String> mapYear = service.getNumGroupByYear();
 			Map<String, String> mapSchool = service.getNumGroupBySchool();
-			// ·â×°json
+			// å°è£…json
 			FileResponseVO responseVo = new FileResponseVO();
 			responseVo.setMapSchool(mapSchool);
 			responseVo.setMapYear(mapYear);

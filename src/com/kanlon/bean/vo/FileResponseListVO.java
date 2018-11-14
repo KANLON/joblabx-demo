@@ -4,10 +4,10 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * ·µ»Ø½ÓÊÜÎÄ¼şÊı¾İµÄÖµ¶ÔÏólist¼¯ºÏ(·µ»Ø¸÷Ñ§Ğ£ÈËÊıºÍ¸÷¸öÄê·İµÄÈËÊı)
+ * è¿”å›æ¥å—æ–‡ä»¶æ•°æ®çš„å€¼å¯¹è±¡listé›†åˆ(è¿”å›å„å­¦æ ¡äººæ•°å’Œå„ä¸ªå¹´ä»½çš„äººæ•°)
  *
  * @author zhangcanlong
- * @date 2018Äê11ÔÂ13ÈÕ
+ * @date 2018å¹´11æœˆ13æ—¥
  */
 public class FileResponseListVO implements Serializable {
 
@@ -16,19 +16,19 @@ public class FileResponseListVO implements Serializable {
 	 */
 	private static final long serialVersionUID = 4586603817140852334L;
 	/**
-	 * Äê·İµÄ¼¯ºÏÓë¸÷Äê·İÈËÊı¼¯ºÏ¶ÔÓ¦
+	 * å¹´ä»½çš„é›†åˆä¸å„å¹´ä»½äººæ•°é›†åˆå¯¹åº”
 	 */
 	private List<String> yearList;
 	/**
-	 * ¸÷Äê·İÈËÊı¼¯ºÏ£¬ÓëÄê·İ¼¯ºÏ¶ÔÓ¦
+	 * å„å¹´ä»½äººæ•°é›†åˆï¼Œä¸å¹´ä»½é›†åˆå¯¹åº”
 	 */
 	private List<String> yearNumList;
 	/**
-	 * Ñ§Ğ£Ãû¼¯ºÏ £¬Óë¸÷Ñ§Ğ£ÈËÊı¼¯ºÏ¶ÔÓ¦
+	 * å­¦æ ¡åé›†åˆ ï¼Œä¸å„å­¦æ ¡äººæ•°é›†åˆå¯¹åº”
 	 */
 	private List<String> schoolList;
 	/**
-	 * ¸÷Ñ§Ğ£ÈËÊı¼¯ºÏ£¬ÓëÑ§Ğ£Ãû¼¯ºÏ¶ÔÓ¦
+	 * å„å­¦æ ¡äººæ•°é›†åˆï¼Œä¸å­¦æ ¡åé›†åˆå¯¹åº”
 	 */
 	private List<String> schoolNumList;
 

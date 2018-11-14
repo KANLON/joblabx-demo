@@ -1,25 +1,25 @@
 package com.kanlon.common;
 
 /**
- * ·µ»Ø¸øÇ°¶ËµÄÏìÓ¦Âë
+ * è¿”å›ç»™å‰ç«¯çš„å“åº”ç 
  *
  * @author zhangcanlong
- * @date 2018Äê11ÔÂ12ÈÕ
+ * @date 2018å¹´11æœˆ12æ—¥
  */
 public class ResponseCode {
 
 	/**
-	 * ³É¹¦
+	 * æˆåŠŸ
 	 */
 	public static final int RESPONSE_SUCCESS = 0;
 
 	/**
-	 * ÊäÈë»ò·¢ËÍÊı¾İÓĞÎó
+	 * è¾“å…¥æˆ–å‘é€æ•°æ®æœ‰è¯¯
 	 */
 	public static final int REQUEST_ERROR = 1;
 
 	/**
-	 * ºó¶Ë³öÏÖ´íÎó
+	 * åç«¯å‡ºç°é”™è¯¯
 	 */
 	public static final int RESPONSE_ERROR = 2;
 }

@@ -1,19 +1,19 @@
 package com.kanlon.common.exception;
 
 /**
- * ×Ô¶¨ÒåµÄÒµÎñÂß¼­Òì³£
+ * è‡ªå®šä¹‰çš„ä¸šåŠ¡é€»è¾‘å¼‚å¸¸
  *
  * @author zhangcanlong
- * @date 2018Äê11ÔÂ12ÈÕ
+ * @date 2018å¹´11æœˆ12æ—¥
  */
 public class BusinessException extends Exception {
 
 	/**
-	 * ×Ô¶¨ÒåÒì³£´úÂë
+	 * è‡ªå®šä¹‰å¼‚å¸¸ä»£ç 
 	 */
 	private int code;
 	/**
-	 * ×Ô¶¨ÒåÒì³£ĞÅÏ¢
+	 * è‡ªå®šä¹‰å¼‚å¸¸ä¿¡æ¯
 	 */
 	private String message;
 

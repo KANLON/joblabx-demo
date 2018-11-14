@@ -1,10 +1,10 @@
 package com.kanlon.bean;
 
 /**
- * ÓÃ»§Àà
+ * ç”¨æˆ·ç±»
  *
  * @author zhangcanlong
- * @date 2018Äê11ÔÂ12ÈÕ
+ * @date 2018å¹´11æœˆ12æ—¥
  */
 public class User {
 	public String username;

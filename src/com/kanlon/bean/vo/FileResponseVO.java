@@ -4,10 +4,10 @@ import java.io.Serializable;
 import java.util.Map;
 
 /**
- * ·µ»Ø½ÓÊÜÎÄ¼şÊı¾İµÄÖµ¶ÔÏó(·µ»Ø¸÷Ñ§Ğ£ÈËÊıºÍ¸÷¸öÄê·İµÄÈËÊı)
+ * è¿”å›æ¥å—æ–‡ä»¶æ•°æ®çš„å€¼å¯¹è±¡(è¿”å›å„å­¦æ ¡äººæ•°å’Œå„ä¸ªå¹´ä»½çš„äººæ•°)
  *
  * @author zhangcanlong
- * @date 2018Äê11ÔÂ12ÈÕ
+ * @date 2018å¹´11æœˆ12æ—¥
  */
 public class FileResponseVO implements Serializable {
 	private static final long serialVersionUID = -430937186621429933L;

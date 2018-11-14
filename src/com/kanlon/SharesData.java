@@ -25,10 +25,10 @@ import com.kanlon.common.Constant;
 import com.kanlon.common.CustomerExceptionTool;
 
 /**
- * µÃµ½¹ÉÆ±Êı¾İµÄÀà <a>https://www.cnblogs.com/seacryfly/articles/stock.html<a>½Ó¿ÚÄÚÈİ
+ * å¾—åˆ°è‚¡ç¥¨æ•°æ®çš„ç±» <a>https://www.cnblogs.com/seacryfly/articles/stock.html<a>æ¥å£å†…å®¹
  *
  * @author zhangcanlong
- * @date 2018Äê11ÔÂ6ÈÕ
+ * @date 2018å¹´11æœˆ6æ—¥
  */
 public class SharesData {
 
@@ -36,9 +36,9 @@ public class SharesData {
 
 	static {
 		try {
-			// ÉèÖÃÔÚ¿ØÖÆÌ¨Êä³ö
+			// è®¾ç½®åœ¨æ§åˆ¶å°è¾“å‡º
 			logger.setUseParentHandlers(true);
-			// ÉèÖÃÈÕÖ¾Êä³öµÈ¼¶
+			// è®¾ç½®æ—¥å¿—è¾“å‡ºç­‰çº§
 			logger.setLevel(Level.INFO);
 			FileHandler fileHandler = null;
 			fileHandler = new FileHandler(Constant.CLASS_PATH + "/logs/"
@@ -60,47 +60,47 @@ public class SharesData {
 	private final static BigInteger ONE = new BigInteger("1");
 
 	/**
-	 * post·½·¨ÇëÇóurlÁ´½Ó²¢µÃµ½ÏìÓ¦
+	 * postæ–¹æ³•è¯·æ±‚urlé“¾æ¥å¹¶å¾—åˆ°å“åº”
 	 *
 	 * @param generalUrl
-	 *            ÒªÇëÇóµÄurlµØÖ·
+	 *            è¦è¯·æ±‚çš„urlåœ°å€
 	 * @param contentType
-	 *            ÇëÇóÄÚÈİµÄÀàĞÍ
+	 *            è¯·æ±‚å†…å®¹çš„ç±»å‹
 	 * @param params
-	 *            post·½·¨·¢ËÍµÄ²ÎÊı ÀıÈç£º userID=123&name=zhangsansan
+	 *            postæ–¹æ³•å‘é€çš„å‚æ•° ä¾‹å¦‚ï¼š userID=123&name=zhangsansan
 	 * @param encoding
-	 *            ±àÂë
-	 * @return ·µ»ØÇëÇóurlµÄÏìÓ¦½á¹û×Ö·û´®
+	 *            ç¼–ç 
+	 * @return è¿”å›è¯·æ±‚urlçš„å“åº”ç»“æœå­—ç¬¦ä¸²
 	 * @throws Exception
 	 */
 	public static String postGeneralUrl(String generalUrl, String contentType, String params, String encoding)
 			throws Exception {
 		URL url = new URL(generalUrl);
-		// ´ò¿ªºÍurlÖ®¼äµÄÁ´½Ó
+		// æ‰“å¼€å’Œurlä¹‹é—´çš„é“¾æ¥
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		connection.setRequestMethod("POST");
-		// ÉèÖÃÍ¨ÓÃµÄÇëÇóÊôĞÔ
+		// è®¾ç½®é€šç”¨çš„è¯·æ±‚å±æ€§
 		connection.setRequestProperty("Contect-Type", contentType);
 		connection.setRequestProperty("Connection", "Keep-Alive");
 		connection.setUseCaches(false);
 		connection.setDoOutput(false);
 		connection.setDoInput(true);
 
-		// µÃµ½ÇëÇóµÄÊä³öÁ÷¶ÔÏó
+		// å¾—åˆ°è¯·æ±‚çš„è¾“å‡ºæµå¯¹è±¡
 		DataOutputStream out = new DataOutputStream(connection.getOutputStream());
 		out.write(params.getBytes(encoding));
 		out.flush();
 		out.close();
 
-		// ½¨Á¢Êµ¼ÊµÄÁ¬½Ó
+		// å»ºç«‹å®é™…çš„è¿æ¥
 		connection.connect();
-		// »ñÈ¡ËùÓĞµÄÏìÓ¦Í·×Ö¶Î
+		// è·å–æ‰€æœ‰çš„å“åº”å¤´å­—æ®µ
 		Map<String, List<String>> headers = connection.getHeaderFields();
-		// ±éÀúËùÓĞµÄÏìÓ¦Í·×Ö¶Î
+		// éå†æ‰€æœ‰çš„å“åº”å¤´å­—æ®µ
 		for (String key : headers.keySet()) {
 			// System.err.println(key + "--->" + headers.get(key));
 		}
-		// ¶¨ÒåbufferedReaderÊäÈëÁ÷À´¶ÁÈ¡urlµÄÏìÓ¦
+		// å®šä¹‰bufferedReaderè¾“å…¥æµæ¥è¯»å–urlçš„å“åº”
 		BufferedReader in = null;
 		in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 		StringBuffer buffer = new StringBuffer();
@@ -109,45 +109,45 @@ public class SharesData {
 			buffer.append(getLine);
 		}
 		in.close();
-		// System.out.println("(urlµÄÏìÓ¦)result:" + buffer);
+		// System.out.println("(urlçš„å“åº”)result:" + buffer);
 
 		return buffer.toString();
 	}
 
 	/**
-	 * get·½·¨ÇëÇóurlÁ´½Ó²¢µÃµ½ÏìÓ¦
+	 * getæ–¹æ³•è¯·æ±‚urlé“¾æ¥å¹¶å¾—åˆ°å“åº”
 	 *
 	 * @param generalUrl
-	 *            ÒªÇëÇóµÄurlµØÖ·
+	 *            è¦è¯·æ±‚çš„urlåœ°å€
 	 * @param contentType
-	 *            ÇëÇóÄÚÈİµÄÀàĞÍ
+	 *            è¯·æ±‚å†…å®¹çš„ç±»å‹
 	 * @param encoding
-	 *            ±àÂë
-	 * @return ·µ»ØÇëÇóurlµÄÏìÓ¦½á¹û×Ö·û´®
+	 *            ç¼–ç 
+	 * @return è¿”å›è¯·æ±‚urlçš„å“åº”ç»“æœå­—ç¬¦ä¸²
 	 * @throws Exception
 	 */
 	public static String getGeneralUrl(String generalUrl, String contentType, String params, String encoding)
 			throws Exception {
 		URL url = new URL(generalUrl);
-		// ´ò¿ªºÍurlÖ®¼äµÄÁ´½Ó
+		// æ‰“å¼€å’Œurlä¹‹é—´çš„é“¾æ¥
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		connection.setRequestMethod("GET");
-		// ÉèÖÃÍ¨ÓÃµÄÇëÇóÊôĞÔ
+		// è®¾ç½®é€šç”¨çš„è¯·æ±‚å±æ€§
 		connection.setRequestProperty("Contect-Type", contentType);
 		connection.setRequestProperty("Connection", "Keep-Alive");
 		connection.setUseCaches(false);
 		connection.setDoOutput(false);
 		connection.setDoInput(true);
 
-		// ½¨Á¢Êµ¼ÊµÄÁ¬½Ó
+		// å»ºç«‹å®é™…çš„è¿æ¥
 		connection.connect();
-		// »ñÈ¡ËùÓĞµÄÏìÓ¦Í·×Ö¶Î
+		// è·å–æ‰€æœ‰çš„å“åº”å¤´å­—æ®µ
 		Map<String, List<String>> headers = connection.getHeaderFields();
-		// ±éÀúËùÓĞµÄÏìÓ¦Í·×Ö¶Î
+		// éå†æ‰€æœ‰çš„å“åº”å¤´å­—æ®µ
 		for (String key : headers.keySet()) {
 			// System.err.println(key + "--->" + headers.get(key));
 		}
-		// ¶¨ÒåbufferedReaderÊäÈëÁ÷À´¶ÁÈ¡urlµÄÏìÓ¦
+		// å®šä¹‰bufferedReaderè¾“å…¥æµæ¥è¯»å–urlçš„å“åº”
 		BufferedReader in = null;
 		in = new BufferedReader(new InputStreamReader(connection.getInputStream(), encoding));
 		StringBuffer buffer = new StringBuffer();
@@ -156,17 +156,17 @@ public class SharesData {
 			buffer.append(getLine);
 		}
 		in.close();
-		// System.out.println("(urlµÄÏìÓ¦)result:" + buffer);
+		// System.out.println("(urlçš„å“åº”)result:" + buffer);
 		return buffer.toString();
 	}
 
 	/**
-	 * ½«×Ö·û´®Ğ´Èëµ½ÎÄ±¾ÖĞ
+	 * å°†å­—ç¬¦ä¸²å†™å…¥åˆ°æ–‡æœ¬ä¸­
 	 *
 	 * @param contentStr
-	 *            ÒªĞ´ÈëµÄÄÚÈİ
+	 *            è¦å†™å…¥çš„å†…å®¹
 	 * @param path
-	 *            ÒªĞ´ÈëÎÄ¼şµÄÂ·¾¶
+	 *            è¦å†™å…¥æ–‡ä»¶çš„è·¯å¾„
 	 * @throws IOException
 	 */
 	public static void writeToFile(String contentStr, String filePath) throws IOException {
@@ -179,19 +179,19 @@ public class SharesData {
 	}
 
 	/**
-	 * »ñÈ¡ÉÏÖ¤Ö¸ÊıµÄÊı¾İ²¢Êä³öµ½ÎÄ¼şÖĞ
+	 * è·å–ä¸Šè¯æŒ‡æ•°çš„æ•°æ®å¹¶è¾“å‡ºåˆ°æ–‡ä»¶ä¸­
 	 *
 	 * @param url
-	 *            ÉÏÖ¤¹ÉÆ±µÄ½Ó¿ÚÁ´½Ó£¬ÀıÈç£ºhttp://hq.sinajs.cn/list=s_sh000001 ±íÊ¾ÉÏÖ¤Ö¸Êı
+	 *            ä¸Šè¯è‚¡ç¥¨çš„æ¥å£é“¾æ¥ï¼Œä¾‹å¦‚ï¼šhttp://hq.sinajs.cn/list=s_sh000001 è¡¨ç¤ºä¸Šè¯æŒ‡æ•°
 	 * @param filePath
-	 *            Òª´æ·ÅÖ¸ÊıÊı¾İµÄÎÄ¼ş
+	 *            è¦å­˜æ”¾æŒ‡æ•°æ•°æ®çš„æ–‡ä»¶
 	 */
 	public static void getShangzhengSharesData(String url, String filePath, Map<String, BigInteger> map) {
 		String contentType = "text/html;charset=utf-8";
 		String params = "";
 		String encoding = "GBK";
 		StringBuilder build = new StringBuilder();
-		String title = "ĞòºÅ,Ê±¼äºÁÃëÊı,¹ÉÆ±Ö¸ÊıÖµ,¸¡¶¯·ù¶È,¸¡¶¯·ù¶È°Ù·Ö±È" + System.lineSeparator();
+		String title = "åºå·,æ—¶é—´æ¯«ç§’æ•°,è‚¡ç¥¨æŒ‡æ•°å€¼,æµ®åŠ¨å¹…åº¦,æµ®åŠ¨å¹…åº¦ç™¾åˆ†æ¯”" + System.lineSeparator();
 		logger.log(Level.INFO, title);
 		try {
 			writeToFile(title, filePath);
@@ -206,36 +206,36 @@ public class SharesData {
 						Thread.sleep(1000 * 10);
 						map.put(url, map.get(url).add(ONE));
 						String[] results = getGeneralUrl(url, contentType, params, encoding).split(",");
-						// ¹ÉÆ±Ö¸ÊıÖµ
+						// è‚¡ç¥¨æŒ‡æ•°å€¼
 						String data = results[1];
-						// ¸¡¶¯·ù¶È
+						// æµ®åŠ¨å¹…åº¦
 						String range = results[2];
-						// ¸¡¶¯·ù¶È°Ù·Ö±È
+						// æµ®åŠ¨å¹…åº¦ç™¾åˆ†æ¯”
 						String rangePercent = results[3];
 						build.append(map.get(url).toString() + "," + new Date() + "," + data + "," + range + ","
 								+ rangePercent + System.lineSeparator());
 					}
 					writeToFile(build.toString(), filePath);
 					logger.log(Level.INFO, build.toString());
-					// Êä³öµ½ÎÄ¼şºóÖØÖÃ
+					// è¾“å‡ºåˆ°æ–‡ä»¶åé‡ç½®
 					build = new StringBuilder();
 				} else {
-					// Èç¹û²»ÊÇ½»Ò×Ê±¼ä£¬ÔòË¯ÃßÒ»·ÖÖÓ
+					// å¦‚æœä¸æ˜¯äº¤æ˜“æ—¶é—´ï¼Œåˆ™ç¡çœ ä¸€åˆ†é’Ÿ
 					Thread.sleep(1000 * 60);
 				}
 			} catch (Exception e) {
-				logger.log(Level.WARNING, "»ñÈ¡ÉÏÖ¤Ö¸ÊıÊı¾İ´íÎó£¡£¡£¡\r\n" + CustomerExceptionTool.getException(e));
+				logger.log(Level.WARNING, "è·å–ä¸Šè¯æŒ‡æ•°æ•°æ®é”™è¯¯ï¼ï¼ï¼\r\n" + CustomerExceptionTool.getException(e));
 			}
 		}
 	}
 
 	/**
-	 * »ñÈ¡ÆäËû¹ÉÆ±£¨¸ö¹É£©µÄÊı¾İ²¢Êä³öµ½ÎÄ¼şÖĞ
+	 * è·å–å…¶ä»–è‚¡ç¥¨ï¼ˆä¸ªè‚¡ï¼‰çš„æ•°æ®å¹¶è¾“å‡ºåˆ°æ–‡ä»¶ä¸­
 	 *
 	 * @param url
-	 *            Ä³¹ÉÆ±µÄ½Ó¿ÚÁ´½Ó£¬ÀıÈç£ºhttp://hq.sinajs.cn/list=sh601006 ±íÊ¾´óÇØÌúÂ·
+	 *            æŸè‚¡ç¥¨çš„æ¥å£é“¾æ¥ï¼Œä¾‹å¦‚ï¼šhttp://hq.sinajs.cn/list=sh601006 è¡¨ç¤ºå¤§ç§¦é“è·¯
 	 * @param filePath
-	 *            Òª´æ·ÅÖ¸ÊıÊı¾İµÄÎÄ¼ş
+	 *            è¦å­˜æ”¾æŒ‡æ•°æ•°æ®çš„æ–‡ä»¶
 	 */
 	public static void getOtherSharesData(String url, String filePath, Map<String, BigInteger> map) {
 		String contentType = "text/html;charset=utf-8";
@@ -243,7 +243,7 @@ public class SharesData {
 		String encoding = "GBK";
 		StringBuilder build = new StringBuilder();
 
-		String title = "ĞòºÅ,Ê±¼äºÁÃëÊı,½ñÈÕ¿ªÅÌ¼Û,×òÈÕÊÕÅÌ¼Û,µ±Ç°¼Û¸ñ,½ñÈÕ×î¸ß¼Û,½ñÈÕ×îµÍ¼Û" + System.lineSeparator();
+		String title = "åºå·,æ—¶é—´æ¯«ç§’æ•°,ä»Šæ—¥å¼€ç›˜ä»·,æ˜¨æ—¥æ”¶ç›˜ä»·,å½“å‰ä»·æ ¼,ä»Šæ—¥æœ€é«˜ä»·,ä»Šæ—¥æœ€ä½ä»·" + System.lineSeparator();
 		System.out.print(title);
 		try {
 			writeToFile(title, filePath);
@@ -258,15 +258,15 @@ public class SharesData {
 						Thread.sleep(1000 * 10);
 						map.put(url, map.get(url).add(ONE));
 						String[] results = getGeneralUrl(url, contentType, params, encoding).split(",");
-						// ½ñÈÕ¿ªÅÌ¼Û
+						// ä»Šæ—¥å¼€ç›˜ä»·
 						String openPrice = results[1];
-						// ×òÈÕÊÕÅÌ¼Û
+						// æ˜¨æ—¥æ”¶ç›˜ä»·
 						String yesterdayClosePrice = results[2];
-						// µ±Ç°¼Û¸ñ
+						// å½“å‰ä»·æ ¼
 						String currentPrice = results[3];
-						// ½ñÈÕ×î¸ß¼Û
+						// ä»Šæ—¥æœ€é«˜ä»·
 						String maxPrice = results[4];
-						// ½ñÈÕ×îµÍ¼Û
+						// ä»Šæ—¥æœ€ä½ä»·
 						String minPrice = results[5];
 						build.append(map.get(url).toString() + "," + new Date() + "," + openPrice + ","
 								+ yesterdayClosePrice + "," + currentPrice + "," + maxPrice + "," + minPrice
@@ -274,28 +274,28 @@ public class SharesData {
 					}
 					writeToFile(build.toString(), filePath);
 					logger.log(Level.INFO, build.toString());
-					// Êä³öµ½ÎÄ¼şºóÖØÖÃ
+					// è¾“å‡ºåˆ°æ–‡ä»¶åé‡ç½®
 					build = new StringBuilder();
 
 				} else {
-					// Èç¹û²»ÊÇ½»Ò×Ê±¼ä£¬ÔòË¯ÃßÒ»·ÖÖÓ
+					// å¦‚æœä¸æ˜¯äº¤æ˜“æ—¶é—´ï¼Œåˆ™ç¡çœ ä¸€åˆ†é’Ÿ
 					Thread.sleep(1000 * 60);
 				}
 
 			} catch (Exception e) {
-				logger.log(Level.WARNING, "»ñÈ¡¸÷¹ÉÊı¾İ´íÎó£¡£¡£¡\r\n" + CustomerExceptionTool.getException(e));
+				logger.log(Level.WARNING, "è·å–å„è‚¡æ•°æ®é”™è¯¯ï¼ï¼ï¼\r\n" + CustomerExceptionTool.getException(e));
 			}
 		}
 	}
 
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÎª½»Ò×µÄÊ±¼ä£¬¹¤×÷ÈÕ£¬ÇÒÔÚ½»Ò×Ê±¼äÄÚ
+	 * åˆ¤æ–­æ˜¯å¦ä¸ºäº¤æ˜“çš„æ—¶é—´ï¼Œå·¥ä½œæ—¥ï¼Œä¸”åœ¨äº¤æ˜“æ—¶é—´å†…
 	 *
 	 * @return
 	 */
 	public static boolean isTradingTime() {
 		Calendar cal = Calendar.getInstance();
-		// »ñÈ¡ÅĞ¶ÏÊÇ·ñÎª½Ú¼ÙÈÕ
+		// è·å–åˆ¤æ–­æ˜¯å¦ä¸ºèŠ‚å‡æ—¥
 		String date = "" + cal.get(Calendar.YEAR)
 				+ ((cal.get(Calendar.MONTH) + 1) <= 9 ? ("0" + "" + (cal.get(Calendar.MONTH) + 1))
 						: (cal.get(Calendar.MONTH) + 1))
@@ -305,23 +305,23 @@ public class SharesData {
 		try {
 			isWorkDateStr = getGeneralUrl(dateURL, "", "", "UTF-8");
 		} catch (Exception e) {
-			logger.log(Level.WARNING, "»ñÈ¡½»Ò×Ê±¼ä´íÎó£¡£¡£¡" + CustomerExceptionTool.getException(e));
-			throw new RuntimeException("»ñÈ¡½»Ò×Ê±¼ä´íÎó£¡£¡£¡");
+			logger.log(Level.WARNING, "è·å–äº¤æ˜“æ—¶é—´é”™è¯¯ï¼ï¼ï¼" + CustomerExceptionTool.getException(e));
+			throw new RuntimeException("è·å–äº¤æ˜“æ—¶é—´é”™è¯¯ï¼ï¼ï¼");
 		}
 		int flagDay = Integer.parseInt(isWorkDateStr.substring(isWorkDateStr.length() - 2, isWorkDateStr.length() - 1));
 
 		if (flagDay != 0) {
 			return false;
-			// ²âÊÔ
+			// æµ‹è¯•
 			// return true;
 		}
 
-		// ÅĞ¶ÏÊÇ·ñÔÚ9£º30-12:00,13:00-15:00
+		// åˆ¤æ–­æ˜¯å¦åœ¨9ï¼š30-12:00,13:00-15:00
 		SimpleDateFormat df = new SimpleDateFormat("HH:mm");
 
 		try {
 			Date now = df.parse(df.format(cal.getTime()));
-			// ²âÊÔµÄÊ±¼ä
+			// æµ‹è¯•çš„æ—¶é—´
 			// now = df.parse("9:40");
 
 			if (now.after(df.parse("9:30")) && now.before(df.parse("12:00"))
@@ -332,7 +332,7 @@ public class SharesData {
 			}
 		} catch (ParseException e) {
 			e.printStackTrace();
-			throw new RuntimeException("½âÎöÊ±¼ä´íÎó£¡£¡");
+			throw new RuntimeException("è§£ææ—¶é—´é”™è¯¯ï¼ï¼");
 		}
 
 	}

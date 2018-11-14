@@ -9,7 +9,7 @@
 </head>
 <body>
 <h1>文件上传实例 </h1>
-<form method="post" action="/joblabxDemo/uploadfile" enctype="multipart/form-data">
+<form method="post" action="uploadfile" enctype="multipart/form-data">
     选择一个文件:
     <input type="file" name="uploadFile" />&nbsp;&nbsp;&nbsp;&nbsp;
     <input type="submit" value="上传" />

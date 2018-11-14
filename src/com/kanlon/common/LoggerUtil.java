@@ -10,10 +10,10 @@ import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
 /**
- * ÈÕÖ¾¹¤¾ßÀà
+ * æ—¥å¿—å·¥å…·ç±»
  *
  * @author zhangcanlong
- * @date 2018Äê11ÔÂ12ÈÕ
+ * @date 2018å¹´11æœˆ12æ—¥
  */
 public class LoggerUtil {
 
@@ -21,9 +21,9 @@ public class LoggerUtil {
 
 	static {
 		try {
-			// ÉèÖÃÔÚ¿ØÖÆÌ¨Êä³ö
+			// è®¾ç½®åœ¨æ§åˆ¶å°è¾“å‡º
 			logger.setUseParentHandlers(true);
-			// ÉèÖÃÈÕÖ¾Êä³öµÈ¼¶
+			// è®¾ç½®æ—¥å¿—è¾“å‡ºç­‰çº§
 			logger.setLevel(Level.INFO);
 			FileHandler fileHandler = null;
 			fileHandler = new FileHandler(Constant.CLASS_PATH + "/logs/"

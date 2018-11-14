@@ -18,24 +18,24 @@ import com.kanlon.common.CustomerExceptionTool;
 public class SharesDateServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 7142804512583167572L;
-	// ´æ·Å¸÷¸ö¹ÉÆ±µÄĞòºÅ
+	// å­˜æ”¾å„ä¸ªè‚¡ç¥¨çš„åºå·
 	private Map<String, BigInteger> map = new ConcurrentHashMap<>(5);
-	// ÉÏÖ¤¹ÉÆ±Ö¸Êı
+	// ä¸Šè¯è‚¡ç¥¨æŒ‡æ•°
 	String shangzhengURL = "http://hq.sinajs.cn/list=s_sh000001";
-	// ´æ·ÅÉÏÖ¤¹ÉÆ±Ö¸ÊıµÄtxtÎÄ¼ş
+	// å­˜æ”¾ä¸Šè¯è‚¡ç¥¨æŒ‡æ•°çš„txtæ–‡ä»¶
 	String shangzhengFilePath = Constant.WEB_APP_ROOT + "/shangzheng.txt";
-	// ÍØÈÕĞÂÄÜ
+	// æ‹“æ—¥æ–°èƒ½
 	String tuoriURL = "http://hq.sinajs.cn/list=sz002218";
 	String tuoriFilePath = Constant.WEB_APP_ROOT + "tuori.txt";
-	// ´óÇØÌúÂ·
+	// å¤§ç§¦é“è·¯
 	String daqingURL = "http://hq.sinajs.cn/list=sh601006";
 	String daqingFilePath = Constant.WEB_APP_ROOT + "daqing.txt";
 
 	@Override
 	public void init() throws ServletException {
-		// ÉÏÖ¤Ö¸ÊıµÄĞòºÅ
+		// ä¸Šè¯æŒ‡æ•°çš„åºå·
 		map.put(shangzhengURL, new BigInteger("0"));
-		// ÍØÈÕĞÂÄÜ
+		// æ‹“æ—¥æ–°èƒ½
 		map.put(tuoriURL, new BigInteger("0"));
 		new Thread() {
 			@Override
@@ -55,19 +55,19 @@ public class SharesDateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		resp.setContentType("text/html;charset=utf-8");
-		// ÉèÖÃÂß¼­ÊµÏÖ
+		// è®¾ç½®é€»è¾‘å®ç°
 		PrintWriter out = resp.getWriter();
 
-		out.println("ÉÏÖ¤Ö¸Êı&nbsp;&nbsp;&nbsp;&nbsp;ÍØÈÕĞÂÄÜ<br/>");
+		out.println("ä¸Šè¯æŒ‡æ•°&nbsp;&nbsp;&nbsp;&nbsp;æ‹“æ—¥æ–°èƒ½<br/>");
 		out.flush();
 		while (true) {
 			StringBuffer htmlMsg = new StringBuffer();
 			htmlMsg.append(map.get(shangzhengURL) + "&nbsp;&nbsp;&nbsp;&nbsp;" + map.get(tuoriURL) + "<br/>");
 			out.println(htmlMsg.toString());
 			out.flush();
-			// Èç¹û²»ÊÇ½»Ò×Ê±¼äÔòÖĞ¶ÏÊä³ö
+			// å¦‚æœä¸æ˜¯äº¤æ˜“æ—¶é—´åˆ™ä¸­æ–­è¾“å‡º
 			if (!SharesData.isTradingTime()) {
-				out.println("ÏÖÔÚ²»ÊÇ²»½»Ò×Ê±¼ä£¡£¡£¡<br/>");
+				out.println("ç°åœ¨ä¸æ˜¯ä¸äº¤æ˜“æ—¶é—´ï¼ï¼ï¼<br/>");
 				out.flush();
 				out.close();
 				break;
@@ -75,7 +75,7 @@ public class SharesDateServlet extends HttpServlet {
 			try {
 				Thread.sleep(1000 * 10);
 			} catch (InterruptedException e) {
-				SharesData.logger.log(Level.WARNING, "Êä³öµÄhtmlµÄÏß³Ì´íÎó£¡£¡" + CustomerExceptionTool.getException(e));
+				SharesData.logger.log(Level.WARNING, "è¾“å‡ºçš„htmlçš„çº¿ç¨‹é”™è¯¯ï¼ï¼" + CustomerExceptionTool.getException(e));
 			}
 		}
 	}

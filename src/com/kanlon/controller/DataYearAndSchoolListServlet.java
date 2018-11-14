@@ -22,10 +22,10 @@ import com.kanlon.service.FileDataService;
 import com.kanlon.service.FileDataServiceImpl;
 
 /**
- * ¸÷¸öÑ§Ğ£ºÍ¸÷¸öÄê·İÊı¾İµÄ»ñÈ¡
+ * å„ä¸ªå­¦æ ¡å’Œå„ä¸ªå¹´ä»½æ•°æ®çš„è·å–
  *
  * @author zhangcanlong
- * @date 2018Äê11ÔÂ13ÈÕ
+ * @date 2018å¹´11æœˆ13æ—¥
  */
 public class DataYearAndSchoolListServlet extends HttpServlet {
 	private static final long serialVersionUID = -7083540285559347423L;
@@ -38,24 +38,24 @@ public class DataYearAndSchoolListServlet extends HttpServlet {
 
 		try {
 			out = response.getOutputStream();
-			// »ñÈ¡¸÷Ñ§Ğ£ºÍ¸÷Äê·İÈËÊı
+			// è·å–å„å­¦æ ¡å’Œå„å¹´ä»½äººæ•°
 			Map<String, String> mapYear = service.getNumGroupByYear();
 			Map<String, String> mapSchool = service.getNumGroupBySchool();
-			// ·â×°JSON
+			// å°è£…JSON
 			FileResponseListVO responseVo = new FileResponseListVO();
 			List<String> yearList = new ArrayList<>();
 			List<String> yearNumList = new ArrayList<>();
 			List<String> schoolList = new ArrayList<>();
 			List<String> schoolNumList = new ArrayList<>();
 			if (mapYear != null && mapYear.size() > 0) {
-				// »ñÈ¡Äê·İ¼°¸÷Äê·İÈËÊı
+				// è·å–å¹´ä»½åŠå„å¹´ä»½äººæ•°
 				for (String key : mapYear.keySet()) {
 					yearList.add(key);
 					yearNumList.add(mapYear.get(key));
 				}
 			}
 			if (mapSchool != null && mapSchool.size() > 1) {
-				// »ñÈ¡¸÷Ñ§Ğ£¼°¸÷Ñ§Ğ£ÊıÁ¿
+				// è·å–å„å­¦æ ¡åŠå„å­¦æ ¡æ•°é‡
 				for (String key : mapSchool.keySet()) {
 					schoolList.add(key);
 					schoolNumList.add(mapSchool.get(key));
@@ -66,6 +66,8 @@ public class DataYearAndSchoolListServlet extends HttpServlet {
 			responseVo.setYearList(yearList);
 			responseVo.setYearNumList(yearNumList);
 			result.setData(responseVo);
+			LoggerUtil.logger.log(Level.INFO, "è¿”å›å‰ç«¯çš„ä¿¡æ¯ä¸ºï¼š" + schoolList + "\r\t" + schoolNumList + "\r\t" + yearList
+					+ "\r\t" + yearNumList + "\r\t");
 			out.write(JsonResponseUtil.getVOJsonStr(response, result));
 			out.flush();
 		} catch (Exception e) {

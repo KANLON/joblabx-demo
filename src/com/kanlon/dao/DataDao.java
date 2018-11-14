@@ -16,57 +16,57 @@ import com.kanlon.common.LoggerUtil;
 import com.mysql.jdbc.StringUtils;
 
 /**
- * ½«Êı¾İĞ´ÈëÊı¾İ¿â£¬½øĞĞÔöÉ¾¸Ä²é²Ù×÷
+ * å°†æ•°æ®å†™å…¥æ•°æ®åº“ï¼Œè¿›è¡Œå¢åˆ æ”¹æŸ¥æ“ä½œ
  *
  * @author zhangcanlong
- * @date 2018Äê11ÔÂ12ÈÕ
+ * @date 2018å¹´11æœˆ12æ—¥
  */
 public class DataDao {
 
 	/**
-	 * ¸ù¾İlist¼¯ºÏ²åÈëÊı¾İ
+	 * æ ¹æ®listé›†åˆæ’å…¥æ•°æ®
 	 *
 	 * @param list
-	 *            Êı¾İµÄlist¼¯ºÏ
-	 * @return ·µ»ØÊÇ·ñ²åÈë³É¹¦
+	 *            æ•°æ®çš„listé›†åˆ
+	 * @return è¿”å›æ˜¯å¦æ’å…¥æˆåŠŸ
 	 */
 	public Boolean insertData(List<ArrayList<String>> list) {
 		PreparedStatement stmt = null;
 		Connection conn = null;
 		ResultSet rs = null;
-		// Ó°Ïì½á¹ûµÄ×ÜĞĞÊı
+		// å½±å“ç»“æœçš„æ€»è¡Œæ•°
 		int row = 0;
 		try {
 			conn = JDBCUtil.getConnect();
 			JDBCUtil.beginTransaction(conn);
 			String sql = "insert into joblabx_data(sex,school,YEAR,j_value) values(?,?,?,?)";
 			stmt = conn.prepareStatement(sql);
-			// ±éÀúĞĞ
+			// éå†è¡Œ
 			for (int i = 0; i < list.size(); i++) {
-				// ±éÀúÁĞ
+				// éå†åˆ—
 				for (int j = 0; j < list.get(i).size(); j++) {
 					stmt.setString(j + 1, list.get(i).get(j));
 				}
-				// Ìí¼ÓÅú´¦Àí
+				// æ·»åŠ æ‰¹å¤„ç†
 				stmt.addBatch();
-				// Ã¿100ÌõÖ´ĞĞÒ»´ÎÅú´¦Àí
+				// æ¯100æ¡æ‰§è¡Œä¸€æ¬¡æ‰¹å¤„ç†
 				if (i + 1 % 100 == 0) {
-					// ÅúÁ¿Ö´ĞĞ
+					// æ‰¹é‡æ‰§è¡Œ
 					int[] ints = stmt.executeBatch();
 					for (int z = 0; z < ints.length; z++) {
 						row += ints[z];
 					}
-					// Çå¿ÕÅú´¦Àí
+					// æ¸…ç©ºæ‰¹å¤„ç†
 					stmt.clearBatch();
 				}
 			}
-			// ÅúÁ¿Ö´ĞĞ
+			// æ‰¹é‡æ‰§è¡Œ
 			int[] ints = stmt.executeBatch();
 			for (int z = 0; z < ints.length; z++) {
 				row += ints[z];
 			}
 			LoggerUtil.logger.log(Level.INFO, Arrays.toString(ints));
-			// Çå¿ÕÅú´¦Àí
+			// æ¸…ç©ºæ‰¹å¤„ç†
 			stmt.clearBatch();
 			if (row != list.size()) {
 				JDBCUtil.rollBackTransaction(conn);
@@ -85,7 +85,7 @@ public class DataDao {
 	}
 
 	/**
-	 * ·µ»ØËùÓĞ¼ÇÂ¼Êı¾İ
+	 * è¿”å›æ‰€æœ‰è®°å½•æ•°æ®
 	 *
 	 * @param offset
 	 * @param limit
@@ -96,7 +96,7 @@ public class DataDao {
 	}
 
 	/**
-	 * ¸ù¾İid²éÑ¯²éÑ¯³ö½á¹û
+	 * æ ¹æ®idæŸ¥è¯¢æŸ¥è¯¢å‡ºç»“æœ
 	 *
 	 * @param id
 	 */
@@ -127,7 +127,7 @@ public class DataDao {
 	}
 
 	/**
-	 * ¸ù¾İidÊı×é²éÑ¯³öÇ¶Ì×list¼¯ºÏ
+	 * æ ¹æ®idæ•°ç»„æŸ¥è¯¢å‡ºåµŒå¥—listé›†åˆ
 	 *
 	 * @param ids
 	 */
@@ -172,7 +172,7 @@ public class DataDao {
 	}
 
 	/**
-	 * ¸ù¾İÑ§Ğ£Ìõ¼şºÍÄê¼¶Ìõ¼ş²éÑ¯³öÇ¶Ì×list¼¯ºÏ
+	 * æ ¹æ®å­¦æ ¡æ¡ä»¶å’Œå¹´çº§æ¡ä»¶æŸ¥è¯¢å‡ºåµŒå¥—listé›†åˆ
 	 *
 	 * @param school
 	 * @param year
@@ -215,7 +215,7 @@ public class DataDao {
 	}
 
 	/**
-	 * ¸ù¾İidºÍ´«ÈëµÄlist¼¯ºÏ¸üĞÂÄ³¸öÌõ¼ÇÂ¼
+	 * æ ¹æ®idå’Œä¼ å…¥çš„listé›†åˆæ›´æ–°æŸä¸ªæ¡è®°å½•
 	 *
 	 * @param id
 	 * @param list
@@ -236,7 +236,7 @@ public class DataDao {
 					buffer.append(" " + key + "='" + map.get(key) + "',");
 				}
 			}
-			// È¥µô×îºó¸ö¶ººÅ
+			// å»æ‰æœ€åä¸ªé€—å·
 			String condition = buffer.toString();
 			if (condition.contains(",")) {
 				condition = condition.substring(0, condition.length() - 1);
@@ -261,7 +261,7 @@ public class DataDao {
 	}
 
 	/**
-	 * ¸ù¾İidÉ¾³ıÌõ¼ÇÂ¼
+	 * æ ¹æ®idåˆ é™¤æ¡è®°å½•
 	 *
 	 * @param id
 	 */
@@ -294,12 +294,12 @@ public class DataDao {
 	}
 
 	/**
-	 * ¸ù¾İsql Óï¾ä²éÑ¯³öÊı¾İ(Ç¶Ì×list¼¯ºÏ)
+	 * æ ¹æ®sql è¯­å¥æŸ¥è¯¢å‡ºæ•°æ®(åµŒå¥—listé›†åˆ)
 	 *
 	 * @param sql
-	 *            Óï¾ä
+	 *            è¯­å¥
 	 * @param columnNum
-	 *            ²éÑ¯³öÁĞµÄÊıÁ¿
+	 *            æŸ¥è¯¢å‡ºåˆ—çš„æ•°é‡
 	 * @return
 	 */
 	public List<ArrayList<String>> selectDataBySql(String sql, int columnNum, int offset, int limit) {
@@ -317,7 +317,7 @@ public class DataDao {
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				ArrayList<String> colList = new ArrayList<>();
-				// ¸ù¾İÁĞÊıÁ¿£¬´æÈëµ½list¼¯ºÏÖĞ
+				// æ ¹æ®åˆ—æ•°é‡ï¼Œå­˜å…¥åˆ°listé›†åˆä¸­
 				for (int i = 1; i <= columnNum; i++) {
 					colList.add(rs.getString(i));
 				}
@@ -334,7 +334,7 @@ public class DataDao {
 	}
 
 	/**
-	 * ¸ù¾İsql Óï¾ä²éÑ¯³öÊıÁ¿
+	 * æ ¹æ®sql è¯­å¥æŸ¥è¯¢å‡ºæ•°é‡
 	 *
 	 * @param sql
 	 * @return
@@ -352,7 +352,7 @@ public class DataDao {
 			while (rs.next()) {
 				num = rs.getInt(1);
 			}
-			LoggerUtil.logger.log(Level.INFO, "²éÑ¯³öµÄÊıÁ¿Îª:" + String.valueOf(num));
+			LoggerUtil.logger.log(Level.INFO, "æŸ¥è¯¢å‡ºçš„æ•°é‡ä¸º:" + String.valueOf(num));
 		} catch (Exception e) {
 			LoggerUtil.logger.log(Level.SEVERE, CustomerExceptionTool.getException(e));
 			throw new RuntimeException(e.getMessage());
@@ -363,7 +363,7 @@ public class DataDao {
 	}
 
 	/**
-	 * ¸ù¾İsql Óï¾ä¸üĞÂ,²éÑ¯£¬É¾³ıÊı¾İ
+	 * æ ¹æ®sql è¯­å¥æ›´æ–°,æŸ¥è¯¢ï¼Œåˆ é™¤æ•°æ®
 	 *
 	 * @param sql
 	 * @return
