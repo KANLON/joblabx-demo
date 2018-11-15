@@ -53,7 +53,7 @@ public class FileUploadServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		JsonResult<FileResponseVO> result = new JsonResult<>();
+		JsonResult<String> result = new JsonResult<>();
 		OutputStream out = response.getOutputStream();
 		// 检测是否为多媒体上传
 		if (!ServletFileUpload.isMultipartContent(request)) {
@@ -123,16 +123,19 @@ public class FileUploadServlet extends HttpServlet {
 							// list = JExcelOption.readExcel(filePath);
 							// 新版的excel读取，能读取了2007版和2003版的excel了，不包含标题
 							list = ExcelPOIUtil.excel2List(filePath);
-							LoggerUtil.logger.log(Level.INFO, list.toString());
+							LoggerUtil.logger.log(Level.INFO, "读取excel的数据:" + list.toString());
+							// 将其存储到数据库中去
+							FileDataService service = new FileDataServiceImpl();
+							service.storeData(list);
 						} catch (Exception e) {
 							result.setStateCode(ResponseCode.RESPONSE_ERROR, "读取excel表错误！！！" + e.getMessage());
 							LoggerUtil.logger.log(Level.SEVERE, CustomerExceptionTool.getException(e));
-							out.write(JsonResponseUtil.getVOJsonStr(response, result));
+							// out.write(JsonResponseUtil.getVOJsonStr(response,
+							// result));
+							response.sendRedirect("file_error.html");
 							out.flush();
 							return;
 						}
-						// FileDataService service = new FileDataServiceImpl();
-						// service.storeData(list);
 						// // 获取各学校和各年份人数
 						// Map<String, String> mapYear =
 						// service.getNumGroupByYear();
