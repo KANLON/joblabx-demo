@@ -17,9 +17,9 @@ import com.mysql.jdbc.Statement;
  */
 public class JDBCUtil {
 
-	private static final String url = "jdbc:mysql://localhost:3306/test";
-	private static final String username = "root";
-	private static final String password = "root";
+	private static final String url = PropUtil.getValueByKey("url");
+	private static final String username = PropUtil.getValueByKey("username");
+	private static final String password = PropUtil.getValueByKey("password");
 
 	/**
 	 * 得到来数据库链接
@@ -29,7 +29,7 @@ public class JDBCUtil {
 	 */
 	public static Connection getConnect() throws Exception {
 		// 通过得到字节码对象的方式加载静态代码块，从而注册驱动程序
-		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName(PropUtil.getValueByKey("driverClassName"));
 		// 2.连接到具体的数据库
 		Connection conn = DriverManager.getConnection(url, username, password);
 		return conn;
