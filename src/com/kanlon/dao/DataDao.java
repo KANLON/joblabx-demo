@@ -193,14 +193,17 @@ public class DataDao {
 			if (!StringUtils.isEmptyOrWhitespaceOnly(year)) {
 				conditionBuffer.append(" and year='" + year + "' ");
 			}
-			sql = sql + conditionBuffer.toString() + " limit " + offset + "," + limit;
+			// 默认倒叙id输出
+			sql = sql + conditionBuffer.toString() + " order by id desc " + " limit " + offset + "," + limit;
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				ArrayList<String> collist = new ArrayList<>();
-				collist.add(rs.getString(1));
-				collist.add(rs.getString(2));
-				collist.add(rs.getString(3));
+				collist.add(rs.getString("id"));
+				collist.add(rs.getString("sex"));
+				collist.add(rs.getString("school"));
+				collist.add(rs.getString("year"));
+				collist.add(rs.getString("j_value"));
 				list.add(collist);
 			}
 		} catch (Exception e) {
@@ -313,6 +316,7 @@ public class DataDao {
 		List<ArrayList<String>> list = new ArrayList<>();
 		try {
 			conn = JDBCUtil.getConnect();
+			LoggerUtil.logger.log(Level.INFO, "查询的sql为：" + sql);
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			while (rs.next()) {
@@ -322,7 +326,9 @@ public class DataDao {
 					colList.add(rs.getString(i));
 				}
 				list.add(colList);
+
 			}
+
 			LoggerUtil.logger.log(Level.INFO, list.toString());
 		} catch (Exception e) {
 			LoggerUtil.logger.log(Level.SEVERE, CustomerExceptionTool.getException(e));

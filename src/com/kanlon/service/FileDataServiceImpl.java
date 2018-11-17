@@ -36,6 +36,9 @@ public class FileDataServiceImpl implements FileDataService {
 
 	@Override
 	public List<ArrayList<String>> getAllData(int pageIndex, int pageSize) throws BusinessException {
+		if (pageIndex <= 0 || pageSize <= 0) {
+			throw new BusinessException("页码或每页条数请求参数错误！！！");
+		}
 		int offset = (pageIndex - 1) * pageSize;
 		int limit = pageSize;
 		return dao.selectAllData(offset, limit);
@@ -50,6 +53,9 @@ public class FileDataServiceImpl implements FileDataService {
 	@Override
 	public List<ArrayList<String>> getOneSchoolOrYearData(String schoolOrYear, int pageIndex, int pageSize)
 			throws BusinessException {
+		if (pageIndex <= 0 || pageSize <= 0) {
+			throw new BusinessException("页码或每页条数请求参数错误！！！");
+		}
 		int offset = (pageIndex - 1) * pageSize;
 		int limit = pageSize;
 		if (StringUtils.isEmptyOrWhitespaceOnly(schoolOrYear)) {
@@ -114,6 +120,18 @@ public class FileDataServiceImpl implements FileDataService {
 			map.put(colList.get(0), colList.get(1));
 		}
 		return map;
+	}
+
+	@Override
+	public List<Integer> getNumGroupBySex() throws BusinessException {
+		StringBuffer sqlBuffer = new StringBuffer(
+				"SELECT SUM(IF(sex = 'M',num,0)) AS '男' ,SUM(IF(sex = 'F',num,0)) AS '女' FROM("
+						+ "SELECT sex,COUNT(*) num FROM joblabx_data GROUP BY sex" + ") group_table");
+		List<ArrayList<String>> list = dao.selectDataBySql(sqlBuffer.toString(), 2, 0, 1);
+		List<Integer> returnList = new ArrayList<>();
+		returnList.add(Integer.parseInt(list.get(0).get(0)));
+		returnList.add(Integer.parseInt(list.get(0).get(1)));
+		return returnList;
 	}
 
 }

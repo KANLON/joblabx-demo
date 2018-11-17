@@ -78,4 +78,11 @@ public interface FileDataService {
 	 */
 	Map<String, String> getNumGroupByYear() throws BusinessException;
 
+	/**
+	 * 获取男女生的数量（集合第一个元素表示男生数量，集合第二个元素表示女生数量）
+	 * 
+	 * @return
+	 * @throws BusinessException
+	 */
+	List<Integer> getNumGroupBySex() throws BusinessException;
 }
