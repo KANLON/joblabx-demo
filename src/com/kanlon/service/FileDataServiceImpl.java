@@ -103,6 +103,55 @@ public class FileDataServiceImpl implements FileDataService {
 	}
 
 	@Override
+	public List<ArrayList<String>> getAllDataByCondition(Map<String, String> paramMap, int pageIndex, int pageSize)
+			throws BusinessException {
+		if (pageIndex <= 0 || pageSize <= 0) {
+			throw new BusinessException("页码或每页条数请求参数错误！！！");
+		}
+		StringBuffer bufferCondition = new StringBuffer();
+		String school = paramMap.get("school");
+		String year = paramMap.get("year");
+		String city = paramMap.get("city");
+		if (!StringUtils.isNullOrEmpty(school)) {
+			bufferCondition.append(" and jd.school like '%" + school + "%' ");
+		}
+		if (!StringUtils.isNullOrEmpty(city)) {
+			bufferCondition.append(" and sd.city like '%" + city + "%' ");
+		}
+		if (!StringUtils.isNullOrEmpty(year)) {
+			bufferCondition.append(" and jd.year='" + year + "' ");
+		}
+		int offset = (pageIndex - 1) * pageSize;
+		int limit = pageSize;
+
+		StringBuffer sqlBuffer = new StringBuffer(" SELECT jd.* FROM joblabx_data jd "
+				+ " LEFT JOIN school_data sd ON jd.school=sd.school " + " WHERE 1=1 ");
+		sqlBuffer.append(bufferCondition.toString());
+		return dao.selectDataBySql(sqlBuffer.toString(), 6, offset, limit);
+	}
+
+	@Override
+	public Integer getAllDataNumByCondition(Map<String, String> paramMap) throws BusinessException {
+		StringBuffer bufferCondition = new StringBuffer();
+		String school = paramMap.get("school");
+		String year = paramMap.get("year");
+		String city = paramMap.get("city");
+		if (!StringUtils.isNullOrEmpty(school)) {
+			bufferCondition.append(" and jd.school like '%" + school + "%' ");
+		}
+		if (!StringUtils.isNullOrEmpty(city)) {
+			bufferCondition.append(" and sd.city like '%" + city + "%' ");
+		}
+		if (!StringUtils.isNullOrEmpty(year)) {
+			bufferCondition.append(" and jd.year='" + year + "' ");
+		}
+		StringBuffer sqlBuffer = new StringBuffer(" SELECT count(*) num FROM joblabx_data jd "
+				+ " LEFT JOIN school_data sd ON jd.school=sd.school " + " WHERE 1=1 ");
+		sqlBuffer.append(bufferCondition.toString());
+		return dao.selectNumBySql(sqlBuffer.toString());
+	}
+
+	@Override
 	public List<ArrayList<String>> getOneSchoolOrYearData(String schoolOrYear, int pageIndex, int pageSize)
 			throws BusinessException {
 		if (pageIndex <= 0 || pageSize <= 0) {

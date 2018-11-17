@@ -233,13 +233,21 @@ body {
 							</div>
 						</div>
 					</div>
-
 				</div>
 
  -->
 				<div class="panel panel-info">
 					<div class="panel-heading">
-						<h3 class="panel-title">数据信息展示</h3>
+						<h3 class="panel-title">数据信息展示    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+						&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+				                       学校：<input type="text" id="schoolConditon" style="width: 45px; height: 15px; border: 1px" value="" >		
+						&emsp;&emsp;
+						城市：<input type="text" id="cityCondition" style="width: 45px; height: 15px; border: 1px" value="">
+						&emsp;&emsp;
+						   入学年：<input type="text" id="yearConditon" style="width: 45px; height: 15px; border: 1px" value="">  
+						  &emsp;
+						  <a id='conditionSearch' href='#'><img src='images/search.svg'  width=20px; /></a>
+						 </h3>
 					</div>
 					<div class="panel-body">
 						<table class="table" id="data_all">
@@ -293,9 +301,12 @@ body {
 	</div>
 
 	<script type="text/javascript">
-		function getData(pageIndex, pageSize) {
+		function getData(pageIndex, pageSize,year,school,city) {
+		year = year===undefined?"":year;
+		school = school===undefined?"":school;
+		city = city===undefined?"":city;
 			$.ajax({
-				url : 'all_data?pageIndex=' + pageIndex + '&pageSize=' + pageSize,
+				url : 'all_data_condition?pageIndex=' + pageIndex + '&pageSize=' + pageSize+"&year="+year+"&school="+school+"&city="+city,
 				type : 'GET',
 				dataType : 'json',
 			})
@@ -329,21 +340,24 @@ body {
 					$('#PageCount').text(parseInt((parseInt(json.msg) + 19) / 20));
 				});
 		}
-		getData(1, 20);
+		getData(1, 20,"","","");
 		$("#first").click(function() {
-			getData(1, 20);
+			getData(1, 20,$('#yearConditon').val(),$('#schoolConditon').val(),$('#cityCondition').val());
 		});
 		$("#last").click(function() {
-			getData($('#PageCount').html(), 20);
+			getData($('#PageCount').html(), 20,$('#yearConditon').val(),$('#schoolConditon').val(),$('#cityCondition').val());
 		});
 		$("#prev").click(function() {
-			getData($('#Index').html() === '1' ? 1 : parseInt($('#Index').html()) - 1, 20);
+			getData($('#Index').html() === '1' ? 1 : parseInt($('#Index').html()) - 1, 20,$('#yearConditon').val(),$('#schoolConditon').val(),$('#cityCondition').val());
 		});
 		$("#next").click(function() {
-			getData($('#Index').html() === $('#PageCount').html() ? $('#PageCount').html() : parseInt($('#Index').html()) + 1, 20);
+			getData($('#Index').html() === $('#PageCount').html() ? $('#PageCount').html() : parseInt($('#Index').html()) + 1, 20,$('#yearConditon').val(),$('#schoolConditon').val(),$('#cityCondition').val());
 		});
 		$("#go").click(function() {
-			getData($('#txtGoPage').val() === "" ? "1" : $('#txtGoPage').val(), 20);
+			getData($('#txtGoPage').val() === "" ? "1" : $('#txtGoPage').val(), 20,$('#yearConditon').val(),$('#schoolConditon').val(),$('#cityCondition').val());
+		});
+		$("#conditionSearch").click(function() {
+			getData(1, 20,$('#yearConditon').val(),$('#schoolConditon').val(),$('#cityCondition').val());
 		});
 	</script>
 	<script

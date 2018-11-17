@@ -67,6 +67,27 @@ public interface FileDataService {
 	Integer getAllDataNum() throws BusinessException;
 
 	/**
+	 * 获取所有记录
+	 *
+	 * @param pageIndex
+	 *            页码
+	 * @param pageSize
+	 *            每页大小
+	 * @return 返回嵌套list集合
+	 * @throws BusinessException
+	 */
+	List<ArrayList<String>> getAllDataByCondition(Map<String, String> paramMap, int pageIndex, int pageSize)
+			throws BusinessException;
+
+	/**
+	 * 获取所有记录
+	 *
+	 * @return 返回嵌套list集合
+	 * @throws BusinessException
+	 */
+	Integer getAllDataNumByCondition(Map<String, String> paramMap) throws BusinessException;
+
+	/**
 	 * 获取指定某个学校或者年份的学生记录
 	 *
 	 * @param schoolOryear
