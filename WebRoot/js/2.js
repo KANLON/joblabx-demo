@@ -1,8 +1,8 @@
 /*function createTable() { 
 
-//´´½¨±í 
+//åˆ›å»ºè¡¨ 
 var setTable = document.createElement("table"); 
-//ÉèÖÃ±íµÄÊôĞÔ 
+//è®¾ç½®è¡¨çš„å±æ€§ 
 setTable.setAttribute('border', '1'); 
 setTable.setAttribute('id','tableid'); 
 setTable.setAttribute('cellpadding','0'); 
@@ -10,28 +10,28 @@ setTable.setAttribute('cellspacing','0');
 setTable.setAttribute('width','100%'); 
 
 var tbody = document.createElement("tbody"); 
-//´´½¨ĞĞ 
+//åˆ›å»ºè¡Œ 
 var tr = document.createElement("tr"); 
 
-//´´½¨µ¥Ôª¸ñ 
+//åˆ›å»ºå•å…ƒæ ¼ 
 var td1 = document.createElement("td"); 
-//ÉèÖÃµ¥Ôª¸ñµÄÄÚÈİ 
-var cellContent1 = document.createTextNode("±àºÅ"); 
+//è®¾ç½®å•å…ƒæ ¼çš„å†…å®¹ 
+var cellContent1 = document.createTextNode("ç¼–å·"); 
 
 var td2 = document.createElement("td"); 
-var cellContent2 = document.createTextNode("±êÌâ "); 
+var cellContent2 = document.createTextNode("æ ‡é¢˜ "); 
 
 var td3 = document.createElement("td"); 
-var cellContent3 = document.createTextNode("ÕªÒª"); 
+var cellContent3 = document.createTextNode("æ‘˜è¦"); 
 
 var td4 = document.createElement("td"); 
-var cellContent4 = document.createTextNode("×÷Õß"); 
+var cellContent4 = document.createTextNode("ä½œè€…"); 
 
 var td5 = document.createElement("td"); 
-var cellContent5 = document.createTextNode("Àà±ğ"); 
+var cellContent5 = document.createTextNode("ç±»åˆ«"); 
 
 var td6 = document.createElement("td"); 
-var cellContent6 = document.createTextNode("²Ù×÷"); 
+var cellContent6 = document.createTextNode("æ“ä½œ"); 
 
 
 td1.appendChild(cellContent1); 
@@ -61,10 +61,10 @@ tbody.appendChild(tr);
 
 setTable.appendChild(tbody); 
 
-//´´½¨ĞÂÔö°´Å¥ 
+//åˆ›å»ºæ–°å¢æŒ‰é’® 
 var button = document.createElement("input"); 
 button.type="button"; 
-button.value="ĞÂÔö"; 
+button.value="æ–°å¢"; 
 button.id="addBtn"; 
 button.onclick=function(){ 
 trdadd(); 
@@ -72,18 +72,18 @@ trdadd();
 document.getElementById("tableDiv").appendChild(button); 
 document.getElementById("tableDiv").appendChild(setTable); 
 
-//³õÊ¼»¯È«¾Ö±äÁ¿table 
+//åˆå§‹åŒ–å…¨å±€å˜é‡table 
 table = document.getElementById("tableid"); 
 
 *************** 
-form±íµ¥ 
+formè¡¨å• 
 ***************
 
-//´´½¨form±íµ¥ 
+//åˆ›å»ºformè¡¨å• 
 var form = document.createElement("form"); 
 form.setAttribute("id", "formid"); 
 
-//´´½¨table 
+//åˆ›å»ºtable 
 var createFormTable = document.createElement("table"); 
 createFormTable.setAttribute("id", "aaid"); 
 
@@ -92,25 +92,25 @@ var form_table_tbody = document.createElement("tbody");
 var form_table_tr1 = document.createElement("tr"); 
 var form_table_tr2 = document.createElement("tr"); 
 
-//µ¥Ôª¸ñ 
+//å•å…ƒæ ¼ 
 var form_table_td1 = document.createElement("td"); 
 form_table_td1.setAttribute("colspan", "6"); 
 
 var form_table_td2 = document.createElement("td"); 
 form_table_td2.setAttribute("colspan", "6"); 
 
-//µ¥Ôª¸ñÄÚÈİ 
-var form_table_td1_text = document.createTextNode("±êÌâ£º"); 
-var form_table_td2_text = document.createTextNode("ÕªÒª£º"); 
+//å•å…ƒæ ¼å†…å®¹ 
+var form_table_td1_text = document.createTextNode("æ ‡é¢˜ï¼š"); 
+var form_table_td2_text = document.createTextNode("æ‘˜è¦ï¼š"); 
 
 
-//´´½¨±êÌâÎÄ±¾¿ò 
+//åˆ›å»ºæ ‡é¢˜æ–‡æœ¬æ¡† 
 var text1 = document.createElement("input"); 
 text1.type="text"; 
 text1.id="aid"; 
 text1.size="30"; 
 
-//´´½¨ÕªÒªÎÄ±¾¿ò 
+//åˆ›å»ºæ‘˜è¦æ–‡æœ¬æ¡† 
 var text2 = document.createElement("input"); 
 text2.type="text"; 
 text2.id="bid"; 
@@ -127,29 +127,29 @@ form_table_tr1.appendChild(form_table_td2);
 form_table_tbody.appendChild(form_table_tr1); 
 
 
-//µ¥Ôª¸ñ 
+//å•å…ƒæ ¼ 
 var form_table_td3 = document.createElement("td"); 
 form_table_td3.setAttribute("colspan", "6"); 
 
 var form_table_td4 = document.createElement("td"); 
 form_table_td4.setAttribute("colspan", "6"); 
 
-//µ¥Ôª¸ñÄÚÈİ 
-var form_table_td3_text = document.createTextNode("×÷Õß£º"); 
-var form_table_td4_text = document.createTextNode("ÀàĞÍ£º"); 
+//å•å…ƒæ ¼å†…å®¹ 
+var form_table_td3_text = document.createTextNode("ä½œè€…ï¼š"); 
+var form_table_td4_text = document.createTextNode("ç±»å‹ï¼š"); 
 
-//´´½¨×÷ÕßÎÄ±¾¿ò 
+//åˆ›å»ºä½œè€…æ–‡æœ¬æ¡† 
 var text3 = document.createElement("input"); 
 text3.type="text"; 
 text3.id="cid"; 
 text3.size="30"; 
 
-//´´½¨ÏÂÀ­¿ò 
+//åˆ›å»ºä¸‹æ‹‰æ¡† 
 var select = document.createElement("select"); 
 select.id="eid"; 
 select.name="myname"; 
 
-//´´½¨ÏÂÀ­¿òoption 
+//åˆ›å»ºä¸‹æ‹‰æ¡†option 
 var option1 = document.createElement("option"); 
 option1.value="1"; 
 
@@ -159,25 +159,25 @@ option1.value="2";
 var option3 = document.createElement("option"); 
 option1.value="3"; 
 
-//ÏÂÀ­¿òÏÔÊ¾µÄÖµ 
-var value1 = document.createTextNode("Ö¤È¯"); 
-var value2 = document.createTextNode("ÌåÓı"); 
-var value3 = document.createTextNode("ĞÂÎÅ"); 
+//ä¸‹æ‹‰æ¡†æ˜¾ç¤ºçš„å€¼ 
+var value1 = document.createTextNode("è¯åˆ¸"); 
+var value2 = document.createTextNode("ä½“è‚²"); 
+var value3 = document.createTextNode("æ–°é—»"); 
 
 
-//save°´Å¥ 
+//saveæŒ‰é’® 
 var buttonSave = document.createElement("input"); 
 buttonSave.type="button"; 
-buttonSave.value="±£´æ"; 
+buttonSave.value="ä¿å­˜"; 
 buttonSave.id="saveBtn"; 
 buttonSave.onclick=function(){ 
 baocun(); 
 } 
 
-//reset°´Å¥ 
+//resetæŒ‰é’® 
 var buttonReset = document.createElement("input"); 
 buttonReset.type="reset"; 
-buttonReset.value="ÖØÖÃ"; 
+buttonReset.value="é‡ç½®"; 
 buttonReset.id="resetBtn"; 
 buttonReset.onclick=function(){ 
 chongzhi(); 
@@ -208,16 +208,16 @@ form.appendChild(buttonReset);
 document.getElementById("fid").appendChild(form); 
 } 
 
-// ĞÂÔö 
+// æ–°å¢ 
 function trdadd() { 
 flag = false; 
-document.getElementById("fid").style.display = "block"; //¿ØÖÆÏÔÊ¾ 
+document.getElementById("fid").style.display = "block"; //æ§åˆ¶æ˜¾ç¤º 
 chongzhi(); 
-document.getElementById("aid").disabled = false; //ÖØĞÂÆôÓÃ 
+document.getElementById("aid").disabled = false; //é‡æ–°å¯ç”¨ 
 
 } 
 
-//±£´æ 
+//ä¿å­˜ 
 function baocun() { 
 if (flag == false) { 
 
@@ -231,21 +231,21 @@ document.getElementById("fid").style.display = "none";
 } 
 } 
 
-//ÖØÖÃ 
+//é‡ç½® 
 function chongzhi() { 
 document.getElementById("formid").reset(); 
 } 
 
-//É¾³ı 
+//åˆ é™¤ 
 function deleteRow(input) { 
 var s = input.parentNode.parentNode.rowIndex; 
 document.getElementById("tableid").deleteRow(s); 
 var num = document.getElementById("tableid").rows.length; 
 for ( var i = 1; i < num; i += 1) { 
-table.rows[i].cells[0].innerHTML = i; //°ÑÃ¿ĞĞµÄÃ¿Ò»ÁĞÉèÎªi 
+table.rows[i].cells[0].innerHTML = i; //æŠŠæ¯è¡Œçš„æ¯ä¸€åˆ—è®¾ä¸ºi 
 
 } 
-alert("É¾³ı³É¹¦£¡£¡"); 
+alert("åˆ é™¤æˆåŠŸï¼ï¼"); 
 } 
 </script> 
 
@@ -258,7 +258,7 @@ alert("É¾³ı³É¹¦£¡£¡");
 
 
 <script type="text/javascript"> 
-//È«¾Ö±äÁ¿ 
+//å…¨å±€å˜é‡ 
 var table = null; 
 var flag = false; 
 var getselectrow; 
@@ -267,12 +267,12 @@ var haoRow = table.rows[0];
 return haoRow.cells.length; 
 } 
 
-//Ìí¼Ó·½·¨ 
+//æ·»åŠ æ–¹æ³• 
 
 function add(flag) { 
 if (!flag) { 
 // var num=getNum(); 
-var row = table.insertRow(-1); //Îª-1Ê±ÍùÏÂ¼Ó£¨ÉıĞò£©£¬Îª0Ê±ÍùÉÏ¼Ó£¨id½µĞò£© 
+var row = table.insertRow(-1); //ä¸º-1æ—¶å¾€ä¸‹åŠ ï¼ˆå‡åºï¼‰ï¼Œä¸º0æ—¶å¾€ä¸ŠåŠ ï¼ˆidé™åºï¼‰ 
 var add1 = row.insertCell(0); 
 var add2 = row.insertCell(1); 
 var add3 = row.insertCell(2); 
@@ -280,151 +280,151 @@ var add4 = row.insertCell(3);
 var add5 = row.insertCell(4); 
 var add6 = row.insertCell(5); 
 
-add1.innerHTML = document.getElementById("tableid").rows.length - 1;//²»¼Ó-1Ê±id´Ó¶ş¿ªÊ¼£»Ô­Òò£º±êÌâÕ¼Ò»¸ö 
+add1.innerHTML = document.getElementById("tableid").rows.length - 1;//ä¸åŠ -1æ—¶idä»äºŒå¼€å§‹ï¼›åŸå› ï¼šæ ‡é¢˜å ä¸€ä¸ª 
 add2.innerHTML = document.getElementById("aid").value; 
 add3.innerHTML = document.getElementById("bid").value; 
 add4.innerHTML = document.getElementById("cid").value; 
 var tall = document.getElementById("eid"); 
-var index = tall.selectedIndex;// µ±Ç°×ø±ê 
+var index = tall.selectedIndex;// å½“å‰åæ ‡ 
 var option = tall.options[index]; 
 add5.innerHTML = option.text; 
-add6.innerHTML = "<input type='button' value='ĞŞ¸Ä' onclick='updateRow(this)'> <input type='button' value='É¾³ı' onclick='deleteRow(this)'>"; 
+add6.innerHTML = "<input type='button' value='ä¿®æ”¹' onclick='updateRow(this)'> <input type='button' value='åˆ é™¤' onclick='deleteRow(this)'>"; 
 //alert(num); 
-alert("Ìí¼Ó³É¹¦£¡£¡"); 
+alert("æ·»åŠ æˆåŠŸï¼ï¼"); 
 
 } else { 
 
-var row2 = table.rows[getselectrow];//Ñ¡ÖĞµ±Ç°ĞĞ 
-//°ÑĞŞ¸ÄºóµÄÖµÉèÖÃµ½¶ÔÓ¦µÄÎÄ±¾¿òÖĞ 
+var row2 = table.rows[getselectrow];//é€‰ä¸­å½“å‰è¡Œ 
+//æŠŠä¿®æ”¹åçš„å€¼è®¾ç½®åˆ°å¯¹åº”çš„æ–‡æœ¬æ¡†ä¸­ 
 row2.cells[1].innerHTML = document.getElementById("aid").value; 
 row2.cells[2].innerHTML = document.getElementById("bid").value; 
 row2.cells[3].innerHTML = document.getElementById("cid").value; 
 var pall = document.getElementById("eid"); 
-var index = pall.selectedIndex; //µ±Ç°×ø±ê 
+var index = pall.selectedIndex; //å½“å‰åæ ‡ 
 var option = pall.options[index]; 
 row2.cells[4].innerHTML = option.text; 
 
-alert("ĞŞ¸Ä³É¹¦£¡£¡"); 
+alert("ä¿®æ”¹æˆåŠŸï¼ï¼"); 
 } 
 } 
 
-//ĞŞ¸Ä 
+//ä¿®æ”¹ 
 function updateRow(input) { 
 flag = true 
-document.getElementById("aid").disabled = true; //²»ÄÜÆôÓÃ 
+document.getElementById("aid").disabled = true; //ä¸èƒ½å¯ç”¨ 
 document.getElementById("fid").style.display = "block"; 
 
 var i = input.parentNode.parentNode.rowIndex; 
 
 getselectrow = i; 
-//µÃµ½Ñ¡ÖĞĞĞµÄÄÚÈİ·Åµ½ÎÄ±¾¿ò 
+//å¾—åˆ°é€‰ä¸­è¡Œçš„å†…å®¹æ”¾åˆ°æ–‡æœ¬æ¡† 
 document.getElementById("aid").value = table.rows[i].cells[1].innerHTML; 
 document.getElementById("bid").value = table.rows[i].cells[2].innerHTML; 
 document.getElementById("cid").value = table.rows[i].cells[3].innerHTML; 
 
 var select = document.getElementById("eid"); 
-var index = select.selectedIndex;// µ±Ç°×ø±ê 
+var index = select.selectedIndex;// å½“å‰åæ ‡ 
 var option = select.options[index]; 
 option.text = table.rows[i].cells[4].innerHTML; 
 
 } */
  function createTable(parentNode,headres,datas){
-        //´´½¨±í¸ñ
+        //åˆ›å»ºè¡¨æ ¼
         var table = document.createElement("table");
-        //½«±í¸ñ×·¼Óµ½¸¸ÈİÆ÷ÖĞ
+        //å°†è¡¨æ ¼è¿½åŠ åˆ°çˆ¶å®¹å™¨ä¸­
         parentNode.appendChild(table);
-        //ÉèÖÃtableµÄÑùÊ½
+        //è®¾ç½®tableçš„æ ·å¼
         table.cellSpacing = 0;
         table.cellPadding = 0;
         table.border = "1px";
-        //´´½¨±íÍ·
+        //åˆ›å»ºè¡¨å¤´
         var thead = document.createElement("thead");
-        //½«±êÌâ×·¼Óµ½tableÖĞ
+        //å°†æ ‡é¢˜è¿½åŠ åˆ°tableä¸­
         table.appendChild(thead);
-        //´´½¨tr
+        //åˆ›å»ºtr
         var tr =document.createElement("tr");
-        //½«tr×·¼Óµ½theadÖĞ
+        //å°†trè¿½åŠ åˆ°theadä¸­
         thead.appendChild(tr);
-        //ÉèÖÃtrµÄÑùÊ½ÊôĞÔ
+        //è®¾ç½®trçš„æ ·å¼å±æ€§
         tr.style.height="50px";
         tr.style.backgroundColor = "lightgray";
-        //±éÀúheadersÖĞµÄÊı¾İ
+        //éå†headersä¸­çš„æ•°æ®
         for(var i =0;i<headres.length;i++){
-            //´´½¨th
+            //åˆ›å»ºth
             var th = document.createElement("th");
-            //½«th×·¼Óµ½theadÖĞµÄtrÖĞ
+            //å°†thè¿½åŠ åˆ°theadä¸­çš„trä¸­
             tr.appendChild(th);
-            //½«headersµÄÊı¾İÕÒµ½¶ÔÓ¦µÄth·Å½øÈ¥  ´Ë´¦ ÓÃµ½ÁËsetInnerText()º¯Êı µ÷ÓÃcommon.js
+            //å°†headersçš„æ•°æ®æ‰¾åˆ°å¯¹åº”çš„thæ”¾è¿›å»  æ­¤å¤„ ç”¨åˆ°äº†setInnerText()å‡½æ•° è°ƒç”¨common.js
             setInnerText(th,headres[i]);
         }
-        //´´½¨tbodt
+        //åˆ›å»ºtbodt
         createTbody(parentNode,table,datas);
     };
     function createTbody(parentNodes,table,datas){
-        //´´½¨tbody
+        //åˆ›å»ºtbody
         var tbody = document.createElement("tbody");
-        //½«tbody×·¼Óµ½tableÖĞ
+        //å°†tbodyè¿½åŠ åˆ°tableä¸­
         table.appendChild(tbody);
-        //ÉèÖÃtbodyµÄÑùÊ½ÊôĞÔ
+        //è®¾ç½®tbodyçš„æ ·å¼å±æ€§
         tbody.style.textAlign = "center";
-        //±éÀúµÃµ½Êı¾İÔ´
+        //éå†å¾—åˆ°æ•°æ®æº
         for(var i=0;i<datas.length;i++){
-            //»ñÈ¡Ã»ÏëÊı¾İ
+            //è·å–æ²¡æƒ³æ•°æ®
             var data =datas[i];
-            //´´½¨tr
+            //åˆ›å»ºtr
             tr = document.createElement("tr");
-            //½«tr×·¼Óµ½tbodyÖĞ
+            //å°†trè¿½åŠ åˆ°tbodyä¸­
             tbody.appendChild(tr);
-            //ÉèÖÃtbodyÖĞtrµÄÊôĞÔ
+            //è®¾ç½®tbodyä¸­trçš„å±æ€§
             tr.style.height="40px";
-            //±éÀú¶ÔÏóµÄÊôĞÔ
+            //éå†å¯¹è±¡çš„å±æ€§
             for(var key in data){
-                //´´½¨td
+                //åˆ›å»ºtd
                 var td = document.createElement("td");
-                //×·¼Óµ½tbodyÖĞµÄtrÖĞ
+                //è¿½åŠ åˆ°tbodyä¸­çš„trä¸­
                 tr.appendChild(td);
-                //½«µÃµ½µÄÃ»ÏîÊôĞÔÌí¼Óµ½Ã¿Ò»¸ötdÖĞ
+                //å°†å¾—åˆ°çš„æ²¡é¡¹å±æ€§æ·»åŠ åˆ°æ¯ä¸€ä¸ªtdä¸­
                 setInnerText(td,data[key]);
             }
-            //´´½¨²Ù×÷ÁĞ
+            //åˆ›å»ºæ“ä½œåˆ—
             td = document.createElement("td");
-            //×·¼Óµ½trÖĞ
+            //è¿½åŠ åˆ°trä¸­
             tr.appendChild(td);
-            //¸øtdÉèÖÃa±êÇ©
-            td.innerHTML = "<a href='javaScript:;'>É¾³ı</a>"
-            //×¢²áµã»÷ÊÂ¼ş
-            //ÕÒµ½a±êÇ©
+            //ç»™tdè®¾ç½®aæ ‡ç­¾
+            td.innerHTML = "<a href='javaScript:;'>åˆ é™¤</a>"
+            //æ³¨å†Œç‚¹å‡»äº‹ä»¶
+            //æ‰¾åˆ°aæ ‡ç­¾
             var link = td.children[0];
-            //ÉèÖÃa±ãÇ©µÄÊôĞÔindexÎª1
+            //è®¾ç½®aä¾¿ç­¾çš„å±æ€§indexä¸º1
             link.index = i;
-            //×¢²áÊÂ¼ş
+            //æ³¨å†Œäº‹ä»¶
             link.onclick = function () {
-                //µÃµ½µ±Ç°a±êÇ©µÄË÷ÒıÖµ
+                //å¾—åˆ°å½“å‰aæ ‡ç­¾çš„ç´¢å¼•å€¼
                 var index = this.index;
-                //É¾³ı¸ÃË÷ÒıÖµµÄÏî
+                //åˆ é™¤è¯¥ç´¢å¼•å€¼çš„é¡¹
                 datas.splice(index,1);
-                //É¾³ıtable
+                //åˆ é™¤table
                 parentNodes.removeChild(table);
-                //ÖØĞÂ´´½¨table
+                //é‡æ–°åˆ›å»ºtable
                 createTable(parentNodes,headers,datas);
             };
-            //ÅĞ¶Ïtr¸ôĞĞ±äÉ«
-            //Êó±êÒÆ¶¯ÉÏÈ¥¸ßÁÁÏÔÊ¾
+            //åˆ¤æ–­tréš”è¡Œå˜è‰²
+            //é¼ æ ‡ç§»åŠ¨ä¸Šå»é«˜äº®æ˜¾ç¤º
                     if(i%2==0){
-                        //ÆæÊıĞĞ
+                        //å¥‡æ•°è¡Œ
                         tr.style.backgroundColor = "pink";
                     }else{
-                        //Å¼ÊıĞĞ
+                        //å¶æ•°è¡Œ
                         tr.style.backgroundColor = "#B9FFCF";
                     }
-                    //×¢²áÊÂ¼ş¸ßÁÁÏÔÊ¾
+                    //æ³¨å†Œäº‹ä»¶é«˜äº®æ˜¾ç¤º
                     var bg;
-                    //Êó±ê¾­¹ı
+                    //é¼ æ ‡ç»è¿‡
                     tr.onmouseover = function () {
                         bg = this.style.backgroundColor;
                         this.style.backgroundColor = "#4BE1FF";
                     };
-                    //Êó±êÀë¿ª
+                    //é¼ æ ‡ç¦»å¼€
                     tr.onmouseout = function(){
                         this.style.backgroundColor = bg;
                     };

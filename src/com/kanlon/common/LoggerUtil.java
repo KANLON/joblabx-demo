@@ -24,7 +24,7 @@ public class LoggerUtil {
 			// 设置在控制台输出
 			logger.setUseParentHandlers(true);
 			// 设置日志输出等级
-			logger.setLevel(Level.INFO);
+			logger.setLevel(Level.SEVERE);
 			FileHandler fileHandler = null;
 			fileHandler = new FileHandler(Constant.CLASS_PATH + "/logs/"
 					+ new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss").format(new Date()) + ".log");

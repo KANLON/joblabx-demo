@@ -1,0 +1,14 @@
+body{
+	background-color: #F0FFFF;
+	margin:10% 30% 5% 30%;
+}
+
+#title{
+	text-align:center;
+	font-size: 30px;
+}
+
+#button{
+	text-align:center;
+	font-size: 30px;
+}

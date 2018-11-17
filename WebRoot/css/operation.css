@@ -1,0 +1,50 @@
+.title{
+	text-align:center;
+	font-size: 30px;
+}
+
+#add{
+    position: absolute;  /*绝对定位*/
+    right: 5%;
+    width: 15%;
+}
+
+#jpg{
+	margin: 30px;
+	float: left;
+}
+
+#search{
+	position: absolute;   /*绝对定位*/
+	top: 50px;
+	left: 430px;
+}
+
+.button1{
+	position: absolute;   /*绝对定位*/
+    top: 50px;
+    right: 70px;
+}
+
+#menu{
+	position: absolute;   /*绝对定位*/
+	left: 50px;
+	top: 180px;
+	width: 15%;
+}
+
+#iframe1
+{
+	position: absolute;   /*绝对定位*/
+	top: 100px;
+	right: 10px;
+}
+
+#foot{
+    color:#666;
+    position: absolute;   /*绝对定位*/
+    bottom: 5px;
+    left: 500px;
+    font-size:10px;
+    letter-spacing: 2px;  /*设置元素的字母间距*/
+}

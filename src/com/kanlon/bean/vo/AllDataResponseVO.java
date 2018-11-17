@@ -11,6 +11,11 @@ public class AllDataResponseVO {
 	 * 学校名
 	 */
 	private String school;
+
+	/**
+	 * 学院名
+	 */
+	private String department;
 	/**
 	 * 入学年份
 	 */
@@ -54,6 +59,14 @@ public class AllDataResponseVO {
 
 	public void setSex(String sex) {
 		this.sex = sex;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
 	}
 
 }

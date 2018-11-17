@@ -54,8 +54,10 @@ public class AllDataServlet extends HttpServlet {
 					AllDataResponseVO dataVo = new AllDataResponseVO();
 					dataVo.setSex(tempList.get(1));
 					dataVo.setSchool(tempList.get(2));
-					dataVo.setYear(tempList.get(3));
-					dataVo.setjValue(tempList.get(4));
+					dataVo.setDepartment(tempList.get(3));
+					dataVo.setYear(tempList.get(4));
+					dataVo.setjValue(tempList.get(5));
+
 					responseList.add(dataVo);
 				}
 			}

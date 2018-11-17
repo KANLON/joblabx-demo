@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>男女比例</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+</head>
+<body>
+<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+<script type="text/javascript" language="javascript">
+    $.ajax({
+            url : 'sexnum',
+            type : 'GET',
+            dataType : 'json',
+        })
+            .done(function(json) {
+                console.log(json);
+                //字符串数组 
+                var dataStrArr=json.data.womanNum;
+                var womandata = parseInt(dataStrArr);
+                var dataStrArr2 = json.data.manNum;
+                var mandata = parseInt(dataStrArr2);
+                drawing(mandata, womandata);
+            });
+
+    function drawing(manNum, womanNum){
+	Highcharts.chart('container', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: '男女比例'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false
+            },
+            showInLegend: true
+        }
+    },
+    series: [{
+        name: '比例',
+        colorByPoint: true,
+        data: [{
+            name: '男',
+            y: manNum,
+            sliced: true,
+            selected: true
+        },  {
+            name: '女',
+            y: womanNum
+        }]
+    }]
+});
+}
+</script>
+</body>
+</html>

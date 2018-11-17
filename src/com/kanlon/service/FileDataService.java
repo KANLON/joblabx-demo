@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.kanlon.bean.ExcelObject;
 import com.kanlon.common.exception.BusinessException;
 
 public interface FileDataService {
@@ -16,6 +17,24 @@ public interface FileDataService {
 	 * @return 返回是否存储成功
 	 */
 	Boolean storeData(List<ArrayList<String>> list) throws BusinessException;
+
+	/**
+	 * 存储对象
+	 *
+	 * @param objects
+	 * @return
+	 * @throws BusinessException
+	 */
+	Boolean storeObjects(List<ExcelObject> objects) throws BusinessException;
+
+	/**
+	 * 存储数据
+	 *
+	 * @param list
+	 *            嵌套list表，默认第一行为标题行
+	 * @return 返回是否存储成功
+	 */
+	Boolean storeTempData(List<ArrayList<String>> list) throws BusinessException;
 
 	/**
 	 * 获取所有记录
@@ -71,6 +90,22 @@ public interface FileDataService {
 	Map<String, String> getNumGroupBySchool() throws BusinessException;
 
 	/**
+	 * 获取数量排名前5的学校的人数的数量
+	 *
+	 * @return map集合key为学校，value为数量
+	 * @throws BusinessException
+	 */
+	Map<String, String> getTop5NumGroupBySchool() throws BusinessException;
+
+	/**
+	 * 获取某个临时表各个学校的人数的数量
+	 *
+	 * @return map集合key为学校，value为数量
+	 * @throws BusinessException
+	 */
+	Map<String, String> getNumTempGroupBySchool() throws BusinessException;
+
+	/**
 	 * 获取各个年份的人数的数量
 	 *
 	 * @return map集合 key为年份，value为数量
@@ -79,8 +114,16 @@ public interface FileDataService {
 	Map<String, String> getNumGroupByYear() throws BusinessException;
 
 	/**
+	 * 获取某个临时表各个年份的人数的数量
+	 *
+	 * @return map集合 key为年份，value为数量
+	 * @throws BusinessException
+	 */
+	Map<String, String> getNumTempGroupByYear() throws BusinessException;
+
+	/**
 	 * 获取男女生的数量（集合第一个元素表示男生数量，集合第二个元素表示女生数量）
-	 * 
+	 *
 	 * @return
 	 * @throws BusinessException
 	 */

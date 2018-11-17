@@ -1,5 +1,7 @@
 package com.kanlon;
 
+import com.kanlon.dao.DataDao;
+
 /**
  * 测试类
  *
@@ -8,6 +10,6 @@ package com.kanlon;
  */
 public class Test {
 	public static void main(String[] args) {
-		System.out.println(SharesData.class.getResource("").getPath());
+		DataDao dao = new DataDao();
 	}
 }

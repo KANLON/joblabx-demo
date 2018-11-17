@@ -17,7 +17,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import com.kanlon.bean.vo.FileResponseVO;
+import com.kanlon.bean.ExcelObject;
 import com.kanlon.common.Constant;
 import com.kanlon.common.CustomerExceptionTool;
 import com.kanlon.common.ExcelPOIUtil;
@@ -117,16 +117,17 @@ public class FileUploadServlet extends HttpServlet {
 						// 保存文件到硬盘
 						item.write(storeFile);
 						// 读取excel表格
-						List<ArrayList<String>> list = new ArrayList<>();
+						List<ExcelObject> objects = new ArrayList<>();
 						try {
 							// 旧版的excel读取，只能读取2003版之前的excel，并且包含标题
 							// list = JExcelOption.readExcel(filePath);
 							// 新版的excel读取，能读取了2007版和2003版的excel了，不包含标题
-							list = ExcelPOIUtil.excel2List(filePath);
-							LoggerUtil.logger.log(Level.INFO, "读取excel的数据:" + list.toString());
+							// list = ExcelPOIUtil.excel2List(filePath);
+							objects = ExcelPOIUtil.excel2ExcelObject(filePath);
+							LoggerUtil.logger.log(Level.INFO, "读取excel的数据:" + objects.toString());
 							// 将其存储到数据库中去
 							FileDataService service = new FileDataServiceImpl();
-							service.storeData(list);
+							service.storeObjects(objects);
 						} catch (Exception e) {
 							result.setStateCode(ResponseCode.RESPONSE_ERROR, "读取excel表错误！！！" + e.getMessage());
 							LoggerUtil.logger.log(Level.SEVERE, CustomerExceptionTool.getException(e));
@@ -149,7 +150,7 @@ public class FileUploadServlet extends HttpServlet {
 						// out.write(JsonResponseUtil.getVOJsonStr(response,
 						// result));
 						// out.flush();
-						response.sendRedirect("year_and_school.html");
+						response.sendRedirect("year_school_sex_top5school.html");
 						return;
 					}
 				}
@@ -168,29 +169,21 @@ public class FileUploadServlet extends HttpServlet {
 		return;
 	}
 
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
-		JsonResult<FileResponseVO> result = new JsonResult<>();
-		FileDataService service = new FileDataServiceImpl();
-		OutputStream out = null;
-		try {
-			out = response.getOutputStream();
-			// // 获取各学校和各年份人数
-			// Map<String, String> mapYear = service.getNumGroupByYear();
-			// Map<String, String> mapSchool = service.getNumGroupBySchool();
-			// // 封装json
-			// FileResponseVO responseVo = new FileResponseVO();
-			// responseVo.setMapSchool(mapSchool);
-			// responseVo.setMapYear(mapYear);
-			// result.setData(responseVo);
-			// out.write(JsonResponseUtil.getVOJsonStr(response, result));
-			// out.flush();
-			response.sendRedirect("year_and_school.html");
-		} catch (Exception e) {
-			result.setStateCode(ResponseCode.RESPONSE_ERROR, e.getMessage());
-			out.write(JsonResponseUtil.getVOJsonStr(response, result));
-			out.flush();
-			LoggerUtil.logger.log(Level.SEVERE, CustomerExceptionTool.getException(e));
-		}
-	}
+	/*
+	 * @Override protected void doGet(HttpServletRequest req,
+	 * HttpServletResponse response) throws ServletException, IOException {
+	 * JsonResult<FileResponseVO> result = new JsonResult<>(); FileDataService
+	 * service = new FileDataServiceImpl(); OutputStream out = null; try { out =
+	 * response.getOutputStream(); // // 获取各学校和各年份人数 // Map<String, String>
+	 * mapYear = service.getNumGroupByYear(); // Map<String, String> mapSchool =
+	 * service.getNumGroupBySchool(); // // 封装json // FileResponseVO responseVo
+	 * = new FileResponseVO(); // responseVo.setMapSchool(mapSchool); //
+	 * responseVo.setMapYear(mapYear); // result.setData(responseVo); //
+	 * out.write(JsonResponseUtil.getVOJsonStr(response, result)); //
+	 * out.flush(); response.sendRedirect("year_and_school.html"); } catch
+	 * (Exception e) { result.setStateCode(ResponseCode.RESPONSE_ERROR,
+	 * e.getMessage()); out.write(JsonResponseUtil.getVOJsonStr(response,
+	 * result)); out.flush(); LoggerUtil.logger.log(Level.SEVERE,
+	 * CustomerExceptionTool.getException(e)); } }
+	 */
 }

@@ -1,5 +1,5 @@
 /*
-       * ÊÇ·ñÍ¬ÒâĞ­Òé
+       * æ˜¯å¦åŒæ„åè®®
        */
       function isAgree() {
         var agreeDOM = document.getElementById('agree');
@@ -11,22 +11,22 @@
         }
       }
        /*
-      *ÕËºÅÑéÖ¤
+      *è´¦å·éªŒè¯
       */
       function checkCode() {
-        var result = true;/*getElementByIdÖ¸»ñµÃÀ¨ºÅÀïµÄ¸ÃÔªËØ*/
+        var result = true;/*getElementByIdæŒ‡è·å¾—æ‹¬å·é‡Œçš„è¯¥å…ƒç´ */
         var code = document.getElementById('code').value;
         if (code == '') { 
-          document.getElementById('codeInfo').innerHTML = '<span style="color:red;">ÕËºÅ²»ÄÜÎª¿Õ!</span>';
+          document.getElementById('codeInfo').innerHTML = '<span style="color:red;">è´¦å·ä¸èƒ½ä¸ºç©º!</span>';
           result = false;
         }
         else if (code.length <6 || code.length >12) {
-          document.getElementById('codeInfo').innerHTML = '<span style="color:red;">ÕËºÅ±ØĞëÎª6~12Î»Ö®¼ä!</span>';
-          result = false;/*innerHTML·µ»ØÁË±í¸ñĞĞµÄ inner HTML£¬
-          <span> À´×éºÏĞĞÄÚÔªËØ£¬ÒÔ±ãÍ¨¹ıÑùÊ½À´¸ñÊ½»¯ËüÃÇ*/
+          document.getElementById('codeInfo').innerHTML = '<span style="color:red;">è´¦å·å¿…é¡»ä¸º6~12ä½ä¹‹é—´!</span>';
+          result = false;/*innerHTMLè¿”å›äº†è¡¨æ ¼è¡Œçš„ inner HTMLï¼Œ
+          <span> æ¥ç»„åˆè¡Œå†…å…ƒç´ ï¼Œä»¥ä¾¿é€šè¿‡æ ·å¼æ¥æ ¼å¼åŒ–å®ƒä»¬*/
         }
         else if (!/^[0-9A-z]+$/.test(code)) { 
-          document.getElementById('codeInfo').innerHTML = '<span style="color:red;">ÕËºÅ±ØĞëÎªÊı×Ö»òÕß×ÖÄ¸×é³É!</span>';
+          document.getElementById('codeInfo').innerHTML = '<span style="color:red;">è´¦å·å¿…é¡»ä¸ºæ•°å­—æˆ–è€…å­—æ¯ç»„æˆ!</span>';
           result = false;
         }else {
           document.getElementById('codeInfo').innerHTML = '<img src="tupian/accept.jpg" width="17" height="17"/>';
@@ -36,16 +36,16 @@
         return result;
       }
       /*
-      *ÃÜÂëÑéÖ¤
+      *å¯†ç éªŒè¯
       */
       function password(){
         var result = true;
         var password = document.getElementById('password').value;
         if(!/^[0-9A-z]+$/.test(password)){
-             document.getElementById('passwordInfo').innerHTML = '<span style="color:red;">ÃÜÂë±ØĞëÎªÊı×Ö»òÕß×ÖÄ¸×é³É!</span>';
+             document.getElementById('passwordInfo').innerHTML = '<span style="color:red;">å¯†ç å¿…é¡»ä¸ºæ•°å­—æˆ–è€…å­—æ¯ç»„æˆ!</span>';
              result = false;
         }else if(password.length < 8 || password.length > 12 || password == '') {
-          document.getElementById('passwordInfo').innerHTML = '<span style="color:red;">ÃÜÂë±ØĞëÎª8~12Î»Ö®¼ä!</span>';
+          document.getElementById('passwordInfo').innerHTML = '<span style="color:red;">å¯†ç å¿…é¡»ä¸º8~12ä½ä¹‹é—´!</span>';
           result = false;
         }
         else {
@@ -59,10 +59,10 @@
         var password = document.getElementById('password').value;
         var password2 = document.getElementById('password2').value;
         if (password2 == ''){
-          document.getElementById('password2Info').innerHTML = '<span style="color:red;">ÇëÊäÈëÃÜÂë£¡</span>';
+          document.getElementById('password2Info').innerHTML = '<span style="color:red;">è¯·è¾“å…¥å¯†ç ï¼</span>';
           result = false;
         }else if(password2 != password) {
-          document.getElementById('password2Info').innerHTML = '<span style="color:red;">Á½´ÎÃÜÂëÊäÈë²»Ò»ÖÂ£¡</span>';
+          document.getElementById('password2Info').innerHTML = '<span style="color:red;">ä¸¤æ¬¡å¯†ç è¾“å…¥ä¸ä¸€è‡´ï¼</span>';
           result = false;
         }else {
           document.getElementById('password2Info').innerHTML = '<img src="tupian/accept.jpg" width="17" height="17"/>';
@@ -71,21 +71,21 @@
         return result;
       }
       /*
-      *ĞÔ±ğÑéÖ¤
+      *æ€§åˆ«éªŒè¯
       */
       function gender(){
         var result = true;
         var gender = document.getElementsByName('gender');
         var genderCount = 0;
         for (var i = 0; i < gender.length; i++) {
-          if (gender[i].checked) {//Èç¹ûÒÑ¾­Ñ¡ÖĞÁË¾Íbreak;
+          if (gender[i].checked) {//å¦‚æœå·²ç»é€‰ä¸­äº†å°±break;
             break;
           } else {
-            genderCount++;//Èç¹ûÃ»ÓĞÑ¡ÖĞ°´Å¥¾ÍÔö¼Ó£¬×îºóÃ»ÓĞÑ¡ÖĞµÄ°´Å¥µÈÓÚËùÓĞ°´Å¥ÔòÃ»ÓĞ½øĞĞÑ¡Ôñ£¬³öÏÖÌáÊ¾
+            genderCount++;//å¦‚æœæ²¡æœ‰é€‰ä¸­æŒ‰é’®å°±å¢åŠ ï¼Œæœ€åæ²¡æœ‰é€‰ä¸­çš„æŒ‰é’®ç­‰äºæ‰€æœ‰æŒ‰é’®åˆ™æ²¡æœ‰è¿›è¡Œé€‰æ‹©ï¼Œå‡ºç°æç¤º
           }
         }
         if (genderCount == gender.length) {
-          document.getElementById('genderInfo').innerHTML = '<span style="color:red;">ĞÔ±ğ²»ÄÜÎª¿Õ£¡</span>';
+          document.getElementById('genderInfo').innerHTML = '<span style="color:red;">æ€§åˆ«ä¸èƒ½ä¸ºç©ºï¼</span>';
           result = false;
         } else {
           document.getElementById('genderInfo').innerHTML = '<img src="tupian/accept.jpg" width="17" height="17"/>';
@@ -96,13 +96,13 @@
     
 
        /*
-       * ÄêÁäÑéÖ¤
+       * å¹´é¾„éªŒè¯
        */
        function age(){
         var result = true;
-        var age = document.getElementById('age').value;/*»ñµÃageÀïÃæµÄÖµ*/
+        var age = document.getElementById('age').value;/*è·å¾—ageé‡Œé¢çš„å€¼*/
         if (age == '') {
-          document.getElementById('ageInfo').innerHTML = '<span style="color:red;">ÄêÁäÑ¡Ïî²»ÄÜÎª¿Õ£¡</span>';
+          document.getElementById('ageInfo').innerHTML = '<span style="color:red;">å¹´é¾„é€‰é¡¹ä¸èƒ½ä¸ºç©ºï¼</span>';
           result = false;
         } else {
           document.getElementById('ageInfo').innerHTML = '<img src="tupian/accept.jpg" width="17" height="17"/>';
@@ -112,22 +112,22 @@
        }
       
       /*
-      *±íµ¥µÄSubmitÑéÖ¤
+      *è¡¨å•çš„SubmitéªŒè¯
       */
       function Rabbit(){
 
         var Rabit = new Array();
-        Rabit[0] = checkCode();//ÕËºÅ
-        Rabit[1] = password();//ÃÜÂë
-        Rabit[2] = password2();//ÖØ¸´ÃÜÂë
-        Rabit[3] = gender();//ĞÔ±ğ
-        Rabit[4] = age();//ÄêÁä
+        Rabit[0] = checkCode();//è´¦å·
+        Rabit[1] = password();//å¯†ç 
+        Rabit[2] = password2();//é‡å¤å¯†ç 
+        Rabit[3] = gender();//æ€§åˆ«
+        Rabit[4] = age();//å¹´é¾„
         return Rabit;
        
-        //alert('ÇëÕıÈ·²¢ÍêÕûµÄÊäÈë×¢²áĞÅÏ¢');
+        //alert('è¯·æ­£ç¡®å¹¶å®Œæ•´çš„è¾“å…¥æ³¨å†Œä¿¡æ¯');
       }
       /**
-      *Ìá½»ºóµÄÅĞ¶Ï
+      *æäº¤åçš„åˆ¤æ–­
       */
       function index(){
         var w = new Array();
@@ -144,7 +144,7 @@
           window.location.href='Rabbit.html'; 
         }
         else{
-        alert('Çë°´¹æ¶¨ÊäÈëÍêÕûµÄ×¢²á×ÊÁÏ£¡');
+        alert('è¯·æŒ‰è§„å®šè¾“å…¥å®Œæ•´çš„æ³¨å†Œèµ„æ–™ï¼');
         var Rabit;
         Rabit = age();
          if (Rabit == false) {

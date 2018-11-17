@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.crab2died.ExcelUtils;
+import com.kanlon.bean.ExcelObject;
 
 /**
  * 利用poi操作excel表格的工具类
@@ -50,4 +51,21 @@ public class ExcelPOIUtil {
 		}
 		return returnList;
 	}
+
+	/**
+	 * 读取excel表格内容到excel对象中，从第二行开始读起，默认去掉了表标题
+	 *
+	 * @param filePath
+	 *            excel表格路径
+	 * @return 返回嵌套list集合
+	 * @throws Exception
+	 */
+	public static List<ExcelObject> excel2ExcelObject(String filePath) throws Exception {
+		List<ExcelObject> excelObject = ExcelUtils.getInstance().readExcel2Objects(filePath, ExcelObject.class, 0, 0);
+		if (excelObject == null || excelObject.size() == 0) {
+			return null;
+		}
+		return excelObject;
+	}
+
 }

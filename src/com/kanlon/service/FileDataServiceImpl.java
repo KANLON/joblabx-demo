@@ -2,9 +2,11 @@ package com.kanlon.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.kanlon.bean.ExcelObject;
 import com.kanlon.common.exception.BusinessException;
 import com.kanlon.dao.DataDao;
 import com.mysql.jdbc.StringUtils;
@@ -19,7 +21,7 @@ public class FileDataServiceImpl implements FileDataService {
 	DataDao dao = new DataDao();
 
 	/**
-	 * 存储数据， 默认第一个元素是标题栏
+	 * 存储数据
 	 *
 	 * @param list
 	 *            嵌套list表，默认第一行为标题行
@@ -32,6 +34,38 @@ public class FileDataServiceImpl implements FileDataService {
 		}
 		// list.remove(0);
 		return dao.insertData(list);
+	}
+
+	/**
+	 * 存储数据
+	 *
+	 * @param list
+	 *            嵌套list表，默认第一行为标题行
+	 * @return 返回是否存储成功
+	 */
+	@Override
+	public Boolean storeObjects(List<ExcelObject> objects) throws BusinessException {
+		if (objects == null || objects.size() <= 1) {
+			return true;
+		}
+		// list.remove(0);
+		return dao.insertObjectData(objects);
+	}
+
+	/**
+	 * 存储一个excel表的数据
+	 *
+	 * @param list
+	 *            嵌套list表，默认第一行为标题行
+	 * @return 返回是否存储成功
+	 */
+	@Override
+	public Boolean storeTempData(List<ArrayList<String>> list) throws BusinessException {
+		if (list == null || list.size() <= 1) {
+			return true;
+		}
+		// list.remove(0);
+		return dao.insertTempData(list);
 	}
 
 	@Override
@@ -99,6 +133,39 @@ public class FileDataServiceImpl implements FileDataService {
 			return null;
 		}
 		// 从行集合中取出高校名和该高校的人数元素放入到map中
+		Map<String, String> map = new LinkedHashMap<>();
+		for (ArrayList<String> colList : list) {
+			map.put(colList.get(0), colList.get(1));
+		}
+		return map;
+	}
+
+	@Override
+	public Map<String, String> getTop5NumGroupBySchool() throws BusinessException {
+
+		String sql = "SELECT school,COUNT(*) num FROM joblabx_data GROUP BY school order by num desc";
+		// 全国高校数少于3000间
+		List<ArrayList<String>> list = dao.selectDataBySql(sql, 2, 0, 5);
+		if (list == null || list.size() <= 0) {
+			return null;
+		}
+		// 从行集合中取出高校名和该高校的人数元素放入到map中
+		Map<String, String> map = new LinkedHashMap<>();
+		for (ArrayList<String> colList : list) {
+			map.put(colList.get(0), colList.get(1));
+		}
+		return map;
+	}
+
+	@Override
+	public Map<String, String> getNumTempGroupBySchool() throws BusinessException {
+		String sql = "SELECT school,COUNT(*) num FROM joblabx_data_temp GROUP BY school";
+		// 全国高校数少于3000间
+		List<ArrayList<String>> list = dao.selectDataBySql(sql, 2, 0, 10000);
+		if (list == null || list.size() <= 0) {
+			return null;
+		}
+		// 从行集合中取出高校名和该高校的人数元素放入到map中
 		Map<String, String> map = new HashMap<>();
 		for (ArrayList<String> colList : list) {
 			map.put(colList.get(0), colList.get(1));
@@ -108,14 +175,30 @@ public class FileDataServiceImpl implements FileDataService {
 
 	@Override
 	public Map<String, String> getNumGroupByYear() throws BusinessException {
-		String sql = "SELECT year,COUNT(*) num FROM joblabx_data GROUP BY year";
+		String sql = "SELECT year,COUNT(*) num FROM joblabx_data GROUP BY year order by year desc";
 		// 全国高校数少于3000间
 		List<ArrayList<String>> list = dao.selectDataBySql(sql, 2, 0, 10000);
 		if (list == null || list.size() <= 0) {
 			return null;
 		}
 		// 从行集合中取出年份和该年份下的人数元素放入到map中
-		Map<String, String> map = new HashMap<>();
+		Map<String, String> map = new LinkedHashMap<>();
+		for (ArrayList<String> colList : list) {
+			map.put(colList.get(0), colList.get(1));
+		}
+		return map;
+	}
+
+	@Override
+	public Map<String, String> getNumTempGroupByYear() throws BusinessException {
+		String sql = "SELECT year,COUNT(*) num FROM joblabx_data_temp GROUP BY year";
+		// 全国高校数少于3000间
+		List<ArrayList<String>> list = dao.selectDataBySql(sql, 2, 0, 10000);
+		if (list == null || list.size() <= 0) {
+			return null;
+		}
+		// 从行集合中取出年份和该年份下的人数元素放入到map中
+		Map<String, String> map = new LinkedHashMap<>();
 		for (ArrayList<String> colList : list) {
 			map.put(colList.get(0), colList.get(1));
 		}
@@ -129,8 +212,8 @@ public class FileDataServiceImpl implements FileDataService {
 						+ "SELECT sex,COUNT(*) num FROM joblabx_data GROUP BY sex" + ") group_table");
 		List<ArrayList<String>> list = dao.selectDataBySql(sqlBuffer.toString(), 2, 0, 1);
 		List<Integer> returnList = new ArrayList<>();
-		returnList.add(Integer.parseInt(list.get(0).get(0)));
-		returnList.add(Integer.parseInt(list.get(0).get(1)));
+		returnList.add(Integer.parseInt(list.get(0).get(0) == null ? "0" : list.get(0).get(0)));
+		returnList.add(Integer.parseInt(list.get(0).get(1) == null ? "0" : list.get(0).get(1)));
 		return returnList;
 	}
 

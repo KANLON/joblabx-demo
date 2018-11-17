@@ -10,9 +10,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 
+import com.kanlon.bean.ExcelObject;
 import com.kanlon.common.CustomerExceptionTool;
 import com.kanlon.common.JDBCUtil;
 import com.kanlon.common.LoggerUtil;
+import com.kanlon.common.TimeUtil;
 import com.mysql.jdbc.StringUtils;
 
 /**
@@ -39,10 +41,136 @@ public class DataDao {
 		try {
 			conn = JDBCUtil.getConnect();
 			JDBCUtil.beginTransaction(conn);
-			String sql = "insert into joblabx_data(sex,school,YEAR,j_value) values(?,?,?,?)";
+			String sql = "insert into joblabx_data(sex,school,department,YEAR,j_value) values(?,?,?,?,?)";
 			stmt = conn.prepareStatement(sql);
 			// 遍历行
 			for (int i = 0; i < list.size(); i++) {
+				// 遍历列
+				for (int j = 0; j < list.get(i).size(); j++) {
+					stmt.setString(j + 1, list.get(i).get(j));
+				}
+				// 添加批处理
+				stmt.addBatch();
+				// 每100条执行一次批处理
+				if (i + 1 % 100 == 0) {
+					// 批量执行
+					int[] ints = stmt.executeBatch();
+					for (int z = 0; z < ints.length; z++) {
+						row += ints[z];
+					}
+					// 清空批处理
+					stmt.clearBatch();
+				}
+			}
+			// 批量执行
+			int[] ints = stmt.executeBatch();
+			for (int z = 0; z < ints.length; z++) {
+				row += ints[z];
+			}
+			LoggerUtil.logger.log(Level.INFO, Arrays.toString(ints));
+			// 清空批处理
+			stmt.clearBatch();
+			if (row != list.size()) {
+				JDBCUtil.rollBackTransaction(conn);
+				return false;
+			} else {
+				JDBCUtil.commitTransaction(conn);
+				return true;
+			}
+		} catch (Exception e) {
+			LoggerUtil.logger.log(Level.SEVERE, CustomerExceptionTool.getException(e));
+			JDBCUtil.rollBackTransaction(conn);
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			JDBCUtil.close(conn, stmt, rs);
+		}
+	}
+
+	/**
+	 * 根据list集合对象插入数据
+	 *
+	 * @param objects
+	 *            数据的list集合对象
+	 * @return 返回是否插入成功
+	 */
+	public Boolean insertObjectData(List<ExcelObject> objects) {
+		PreparedStatement stmt = null;
+		Connection conn = null;
+		ResultSet rs = null;
+		// 影响结果的总行数
+		int row = 0;
+		try {
+			conn = JDBCUtil.getConnect();
+			JDBCUtil.beginTransaction(conn);
+			String sql = "insert into joblabx_data(sex,school,department,YEAR,j_value) values(?,?,?,?,?)";
+			stmt = conn.prepareStatement(sql);
+			// 遍历行
+			for (int i = 0; i < objects.size(); i++) {
+				// 遍历列
+				stmt.setString(1, objects.get(i).getSex());
+				stmt.setString(2, objects.get(i).getSchool());
+				stmt.setString(3, objects.get(i).getDeparement());
+				stmt.setString(4, objects.get(i).getYear());
+				stmt.setString(5, objects.get(i).getJValue());
+				// 添加批处理
+				stmt.addBatch();
+				// 每100条执行一次批处理
+				if (i + 1 % 100 == 0) {
+					// 批量执行
+					int[] ints = stmt.executeBatch();
+					for (int z = 0; z < ints.length; z++) {
+						row += ints[z];
+					}
+					// 清空批处理
+					stmt.clearBatch();
+				}
+			}
+			// 批量执行
+			int[] ints = stmt.executeBatch();
+			for (int z = 0; z < ints.length; z++) {
+				row += ints[z];
+			}
+			LoggerUtil.logger.log(Level.INFO, Arrays.toString(ints));
+			// 清空批处理
+			stmt.clearBatch();
+			if (row != objects.size()) {
+				JDBCUtil.rollBackTransaction(conn);
+				return false;
+			} else {
+				JDBCUtil.commitTransaction(conn);
+				return true;
+			}
+		} catch (Exception e) {
+			LoggerUtil.logger.log(Level.SEVERE, CustomerExceptionTool.getException(e));
+			JDBCUtil.rollBackTransaction(conn);
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			JDBCUtil.close(conn, stmt, rs);
+		}
+	}
+
+	/**
+	 * 根据list集合插入数据到临时表中
+	 *
+	 * @param list
+	 *            数据的list集合
+	 * @return 返回是否插入成功
+	 */
+	public Boolean insertTempData(List<ArrayList<String>> list) {
+		PreparedStatement stmt = null;
+		Connection conn = null;
+		ResultSet rs = null;
+		// 影响结果的总行数
+		int row = 0;
+		try {
+			conn = JDBCUtil.getConnect();
+			JDBCUtil.beginTransaction(conn);
+			String sql = "insert into joblabx_data(ctime,sex,school,deparement,YEAR,j_value) values(?,?,?,?,?,?)";
+			stmt = conn.prepareStatement(sql);
+			// 遍历行
+			for (int i = 0; i < list.size(); i++) {
+				// 设置创建时间
+				stmt.setString(1, TimeUtil.getSimpleDateTime(System.currentTimeMillis()));
 				// 遍历列
 				for (int j = 0; j < list.get(i).size(); j++) {
 					stmt.setString(j + 1, list.get(i).get(j));
@@ -115,6 +243,7 @@ public class DataDao {
 				list.add(rs.getString(1));
 				list.add(rs.getString(2));
 				list.add(rs.getString(3));
+				list.add(rs.getString(4));
 			}
 			LoggerUtil.logger.log(Level.INFO, list.toString());
 		} catch (Exception e) {
@@ -157,6 +286,7 @@ public class DataDao {
 				collist.add(rs.getString(1));
 				collist.add(rs.getString(2));
 				collist.add(rs.getString(3));
+				collist.add(rs.getString(4));
 				list.add(collist);
 			}
 
@@ -202,8 +332,10 @@ public class DataDao {
 				collist.add(rs.getString("id"));
 				collist.add(rs.getString("sex"));
 				collist.add(rs.getString("school"));
+				collist.add(rs.getString("department"));
 				collist.add(rs.getString("year"));
 				collist.add(rs.getString("j_value"));
+
 				list.add(collist);
 			}
 		} catch (Exception e) {
@@ -279,6 +411,37 @@ public class DataDao {
 			String sql = "delete from joblabx_data where id=? ";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, id);
+			row = stmt.executeUpdate();
+			JDBCUtil.commitTransaction(conn);
+			if (row != 1) {
+				return false;
+			} else {
+				return true;
+			}
+
+		} catch (Exception e) {
+			LoggerUtil.logger.log(Level.SEVERE, CustomerExceptionTool.getException(e));
+			JDBCUtil.rollBackTransaction(conn);
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			JDBCUtil.close(conn, stmt, rs);
+		}
+	}
+
+	/**
+	 * 截断所有数据
+	 *
+	 */
+	public Boolean truncateAllData() {
+		PreparedStatement stmt = null;
+		Connection conn = null;
+		ResultSet rs = null;
+		int row = 0;
+		try {
+			conn = JDBCUtil.getConnect();
+			JDBCUtil.beginTransaction(conn);
+			String sql = "truncate table joblabx_data ";
+			stmt = conn.prepareStatement(sql);
 			row = stmt.executeUpdate();
 			JDBCUtil.commitTransaction(conn);
 			if (row != 1) {
