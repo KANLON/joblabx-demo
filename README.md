@@ -10,6 +10,7 @@
 3. 修改功能展示页面
 4. 增加学校情况表，用来绘制各省人数图
 5. 还差各省地图和查找功能
+6. 项目链接：<a href="http://kanlon.ink:8081/joblabxDemo/">http://kanlon.ink:8081/joblabxDemo/</a>
 
 
 
