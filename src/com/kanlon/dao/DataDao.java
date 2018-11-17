@@ -51,8 +51,8 @@ public class DataDao {
 				}
 				// 添加批处理
 				stmt.addBatch();
-				// 每100条执行一次批处理
-				if (i + 1 % 100 == 0) {
+				// 每3000条执行一次批处理
+				if ((i + 1) % 3000 == 0) {
 					// 批量执行
 					int[] ints = stmt.executeBatch();
 					for (int z = 0; z < ints.length; z++) {
@@ -99,6 +99,7 @@ public class DataDao {
 		ResultSet rs = null;
 		// 影响结果的总行数
 		int row = 0;
+		long millisTime = System.currentTimeMillis();
 		try {
 			conn = JDBCUtil.getConnect();
 			JDBCUtil.beginTransaction(conn);
@@ -114,8 +115,8 @@ public class DataDao {
 				stmt.setString(5, objects.get(i).getJValue());
 				// 添加批处理
 				stmt.addBatch();
-				// 每100条执行一次批处理
-				if (i + 1 % 100 == 0) {
+				// 每3000条执行一次批处理
+				if ((i + 1) % 3000 == 0) {
 					// 批量执行
 					int[] ints = stmt.executeBatch();
 					for (int z = 0; z < ints.length; z++) {
@@ -133,13 +134,18 @@ public class DataDao {
 			LoggerUtil.logger.log(Level.INFO, Arrays.toString(ints));
 			// 清空批处理
 			stmt.clearBatch();
+
 			if (row != objects.size()) {
 				JDBCUtil.rollBackTransaction(conn);
+
 				return false;
 			} else {
 				JDBCUtil.commitTransaction(conn);
+				LoggerUtil.logger.log(Level.SEVERE,
+						"花费的时间为：" + String.valueOf(System.currentTimeMillis() - millisTime));
 				return true;
 			}
+
 		} catch (Exception e) {
 			LoggerUtil.logger.log(Level.SEVERE, CustomerExceptionTool.getException(e));
 			JDBCUtil.rollBackTransaction(conn);
@@ -177,8 +183,8 @@ public class DataDao {
 				}
 				// 添加批处理
 				stmt.addBatch();
-				// 每100条执行一次批处理
-				if (i + 1 % 100 == 0) {
+				// 每3000条执行一次批处理
+				if ((i + 1) % 3000 == 0) {
 					// 批量执行
 					int[] ints = stmt.executeBatch();
 					for (int z = 0; z < ints.length; z++) {

@@ -44,6 +44,14 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/poi-ooxml-schemas-3.17.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/stax-api-1.0.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xmlbeans-2.6.0.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/c3p0-0.9.5.2.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mchange-commons-java-0.2.11.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/c3p0-0.9.5.2-sources.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mchange-commons-java-0.2.11-sources.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-beanutils-1.9.3-sources.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-beanutils-1.9.3.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-dbutils-1.7-sources.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-dbutils-1.7.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

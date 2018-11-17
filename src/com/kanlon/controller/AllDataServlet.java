@@ -20,6 +20,7 @@ import com.kanlon.common.ResponseCode;
 import com.kanlon.common.exception.BusinessException;
 import com.kanlon.service.FileDataService;
 import com.kanlon.service.FileDataServiceImpl;
+import com.mysql.jdbc.StringUtils;
 
 /**
  * 返回所有数据记录
@@ -40,9 +41,19 @@ public class AllDataServlet extends HttpServlet {
 		int num = 0;
 		try {
 			out = response.getOutputStream();
+
+			String pageIndexStr = request.getParameter("pageIndex");
+			String pageSizeStr = request.getParameter("pageSize");
+			if (StringUtils.isNullOrEmpty(pageSizeStr) || StringUtils.isNullOrEmpty(pageIndexStr)) {
+				result.setStateCode(ResponseCode.REQUEST_ERROR, "pageIndex或pageSize为null或null字符串");
+				out.write(JsonResponseUtil.getVOJsonStr(response, result));
+				out.flush();
+				return;
+			}
+
 			// 获取请求参数
-			int pageIndex = Integer.parseInt(request.getParameter("pageIndex"));
-			int pageSize = Integer.parseInt(request.getParameter("pageSize"));
+			int pageIndex = Integer.parseInt(pageIndexStr);
+			int pageSize = Integer.parseInt(pageSizeStr);
 			// 获取所有记录
 			List<ArrayList<String>> lists = service.getAllData(pageIndex, pageSize);
 			// 获取所有记录数量
@@ -54,10 +65,9 @@ public class AllDataServlet extends HttpServlet {
 					AllDataResponseVO dataVo = new AllDataResponseVO();
 					dataVo.setSex(tempList.get(1));
 					dataVo.setSchool(tempList.get(2));
-					dataVo.setDepartment(tempList.get(3));
+					dataVo.setDepartment(tempList.get(3) == null ? "" : tempList.get(3));
 					dataVo.setYear(tempList.get(4));
 					dataVo.setjValue(tempList.get(5));
-
 					responseList.add(dataVo);
 				}
 			}

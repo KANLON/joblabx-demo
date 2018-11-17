@@ -36,7 +36,7 @@ public class DeleteAllDataServlet extends HttpServlet {
 			out = response.getOutputStream();
 			DataDao dao = new DataDao();
 			dao.truncateAllData();
-			response.sendRedirect("year_school_sex_top5school.html");
+			response.sendRedirect("all_data.html");
 		} catch (Exception e) {
 			result.setStateCode(ResponseCode.RESPONSE_ERROR, e.getMessage());
 			out.write(JsonResponseUtil.getVOJsonStr(response, result));

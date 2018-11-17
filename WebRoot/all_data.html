@@ -1,292 +1,352 @@
-<span style="font-size:18px;">
-    <!DOCTYPE html>
-    <html>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
 
-    <head>
-        <meta charset="utf-8">
+<title>统计分析系统</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/operation.css">
+<link rel="icon" href="images/favicon.ico">
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-        <title>统计分析系统</title>
-        <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="css/operation.css">
-        <script src="js/jquery-3.2.1.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/curd.js"></script>
-        <script src="js/login.js"></script>
-        <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-        <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+body {
+	margin-top: 65px;
+}
 
-        <style>
-            body{
-        margin-top: 65px;
-    }
-    .col-md-2{
-        background-color: #F0F0F0;
-        /*?*/
-        height: 600px;
-    }
-    #left-content{
-        margin-top: 20px;
-    }
-    .list-group{
-        padding-left: 0;
-    }
-    #panel-group{
-        margin-top: 20px;
-    }
-    #onebtn{
-        margin: 10px 0;
-    }
-    #btngroup button{
-        width: 100%;
-    }
-    .progress{
-        margin-top: 15px;
-    }
- 
+.col-md-2 {
+	background-color: #F0F0F0;
+	/*?*/
+	height: 600px;
+}
+
+#left-content {
+	margin-top: 20px;
+}
+
+.list-group {
+	padding-left: 0;
+}
+
+#panel-group {
+	margin-top: 20px;
+}
+
+#onebtn {
+	margin: 10px 0;
+}
+
+#btngroup button {
+	width: 100%;
+}
+
+.progress {
+	margin-top: 15px;
+}
 </style>
 
-    </head>
+</head>
 
-    <body>
-        <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
-            <!--container-fluid表示自适应大小，container表示居中--navbar-inverse带有黑色背景白色文本的反色的导航栏>-->
-            <div class="container">
-                <!--定义顶部导航栏-->
-                <div class="navbar-header">
-                    <!--button是当屏幕小于多少时出现的可以打开导航列表的按钮-->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#demo-navbar">
-                        <!--navbar-toggle是三根横线-->
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">统计分析系统</a>
-                </div>
-                <!--屏幕宽度小于一定程度时，导航条缩小，变成可折叠形式-->
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse"
+		role="navigation">
+		<!--container-fluid表示自适应大小，container表示居中--navbar-inverse带有黑色背景白色文本的反色的导航栏>-->
+		<div class="container">
+			<!--定义顶部导航栏-->
+			<div class="navbar-header">
+				<!--button是当屏幕小于多少时出现的可以打开导航列表的按钮-->
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#demo-navbar">
+					<!--navbar-toggle是三根横线-->
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">统计分析系统</a>
+			</div>
+			<!--屏幕宽度小于一定程度时，导航条缩小，变成可折叠形式-->
 
-                <!--collapse用于导航栏折叠之后数据在button按钮里点击显示-->
-                <div class="collapse navbar-collapse" id="demo-navbar">
-                    <!--nav navbar-nav表示显示在导航栏里-->
-                    <ul class="nav navbar-nav">
-                        <!--navbar-nav设置ul为导航条组件内的列表元素-->
-                        <li class="active"><a href="#">首页</a></li>
+			<!--collapse用于导航栏折叠之后数据在button按钮里点击显示-->
+			<div class="collapse navbar-collapse" id="demo-navbar">
+				<!--nav navbar-nav表示显示在导航栏里-->
+				<ul class="nav navbar-nav">
+					<!--navbar-nav设置ul为导航条组件内的列表元素-->
+					<li class="active"><a href="#">首页</a></li>
 
-                    </ul>
-                    <li>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a data-toggle="modal" data-target="#register" href=""><span class="glyphicon glyphicon-user"></span>
-                                    注册</a></li>
-                            <li><a data-toggle="modal" data-target="#login" href=""><span class="glyphicon glyphicon-log-in"></span>
-                                    登录</a></li>
-                        </ul>
+				</ul>
+<!-- 				<ul class="nav navbar-nav navbar-right">
+					<li><a data-toggle="modal" data-target="#register" href=""><span
+							class="glyphicon glyphicon-user"></span></a></li>
+					<li><a data-toggle="modal" data-target="#login" href=""><span
+							class="glyphicon glyphicon-log-in"></span></a></li>
+				</ul>
+ -->
+			</div>
+		</div>
+	</nav>
 
-                    </li>
+	<!-- 注册窗口 -->
+	<div id="register" class="modal fade" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<button class="close" data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+				</div>
+				<div class="modal-title">
+					<h1 class="text-center">注册</h1>
+				</div>
+				<div class="modal-body">
+					<form class="form-group" action="">
+						<div class="form-group">
+							<label for="">用户名</label> <input class="form-control" type="text"
+								placeholder="6-15位字母或数字">
+						</div>
+						<div class="form-group">
+							<label for="">密码</label> <input class="form-control"
+								type="password" placeholder="至少6位字母或数字">
+						</div>
+						<div class="form-group">
+							<label for="">再次输入密码</label> <input class="form-control"
+								type="password" placeholder="至少6位字母或数字">
+						</div>
+						<div class="form-group">
+							<label for="">邮箱</label> <input class="form-control" type="email"
+								placeholder="例如:123@123.com">
+						</div>
+						<div class="text-right">
+							<button class="btn btn-primary" type="submit">提交</button>
+							<button class="btn btn-danger" data-dismiss="modal">取消</button>
+						</div>
+						<a href="" data-toggle="modal" data-dismiss="modal"
+							data-target="#login">登录</a>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 登录窗口 -->
+	<div id="login" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<button class="close" data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+				</div>
+				<div class="modal-title">
+					<h1 class="text-center">登录</h1>
+				</div>
+				<div class="modal-body">
+					<form class="form-group" action="">
+						<div class="form-group">
+							<label for="">用户名</label> <input class="form-control" type="text"
+								placeholder="">
+						</div>
+						<div class="form-group">
+							<label for="">密码</label> <input class="form-control"
+								type="password" placeholder="">
+						</div>
+						<div class="text-right">
+							<button class="btn btn-primary" type="submit">登录</button>
+							<button class="btn btn-danger" data-dismiss="modal">取消</button>
+						</div>
+						<a href="" data-toggle="modal" data-dismiss="modal"
+							data-target="#register">注册</a>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
-                </div>
-        </nav>
-        </div>
-        <!-- 注册窗口 -->
-        <div id="register" class="modal fade" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <button class="close" data-dismiss="modal">
-                            <span>&times;</span>
-                        </button>
+	<div class="container-fluid">
+		<!--container-fluid用于100%宽度，占据全部视口-->
+		<div class="row">
+			<div class="col-md-2">
+				<div class="text-center" id="left-content">
+					<div class="list-group">
+						<a href="#" class="list-group-item active">首页</a>
+					</div>
+					<div class="list-group">
+						<!--list-group列表组件用于以列表形式呈现-->
+						<a href="year_school_sex_top5school.html" class="list-group-item">图表查询</a>
+						<a href="#" class="list-group-item">信息管理</a>
+					</div>
+					<div class="list-group">
+					<a href='testdata/JoblabX计算机能力联赛第三季决赛数据集100K【模板】.xlsx' class="list-group-item">下载导入模板</a> 
+                    <a href='delete_all_data' class="list-group-item">删除所有数据</a>
                     </div>
-                    <div class="modal-title">
-                        <h1 class="text-center">注册</h1>
+                    
+                    <div class="list-group">
+						<form method="post" action="uploadfile"
+							enctype="multipart/form-data">
+							选择数据文件 <input type="file" name="uploadFile" />
+							<input type="submit" value="上传" />
+						</form>
                     </div>
-                    <div class="modal-body">
-                        <form class="form-group" action="">
-                            <div class="form-group">
-                                <label for="">用户名</label>
-                                <input class="form-control" type="text" placeholder="6-15位字母或数字">
-                            </div>
-                            <div class="form-group">
-                                <label for="">密码</label>
-                                <input class="form-control" type="password" placeholder="至少6位字母或数字">
-                            </div>
-                            <div class="form-group">
-                                <label for="">再次输入密码</label>
-                                <input class="form-control" type="password" placeholder="至少6位字母或数字">
-                            </div>
-                            <div class="form-group">
-                                <label for="">邮箱</label>
-                                <input class="form-control" type="email" placeholder="例如:123@123.com">
-                            </div>
-                            <div class="text-right">
-                                <button class="btn btn-primary" type="submit">提交</button>
-                                <button class="btn btn-danger" data-dismiss="modal">取消</button>
-                            </div>
-                            <a href="" data-toggle="modal" data-dismiss="modal" data-target="#login">登录</a>
-                        </form>
+                    
+                    <div class="list-group">
+                    			<form method="post" action="upload_school_file"
+				                  enctype="multipart/form-data">
+				                                                 学校情况文件 <input type="file" name="uploadFile" />
+				                     <input type="submit" value="上传" />
+			                   </form>
                     </div>
-                </div>
-            </div>
-        </div>
-        <!-- 登录窗口 -->
-        <div id="login" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <button class="close" data-dismiss="modal">
-                            <span>&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-title">
-                        <h1 class="text-center">登录</h1>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form-group" action="">
-                            <div class="form-group">
-                                <label for="">用户名</label>
-                                <input class="form-control" type="text" placeholder="">
-                            </div>
-                            <div class="form-group">
-                                <label for="">密码</label>
-                                <input class="form-control" type="password" placeholder="">
-                            </div>
-                            <div class="text-right">
-                                <button class="btn btn-primary" type="submit">登录</button>
-                                <button class="btn btn-danger" data-dismiss="modal">取消</button>
-                            </div>
-                            <a href="" data-toggle="modal" data-dismiss="modal" data-target="#register">注册</a>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    
+				</div>
+			</div>
 
-        <div class="container-fluid">
-            <!--container-fluid用于100%宽度，占据全部视口-->
-            <div class="row">
-                <div class="col-md-2">
-                    <div class="text-center" id="left-content">
-                        <div class="list-group">
-                            <a href="#" class="list-group-item active">首页</a>
-                        </div>
-                        <div class="list-group">
-                            <!--list-group列表组件用于以列表形式呈现-->
-                            <a href="#" class="list-group-item">图表查询</a>
-                            <a href="#" class="list-group-item">信息管理</a>
+			<div class="col-md-10">
+				<h2>数据显示</h2>
+<!--  
 
-                        </div>
+				<div id="panel-group" id="accordion">
+					panel-group可折叠
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion"
+									href="#collapseTwo">最新提醒</a>
+							</h3>
+						</div>
+						<div id="collapseTwo" class="panel-collapse collapse ">
 
-                    </div>
-                </div>
+							<div class="panel-body">
+								<div class="alert alert-success" role="alert">
+									strong用于加粗文字
+									<strong>成功</strong> 您已成功更改学生信息
+								</div>
+								<div class="alert alert-danger" role="alert">
+									<strong>失败</strong> 您更改学生信息失败
+								</div>
+								<div class="alert alert-warning" role="alert">
+									<strong>提示</strong> 您更改学生信息延迟
+								</div>
+							</div>
+						</div>
+					</div>
 
-                <div class="col-md-10">
-                    <h2>学生信息显示</h2>
+				</div>
 
-                    <div id="panel-group" id="accordion">
-                        <!--panel-group可折叠-->
-                        <div class="panel panel-info">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">最新提醒</a></h3>
-                            </div>
-                            <div id="collapseTwo" class="panel-collapse collapse ">
+ -->
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3 class="panel-title">数据信息展示</h3>
+					</div>
+					<div class="panel-body">
+						<table class="table" id="data_all">
+							<thead>
+								<tr class="CaseRow">
+									<td>序号</td>
+									<td>性别</td>
+									<td>大学</td>
+									<td>学院</td>
+									<td>入学年</td>
+									<td>J值</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="CaseRow">
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
 
-                                <div class="panel-body">
-                                    <div class="alert alert-success" role="alert">
-                                        <!-- strong用于加粗文字 -->
-                                        <strong>成功</strong> 您已成功更改学生信息
-                                    </div>
-                                    <div class="alert alert-danger" role="alert">
-                                        <strong>失败</strong> 您更改学生信息失败
-                                    </div>
-                                    <div class="alert alert-warning" role="alert">
-                                        <strong>提示</strong> 您更改学生信息延迟
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+							</tbody>
+						</table>
+					</div>
+				</div>
 
-                    </div>
+			</div>
 
 
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">部分学生信息展示</h3>
-                        </div>
-                        <div class="panel-body">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>序号</th>
-                                        <th>性别</th>
-                                        <th>大学</th>
-                                        <th>入学年</th>
-                                        <th>J值</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th>1</th>
-                                        <th>M</th>
-                                        <th>河北大学</th>
-                                        <th>2017</th>
-                                        <th>355</th>
-                                    </tr>
-                                    <tr>
-                                        <th>2</th>
-                                        <th>M</th>
-                                        <th>广西农业职业技术学院</th>
-                                        <th>2017</th>
-                                        <th>252</th>
-                                    </tr>
-                                    <tr>
-                                        <th>3</th>
-                                        <th>F</th>
-                                        <th>桂林理工大学</th>
-                                        <th>2016</th>
-                                        <th>706</th>
-                                    </tr>
-                                </tbody>
-                            </table>
+			<div id="showPage" style="width: 750px; margin: 0 auto; float:center"
+				class="other-pages">
+				<div style="float: left">
+					<a id="first" class="pages">首页</a> <a id="prev" class="pages">上页</a>
+					<a id="next" class="pages">下页</a> <a id="last" class="pages">尾页</a>
+					跳转到第 <input type="text" id="txtGoPage"
+						style="width: 45px; height: 15px; border: 1px solid"> 页
+				</div>
+				<div style="margin: 0; float: left">
 
-                        </div>
-
-                    </div>
-					
-					
-					<!-- 分页展示 -->
-                    <div id="showPage" style="width: 750px; margin: 0 auto;" class="other-pages">
-                                <div style="float: left">
-                                    <a id="first" class="pages">首页</a>
-                                    <a id="prev" class="pages">上页</a>
-                                    <a id="next" class="pages">下页</a>
-                                    <a id="last" class="pages">尾页</a>
-                                    跳转到第
-                                    <input type="text" id="txtGoPage" style="width: 45px; height: 15px; border: 1px solid" />
-                                    页
-                                </div>
-                                <div style="margin: 0; float: left">
-
-                                    <input type="button" class="pages btn btn-info" id="go" value="跳转" />   共
-                                    <span id="SumCount"></span> 100条数据，每页
-                                    <span id="ItemCount"></span> 条， 当前
-                                    <span id="Index"></span>/
-                                    <span id="PageCount"></span>页
-                                </div>
-                    </div>
-
-                </div>
+					<input type="button" class="pages btn btn-info" id="go" value="跳转">
+					&nbsp; 共 <span id="SumCount"></span> 条数据，每页 <span id="ItemCount"></span>
+					条， 当前 <span id="Index"></span>/ <span id="PageCount"></span>页
+				</div>
+			</div>
 
 
-            </div>
+		</div>
 
-        </div>
+	</div>
 
-        </div>
-
-
-
-        <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-        <script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    </body>
-
-    </html>
-</span>
+	<script type="text/javascript">
+		function getData(pageIndex, pageSize) {
+			$.ajax({
+				url : 'all_data?pageIndex=' + pageIndex + '&pageSize=' + pageSize,
+				type : 'GET',
+				dataType : 'json',
+			})
+				.done(function(json) {
+					console.log(json);
+					//递增序号 
+					let cnt = 0;
+					var s = '';
+	
+					for (var i = 0; i < json.data.length; i++) {
+						cnt++;
+						let tempData = json.data;
+						var jValue = tempData[i].jValue;
+						var school = tempData[i].school;
+						var college = tempData[i].department;
+						var sex = tempData[i].sex;
+						var year = tempData[i].year;
+						s += '<tr><td>' + cnt + '</td><td>' + sex + '</td><td>' + school + '</td>' + '<td>' + college + '</td><td>' + year + '</td><td>' + jValue + '</td></tr>';
+					}
+					$('#data_all').empty();
+					//添加标题
+					$('#data_all').append('<thead> <tr class="CaseRow"> <td>序号</td> <td>性别</td><td>大学</td> <td>学院</td> <td>入学年</td> <td>J值</td> </tr> </thead>');
+					$('#data_all').append(s);
+					//总条数
+					$('#SumCount').text(json.msg);
+					//每页条数
+					$('#ItemCount').text('20');
+					//当前页
+					$('#Index').text(pageIndex);
+					//总页数
+					$('#PageCount').text(parseInt((parseInt(json.msg) + 19) / 20));
+				});
+		}
+		getData(1, 20);
+		$("#first").click(function() {
+			getData(1, 20);
+		});
+		$("#last").click(function() {
+			getData($('#PageCount').html(), 20);
+		});
+		$("#prev").click(function() {
+			getData($('#Index').html() === '1' ? 1 : parseInt($('#Index').html()) - 1, 20);
+		});
+		$("#next").click(function() {
+			getData($('#Index').html() === $('#PageCount').html() ? $('#PageCount').html() : parseInt($('#Index').html()) + 1, 20);
+		});
+		$("#go").click(function() {
+			getData($('#txtGoPage').val() === "" ? "1" : $('#txtGoPage').val(), 20);
+		});
+	</script>
+	<script
+		src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</body>
+</html>

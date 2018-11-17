@@ -17,30 +17,29 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import com.kanlon.bean.ExcelObject;
+import com.github.crab2died.ExcelUtils;
+import com.kanlon.bean.SchoolExcelObject;
 import com.kanlon.common.Constant;
 import com.kanlon.common.CustomerExceptionTool;
-import com.kanlon.common.ExcelPOIUtil;
 import com.kanlon.common.JsonResponseUtil;
 import com.kanlon.common.JsonResult;
 import com.kanlon.common.LoggerUtil;
 import com.kanlon.common.ResponseCode;
 import com.kanlon.common.TimeUtil;
-import com.kanlon.service.FileDataService;
-import com.kanlon.service.FileDataServiceImpl;
+import com.kanlon.service.SchoolDataService;
 
 /**
- * 文件上传的servlet类
+ * 导入学校的excel表
  *
  * @author zhangcanlong
- * @date 2018年11月12日
+ * @date 2018年11月17日
  */
-public class FileUploadServlet extends HttpServlet {
+public class SchoolExcelServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
 	// 上传文件存储目录
-	private static final String UPLOAD_DIRECTORY = Constant.WEB_APP_ROOT + "WEB-INF/" + "file/";
+	private static final String UPLOAD_DIRECTORY = Constant.WEB_APP_ROOT + "WEB-INF/" + "schoolfile/";
 
 	// 上传配置
 	private static final int MEMORY_THRESHOLD = 1024 * 1024 * 3; // 3MB
@@ -117,17 +116,14 @@ public class FileUploadServlet extends HttpServlet {
 						// 保存文件到硬盘
 						item.write(storeFile);
 						// 读取excel表格
-						List<ExcelObject> objects = new ArrayList<>();
+						List<SchoolExcelObject> objects = new ArrayList<>();
 						try {
-							// 旧版的excel读取，只能读取2003版之前的excel，并且包含标题
-							// list = JExcelOption.readExcel(filePath);
-							// 新版的excel读取，能读取了2007版和2003版的excel了，不包含标题
-							// list = ExcelPOIUtil.excel2List(filePath);
-							objects = ExcelPOIUtil.excel2ExcelObject(filePath);
+
+							objects = ExcelUtils.getInstance().readExcel2Objects(filePath, SchoolExcelObject.class);
 							LoggerUtil.logger.log(Level.INFO, "读取excel的数据:" + objects.toString());
 							// 将其存储到数据库中去
-							FileDataService service = new FileDataServiceImpl();
-							service.storeObjects(objects);
+							SchoolDataService service = new SchoolDataService();
+							service.stroeSchoolData(objects);
 						} catch (Exception e) {
 							result.setStateCode(ResponseCode.RESPONSE_ERROR, "读取excel表错误！！！" + e.getMessage());
 							LoggerUtil.logger.log(Level.SEVERE, CustomerExceptionTool.getException(e));
@@ -137,7 +133,7 @@ public class FileUploadServlet extends HttpServlet {
 							out.flush();
 							return;
 						}
-						response.sendRedirect("all_data.html");
+						response.sendRedirect("file_success.html");
 						return;
 					}
 				}

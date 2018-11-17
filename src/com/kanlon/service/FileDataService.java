@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.kanlon.bean.ExcelObject;
+import com.kanlon.bean.SchoolExcelObject;
 import com.kanlon.common.exception.BusinessException;
 
 public interface FileDataService {
@@ -17,6 +18,15 @@ public interface FileDataService {
 	 * @return 返回是否存储成功
 	 */
 	Boolean storeData(List<ArrayList<String>> list) throws BusinessException;
+
+	/**
+	 * 存储对象
+	 *
+	 * @param objects
+	 * @return
+	 * @throws BusinessException
+	 */
+	Boolean storeSchoolObjects(List<SchoolExcelObject> objects) throws BusinessException;
 
 	/**
 	 * 存储对象

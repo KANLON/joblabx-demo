@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.kanlon.bean.ExcelObject;
+import com.kanlon.bean.SchoolExcelObject;
 import com.kanlon.common.exception.BusinessException;
+import com.kanlon.dao.DBUtilDao;
 import com.kanlon.dao.DataDao;
 import com.mysql.jdbc.StringUtils;
 
@@ -40,7 +42,7 @@ public class FileDataServiceImpl implements FileDataService {
 	 * 存储数据
 	 *
 	 * @param list
-	 *            嵌套list表，默认第一行为标题行
+	 *            excel对象的list结合
 	 * @return 返回是否存储成功
 	 */
 	@Override
@@ -50,6 +52,22 @@ public class FileDataServiceImpl implements FileDataService {
 		}
 		// list.remove(0);
 		return dao.insertObjectData(objects);
+	}
+
+	/**
+	 * 存储学校数据
+	 *
+	 * @param list
+	 *            学校excel对象的list结合
+	 * @return 返回是否存储成功
+	 */
+	@Override
+	public Boolean storeSchoolObjects(List<SchoolExcelObject> objects) throws BusinessException {
+		if (objects == null || objects.size() <= 1) {
+			return true;
+		}
+		DBUtilDao dbDao = new DBUtilDao();
+		return null;
 	}
 
 	/**

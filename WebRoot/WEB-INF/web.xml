@@ -26,6 +26,18 @@
 		<url-pattern>/uploadfile</url-pattern>
 	</servlet-mapping>
 
+
+	<servlet>
+		<servlet-name>SchoolExcelServlet</servlet-name>
+		<servlet-class>com.kanlon.controller.SchoolExcelServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>SchoolExcelServlet</servlet-name>
+		<url-pattern>/upload_school_file</url-pattern>
+	</servlet-mapping>
+
+
 	<servlet>
 		<servlet-name>FileUploadTempServlet</servlet-name>
 		<servlet-class>com.kanlon.controller.FileUploadTempExcelServlet</servlet-class>
@@ -100,6 +112,10 @@
 		<url-pattern>/sexnum</url-pattern>
 	</servlet-mapping>
 
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404.html</location>
+	</error-page>
 
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
