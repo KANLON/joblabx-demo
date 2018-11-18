@@ -118,12 +118,15 @@ public class FileUploadServlet extends HttpServlet {
 						item.write(storeFile);
 						// 读取excel表格
 						List<ExcelObject> objects = new ArrayList<>();
+						long millis = System.currentTimeMillis();
 						try {
 							// 旧版的excel读取，只能读取2003版之前的excel，并且包含标题
 							// list = JExcelOption.readExcel(filePath);
 							// 新版的excel读取，能读取了2007版和2003版的excel了，不包含标题
 							// list = ExcelPOIUtil.excel2List(filePath);
+
 							objects = ExcelPOIUtil.excel2ExcelObject(filePath);
+							LoggerUtil.logger.log(Level.SEVERE, System.currentTimeMillis() - millis + "");
 							LoggerUtil.logger.log(Level.INFO, "读取excel的数据:" + objects.toString());
 							// 将其存储到数据库中去
 							FileDataService service = new FileDataServiceImpl();

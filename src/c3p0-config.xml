@@ -4,7 +4,7 @@
         <property name="user">root</property>
         <property name="password">root</property>
         <property name="driverClass">com.mysql.jdbc.Driver</property>
-        <property name="jdbcUrl">jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&amp;autoReconnect=true</property>
+        <property name="jdbcUrl">jdbc:mysql://101.132.97.103:3306/test?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&amp;autoReconnect=true</property>
         <!--以上的user是数据库的用户，password是数据库的密码，driverClass是mysql的数据库驱动，jdbcUrl是连接数据库的url -->
         <!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数 -->
         <property name="acquireIncrement">5</property>
@@ -23,7 +23,7 @@
         <property name="user">root</property>
         <property name="password">root</property>
         <property name="driverClass">com.mysql.jdbc.Driver</property>
-        <property name="jdbcUrl">jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&amp;autoReconnect=true</property>
+        <property name="jdbcUrl">jdbc:mysql://101.132.97.103:3306/test?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&amp;autoReconnect=true</property>
         <property name="acquireIncrement">5</property>
         <property name="initialPoolSize">10</property>
         <property name="minPoolSize">10</property>

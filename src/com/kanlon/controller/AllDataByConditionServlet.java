@@ -66,6 +66,12 @@ public class AllDataByConditionServlet extends HttpServlet {
 			// 获取请求参数
 			int pageIndex = Integer.parseInt(pageIndexStr);
 			int pageSize = Integer.parseInt(pageSizeStr);
+			if (StringUtils.isNullOrEmpty(city) && StringUtils.isNullOrEmpty(year)
+					&& StringUtils.isNullOrEmpty(school)) {
+				response.sendRedirect("all_data?pageIndex=" + pageIndex + "&pageSize=" + pageSize);
+				return;
+			}
+
 			// 获取所有记录
 			List<ArrayList<String>> lists = service.getAllDataByCondition(paramMap, pageIndex, pageSize);
 			// 获取所有记录数量
