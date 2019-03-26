@@ -1,7 +1,7 @@
 # joblabxDemo
 &emsp;&emsp;该项目为参加Joblabx比赛的热身题，主要功能是通过上传Excel文件，然后分析文件中的数据。
 <br/>
-项目链接：<a href="http://kanlon.ink:8081/joblabxDemo/">http://kanlon.ink:8081/joblabxDemo/</a>
+项目链接：<a href="http://kanlon.ink:8081/joblabx">http://kanlon.ink:8081/joblabx/</a>
 <br/>
 接口文档地址：<a href='https://documenter.getpostman.com/view/3892535/RzZDhGNM'>https://documenter.getpostman.com/view/3892535/RzZDhGNM</a>
 
